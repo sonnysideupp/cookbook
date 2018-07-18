@@ -1,7 +1,7 @@
 import { Context, getUserId } from "../../utils"
 export default {
   commentRecipe: async (parent, args, ctx: Context, info) => {
-    // const id = getUserId(ctx)
+    const id = getUserId(ctx)
     return await ctx.db.mutation.updateRecipe(
       {
         data: {
@@ -10,14 +10,14 @@ export default {
               text: args.text,
               author: {
                 connect: {
-                  id: "cjjrbowf7iacf0b295tx5zpfp"
+                  id: id
                 }
               }
             }
           }
         },
         where: {
-          name: "Fried Rice"
+          name: args.name
         }
       },
       info
