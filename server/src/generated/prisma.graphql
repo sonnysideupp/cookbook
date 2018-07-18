@@ -1,5 +1,5 @@
 # source: https://eu1.prisma.sh/shengh/cooking/dev
-# timestamp: Wed Jul 18 2018 13:47:07 GMT+0100 (Western European Summer Time)
+# timestamp: Wed Jul 18 2018 16:31:05 GMT+0100 (Western European Summer Time)
 
 type AggregateComment {
   count: Int!
@@ -10,6 +10,10 @@ type AggregateEquipment {
 }
 
 type AggregateIngredient {
+  count: Int!
+}
+
+type AggregateLike {
   count: Int!
 }
 
@@ -44,17 +48,26 @@ type CommentConnection {
 
 input CommentCreateInput {
   text: String!
-  author: UserCreateOneInput!
+  author: UserCreateOneWithoutCommentsInput!
   recipe: RecipeCreateOneWithoutCommentsInput!
+}
+
+input CommentCreateManyWithoutAuthorInput {
+  create: [CommentCreateWithoutAuthorInput!]
 }
 
 input CommentCreateManyWithoutRecipeInput {
   create: [CommentCreateWithoutRecipeInput!]
 }
 
+input CommentCreateWithoutAuthorInput {
+  text: String!
+  recipe: RecipeCreateOneWithoutCommentsInput!
+}
+
 input CommentCreateWithoutRecipeInput {
   text: String!
-  author: UserCreateOneInput!
+  author: UserCreateOneWithoutCommentsInput!
 }
 
 """An edge in a connection."""
@@ -122,8 +135,12 @@ input CommentSubscriptionWhereInput {
 
 input CommentUpdateInput {
   text: String
-  author: UserUpdateOneInput
+  author: UserUpdateOneWithoutCommentsInput
   recipe: RecipeUpdateOneWithoutCommentsInput
+}
+
+input CommentUpdateManyWithoutAuthorInput {
+  create: [CommentCreateWithoutAuthorInput!]
 }
 
 input CommentUpdateManyWithoutRecipeInput {
@@ -642,6 +659,216 @@ input IngredientWhereUniqueInput {
   name: String
 }
 
+type Like implements Node {
+  id: ID!
+  author(where: UserWhereInput): User!
+  recipe(where: RecipeWhereInput): Recipe!
+}
+
+"""A connection to a list of items."""
+type LikeConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [LikeEdge]!
+  aggregate: AggregateLike!
+}
+
+input LikeCreateInput {
+  author: UserCreateOneWithoutLikesInput!
+  recipe: RecipeCreateOneWithoutLikersInput!
+}
+
+input LikeCreateManyWithoutAuthorInput {
+  create: [LikeCreateWithoutAuthorInput!]
+  connect: [LikeWhereUniqueInput!]
+}
+
+input LikeCreateManyWithoutRecipeInput {
+  create: [LikeCreateWithoutRecipeInput!]
+  connect: [LikeWhereUniqueInput!]
+}
+
+input LikeCreateWithoutAuthorInput {
+  recipe: RecipeCreateOneWithoutLikersInput!
+}
+
+input LikeCreateWithoutRecipeInput {
+  author: UserCreateOneWithoutLikesInput!
+}
+
+"""An edge in a connection."""
+type LikeEdge {
+  """The item at the end of the edge."""
+  node: Like!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum LikeOrderByInput {
+  id_ASC
+  id_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+}
+
+type LikePreviousValues {
+  id: ID!
+}
+
+type LikeSubscriptionPayload {
+  mutation: MutationType!
+  node: Like
+  updatedFields: [String!]
+  previousValues: LikePreviousValues
+}
+
+input LikeSubscriptionWhereInput {
+  """Logical AND on all given filters."""
+  AND: [LikeSubscriptionWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [LikeSubscriptionWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [LikeSubscriptionWhereInput!]
+
+  """
+  The subscription event gets dispatched when it's listed in mutation_in
+  """
+  mutation_in: [MutationType!]
+
+  """
+  The subscription event gets only dispatched when one of the updated fields names is included in this list
+  """
+  updatedFields_contains: String
+
+  """
+  The subscription event gets only dispatched when all of the field names included in this list have been updated
+  """
+  updatedFields_contains_every: [String!]
+
+  """
+  The subscription event gets only dispatched when some of the field names included in this list have been updated
+  """
+  updatedFields_contains_some: [String!]
+  node: LikeWhereInput
+}
+
+input LikeUpdateInput {
+  author: UserUpdateOneWithoutLikesInput
+  recipe: RecipeUpdateOneWithoutLikersInput
+}
+
+input LikeUpdateManyWithoutAuthorInput {
+  create: [LikeCreateWithoutAuthorInput!]
+  connect: [LikeWhereUniqueInput!]
+  disconnect: [LikeWhereUniqueInput!]
+  delete: [LikeWhereUniqueInput!]
+  update: [LikeUpdateWithWhereUniqueWithoutAuthorInput!]
+  upsert: [LikeUpsertWithWhereUniqueWithoutAuthorInput!]
+}
+
+input LikeUpdateManyWithoutRecipeInput {
+  create: [LikeCreateWithoutRecipeInput!]
+  connect: [LikeWhereUniqueInput!]
+  disconnect: [LikeWhereUniqueInput!]
+  delete: [LikeWhereUniqueInput!]
+  update: [LikeUpdateWithWhereUniqueWithoutRecipeInput!]
+  upsert: [LikeUpsertWithWhereUniqueWithoutRecipeInput!]
+}
+
+input LikeUpdateWithoutAuthorDataInput {
+  recipe: RecipeUpdateOneWithoutLikersInput
+}
+
+input LikeUpdateWithoutRecipeDataInput {
+  author: UserUpdateOneWithoutLikesInput
+}
+
+input LikeUpdateWithWhereUniqueWithoutAuthorInput {
+  where: LikeWhereUniqueInput!
+  data: LikeUpdateWithoutAuthorDataInput!
+}
+
+input LikeUpdateWithWhereUniqueWithoutRecipeInput {
+  where: LikeWhereUniqueInput!
+  data: LikeUpdateWithoutRecipeDataInput!
+}
+
+input LikeUpsertWithWhereUniqueWithoutAuthorInput {
+  where: LikeWhereUniqueInput!
+  update: LikeUpdateWithoutAuthorDataInput!
+  create: LikeCreateWithoutAuthorInput!
+}
+
+input LikeUpsertWithWhereUniqueWithoutRecipeInput {
+  where: LikeWhereUniqueInput!
+  update: LikeUpdateWithoutRecipeDataInput!
+  create: LikeCreateWithoutRecipeInput!
+}
+
+input LikeWhereInput {
+  """Logical AND on all given filters."""
+  AND: [LikeWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [LikeWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [LikeWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  author: UserWhereInput
+  recipe: RecipeWhereInput
+}
+
+input LikeWhereUniqueInput {
+  id: ID
+}
+
 """
 The `Long` scalar type represents non-fractional signed whole numeric values.
 Long can represent values between -(2^63) and 2^63 - 1.
@@ -649,31 +876,37 @@ Long can represent values between -(2^63) and 2^63 - 1.
 scalar Long
 
 type Mutation {
-  createRecipe(data: RecipeCreateInput!): Recipe!
-  createComment(data: CommentCreateInput!): Comment!
   createUser(data: UserCreateInput!): User!
+  createRecipe(data: RecipeCreateInput!): Recipe!
+  createLike(data: LikeCreateInput!): Like!
+  createComment(data: CommentCreateInput!): Comment!
   createEquipment(data: EquipmentCreateInput!): Equipment!
   createIngredient(data: IngredientCreateInput!): Ingredient!
-  updateRecipe(data: RecipeUpdateInput!, where: RecipeWhereUniqueInput!): Recipe
   updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
+  updateRecipe(data: RecipeUpdateInput!, where: RecipeWhereUniqueInput!): Recipe
+  updateLike(data: LikeUpdateInput!, where: LikeWhereUniqueInput!): Like
   updateEquipment(data: EquipmentUpdateInput!, where: EquipmentWhereUniqueInput!): Equipment
   updateIngredient(data: IngredientUpdateInput!, where: IngredientWhereUniqueInput!): Ingredient
-  deleteRecipe(where: RecipeWhereUniqueInput!): Recipe
   deleteUser(where: UserWhereUniqueInput!): User
+  deleteRecipe(where: RecipeWhereUniqueInput!): Recipe
+  deleteLike(where: LikeWhereUniqueInput!): Like
   deleteEquipment(where: EquipmentWhereUniqueInput!): Equipment
   deleteIngredient(where: IngredientWhereUniqueInput!): Ingredient
-  upsertRecipe(where: RecipeWhereUniqueInput!, create: RecipeCreateInput!, update: RecipeUpdateInput!): Recipe!
   upsertUser(where: UserWhereUniqueInput!, create: UserCreateInput!, update: UserUpdateInput!): User!
+  upsertRecipe(where: RecipeWhereUniqueInput!, create: RecipeCreateInput!, update: RecipeUpdateInput!): Recipe!
+  upsertLike(where: LikeWhereUniqueInput!, create: LikeCreateInput!, update: LikeUpdateInput!): Like!
   upsertEquipment(where: EquipmentWhereUniqueInput!, create: EquipmentCreateInput!, update: EquipmentUpdateInput!): Equipment!
   upsertIngredient(where: IngredientWhereUniqueInput!, create: IngredientCreateInput!, update: IngredientUpdateInput!): Ingredient!
-  updateManyRecipes(data: RecipeUpdateInput!, where: RecipeWhereInput): BatchPayload!
-  updateManyComments(data: CommentUpdateInput!, where: CommentWhereInput): BatchPayload!
   updateManyUsers(data: UserUpdateInput!, where: UserWhereInput): BatchPayload!
+  updateManyRecipes(data: RecipeUpdateInput!, where: RecipeWhereInput): BatchPayload!
+  updateManyLikes(data: LikeUpdateInput!, where: LikeWhereInput): BatchPayload!
+  updateManyComments(data: CommentUpdateInput!, where: CommentWhereInput): BatchPayload!
   updateManyEquipments(data: EquipmentUpdateInput!, where: EquipmentWhereInput): BatchPayload!
   updateManyIngredients(data: IngredientUpdateInput!, where: IngredientWhereInput): BatchPayload!
-  deleteManyRecipes(where: RecipeWhereInput): BatchPayload!
-  deleteManyComments(where: CommentWhereInput): BatchPayload!
   deleteManyUsers(where: UserWhereInput): BatchPayload!
+  deleteManyRecipes(where: RecipeWhereInput): BatchPayload!
+  deleteManyLikes(where: LikeWhereInput): BatchPayload!
+  deleteManyComments(where: CommentWhereInput): BatchPayload!
   deleteManyEquipments(where: EquipmentWhereInput): BatchPayload!
   deleteManyIngredients(where: IngredientWhereInput): BatchPayload!
 }
@@ -706,18 +939,21 @@ type PageInfo {
 }
 
 type Query {
-  recipes(where: RecipeWhereInput, orderBy: RecipeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Recipe]!
-  comments(where: CommentWhereInput, orderBy: CommentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Comment]!
   users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
+  recipes(where: RecipeWhereInput, orderBy: RecipeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Recipe]!
+  likes(where: LikeWhereInput, orderBy: LikeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Like]!
+  comments(where: CommentWhereInput, orderBy: CommentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Comment]!
   equipments(where: EquipmentWhereInput, orderBy: EquipmentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Equipment]!
   ingredients(where: IngredientWhereInput, orderBy: IngredientOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Ingredient]!
-  recipe(where: RecipeWhereUniqueInput!): Recipe
   user(where: UserWhereUniqueInput!): User
+  recipe(where: RecipeWhereUniqueInput!): Recipe
+  like(where: LikeWhereUniqueInput!): Like
   equipment(where: EquipmentWhereUniqueInput!): Equipment
   ingredient(where: IngredientWhereUniqueInput!): Ingredient
-  recipesConnection(where: RecipeWhereInput, orderBy: RecipeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): RecipeConnection!
-  commentsConnection(where: CommentWhereInput, orderBy: CommentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): CommentConnection!
   usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
+  recipesConnection(where: RecipeWhereInput, orderBy: RecipeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): RecipeConnection!
+  likesConnection(where: LikeWhereInput, orderBy: LikeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): LikeConnection!
+  commentsConnection(where: CommentWhereInput, orderBy: CommentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): CommentConnection!
   equipmentsConnection(where: EquipmentWhereInput, orderBy: EquipmentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): EquipmentConnection!
   ingredientsConnection(where: IngredientWhereInput, orderBy: IngredientOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): IngredientConnection!
 
@@ -733,10 +969,10 @@ type Recipe implements Node {
   name: String!
   description: String!
   ingredients(where: IngredientWhereInput, orderBy: IngredientOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Ingredient!]
-  creator(where: UserWhereInput): User!
+  creator(where: UserWhereInput): User
   process: String!
   comments(where: CommentWhereInput, orderBy: CommentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Comment!]
-  likes: Int!
+  likers(where: LikeWhereInput, orderBy: LikeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Like!]
   price: Float!
   nutrition: String!
   category: String!
@@ -757,13 +993,13 @@ input RecipeCreateInput {
   name: String!
   description: String!
   process: String!
-  likes: Int!
   price: Float!
   nutrition: String!
   category: String!
   ingredients: IngredientCreateManyInput
-  creator: UserCreateOneWithoutRecipesInput!
+  creator: UserCreateOneWithoutRecipesInput
   comments: CommentCreateManyWithoutRecipeInput
+  likers: LikeCreateManyWithoutRecipeInput
   equipments: EquipmentCreateManyInput
 }
 
@@ -777,16 +1013,21 @@ input RecipeCreateOneWithoutCommentsInput {
   connect: RecipeWhereUniqueInput
 }
 
+input RecipeCreateOneWithoutLikersInput {
+  create: RecipeCreateWithoutLikersInput
+  connect: RecipeWhereUniqueInput
+}
+
 input RecipeCreateWithoutCommentsInput {
   name: String!
   description: String!
   process: String!
-  likes: Int!
   price: Float!
   nutrition: String!
   category: String!
   ingredients: IngredientCreateManyInput
-  creator: UserCreateOneWithoutRecipesInput!
+  creator: UserCreateOneWithoutRecipesInput
+  likers: LikeCreateManyWithoutRecipeInput
   equipments: EquipmentCreateManyInput
 }
 
@@ -794,11 +1035,24 @@ input RecipeCreateWithoutCreatorInput {
   name: String!
   description: String!
   process: String!
-  likes: Int!
   price: Float!
   nutrition: String!
   category: String!
   ingredients: IngredientCreateManyInput
+  comments: CommentCreateManyWithoutRecipeInput
+  likers: LikeCreateManyWithoutRecipeInput
+  equipments: EquipmentCreateManyInput
+}
+
+input RecipeCreateWithoutLikersInput {
+  name: String!
+  description: String!
+  process: String!
+  price: Float!
+  nutrition: String!
+  category: String!
+  ingredients: IngredientCreateManyInput
+  creator: UserCreateOneWithoutRecipesInput
   comments: CommentCreateManyWithoutRecipeInput
   equipments: EquipmentCreateManyInput
 }
@@ -821,8 +1075,6 @@ enum RecipeOrderByInput {
   description_DESC
   process_ASC
   process_DESC
-  likes_ASC
-  likes_DESC
   price_ASC
   price_DESC
   nutrition_ASC
@@ -840,7 +1092,6 @@ type RecipePreviousValues {
   name: String!
   description: String!
   process: String!
-  likes: Int!
   price: Float!
   nutrition: String!
   category: String!
@@ -889,13 +1140,13 @@ input RecipeUpdateInput {
   name: String
   description: String
   process: String
-  likes: Int
   price: Float
   nutrition: String
   category: String
   ingredients: IngredientUpdateManyInput
   creator: UserUpdateOneWithoutRecipesInput
   comments: CommentUpdateManyWithoutRecipeInput
+  likers: LikeUpdateManyWithoutRecipeInput
   equipments: EquipmentUpdateManyInput
 }
 
@@ -916,16 +1167,24 @@ input RecipeUpdateOneWithoutCommentsInput {
   upsert: RecipeUpsertWithoutCommentsInput
 }
 
+input RecipeUpdateOneWithoutLikersInput {
+  create: RecipeCreateWithoutLikersInput
+  connect: RecipeWhereUniqueInput
+  delete: Boolean
+  update: RecipeUpdateWithoutLikersDataInput
+  upsert: RecipeUpsertWithoutLikersInput
+}
+
 input RecipeUpdateWithoutCommentsDataInput {
   name: String
   description: String
   process: String
-  likes: Int
   price: Float
   nutrition: String
   category: String
   ingredients: IngredientUpdateManyInput
   creator: UserUpdateOneWithoutRecipesInput
+  likers: LikeUpdateManyWithoutRecipeInput
   equipments: EquipmentUpdateManyInput
 }
 
@@ -933,11 +1192,24 @@ input RecipeUpdateWithoutCreatorDataInput {
   name: String
   description: String
   process: String
-  likes: Int
   price: Float
   nutrition: String
   category: String
   ingredients: IngredientUpdateManyInput
+  comments: CommentUpdateManyWithoutRecipeInput
+  likers: LikeUpdateManyWithoutRecipeInput
+  equipments: EquipmentUpdateManyInput
+}
+
+input RecipeUpdateWithoutLikersDataInput {
+  name: String
+  description: String
+  process: String
+  price: Float
+  nutrition: String
+  category: String
+  ingredients: IngredientUpdateManyInput
+  creator: UserUpdateOneWithoutRecipesInput
   comments: CommentUpdateManyWithoutRecipeInput
   equipments: EquipmentUpdateManyInput
 }
@@ -950,6 +1222,11 @@ input RecipeUpdateWithWhereUniqueWithoutCreatorInput {
 input RecipeUpsertWithoutCommentsInput {
   update: RecipeUpdateWithoutCommentsDataInput!
   create: RecipeCreateWithoutCommentsInput!
+}
+
+input RecipeUpsertWithoutLikersInput {
+  update: RecipeUpdateWithoutLikersDataInput!
+  create: RecipeCreateWithoutLikersInput!
 }
 
 input RecipeUpsertWithWhereUniqueWithoutCreatorInput {
@@ -1127,28 +1404,6 @@ input RecipeWhereInput {
 
   """All values not ending with the given string."""
   process_not_ends_with: String
-  likes: Int
-
-  """All values that are not equal to given value."""
-  likes_not: Int
-
-  """All values that are contained in given list."""
-  likes_in: [Int!]
-
-  """All values that are not contained in given list."""
-  likes_not_in: [Int!]
-
-  """All values less than the given value."""
-  likes_lt: Int
-
-  """All values less than or equal the given value."""
-  likes_lte: Int
-
-  """All values greater than the given value."""
-  likes_gt: Int
-
-  """All values greater than or equal the given value."""
-  likes_gte: Int
   price: Float
 
   """All values that are not equal to given value."""
@@ -1258,6 +1513,9 @@ input RecipeWhereInput {
   comments_every: CommentWhereInput
   comments_some: CommentWhereInput
   comments_none: CommentWhereInput
+  likers_every: LikeWhereInput
+  likers_some: LikeWhereInput
+  likers_none: LikeWhereInput
   equipments_every: EquipmentWhereInput
   equipments_some: EquipmentWhereInput
   equipments_none: EquipmentWhereInput
@@ -1269,9 +1527,10 @@ input RecipeWhereUniqueInput {
 }
 
 type Subscription {
-  recipe(where: RecipeSubscriptionWhereInput): RecipeSubscriptionPayload
-  comment(where: CommentSubscriptionWhereInput): CommentSubscriptionPayload
   user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
+  recipe(where: RecipeSubscriptionWhereInput): RecipeSubscriptionPayload
+  like(where: LikeSubscriptionWhereInput): LikeSubscriptionPayload
+  comment(where: CommentSubscriptionWhereInput): CommentSubscriptionPayload
   equipment(where: EquipmentSubscriptionWhereInput): EquipmentSubscriptionPayload
   ingredient(where: IngredientSubscriptionWhereInput): IngredientSubscriptionPayload
 }
@@ -1279,9 +1538,12 @@ type Subscription {
 type User implements Node {
   id: ID!
   email: String!
+  username: String!
   name: String!
   password: String!
   recipes(where: RecipeWhereInput, orderBy: RecipeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Recipe!]
+  comments(where: CommentWhereInput, orderBy: CommentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Comment!]
+  likes(where: LikeWhereInput, orderBy: LikeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Like!]
 }
 
 """A connection to a list of items."""
@@ -1296,13 +1558,21 @@ type UserConnection {
 
 input UserCreateInput {
   email: String!
+  username: String!
   name: String!
   password: String!
   recipes: RecipeCreateManyWithoutCreatorInput
+  comments: CommentCreateManyWithoutAuthorInput
+  likes: LikeCreateManyWithoutAuthorInput
 }
 
-input UserCreateOneInput {
-  create: UserCreateInput
+input UserCreateOneWithoutCommentsInput {
+  create: UserCreateWithoutCommentsInput
+  connect: UserWhereUniqueInput
+}
+
+input UserCreateOneWithoutLikesInput {
+  create: UserCreateWithoutLikesInput
   connect: UserWhereUniqueInput
 }
 
@@ -1311,10 +1581,31 @@ input UserCreateOneWithoutRecipesInput {
   connect: UserWhereUniqueInput
 }
 
-input UserCreateWithoutRecipesInput {
+input UserCreateWithoutCommentsInput {
   email: String!
+  username: String!
   name: String!
   password: String!
+  recipes: RecipeCreateManyWithoutCreatorInput
+  likes: LikeCreateManyWithoutAuthorInput
+}
+
+input UserCreateWithoutLikesInput {
+  email: String!
+  username: String!
+  name: String!
+  password: String!
+  recipes: RecipeCreateManyWithoutCreatorInput
+  comments: CommentCreateManyWithoutAuthorInput
+}
+
+input UserCreateWithoutRecipesInput {
+  email: String!
+  username: String!
+  name: String!
+  password: String!
+  comments: CommentCreateManyWithoutAuthorInput
+  likes: LikeCreateManyWithoutAuthorInput
 }
 
 """An edge in a connection."""
@@ -1331,6 +1622,8 @@ enum UserOrderByInput {
   id_DESC
   email_ASC
   email_DESC
+  username_ASC
+  username_DESC
   name_ASC
   name_DESC
   password_ASC
@@ -1344,6 +1637,7 @@ enum UserOrderByInput {
 type UserPreviousValues {
   id: ID!
   email: String!
+  username: String!
   name: String!
   password: String!
 }
@@ -1387,45 +1681,76 @@ input UserSubscriptionWhereInput {
   node: UserWhereInput
 }
 
-input UserUpdateDataInput {
-  email: String
-  name: String
-  password: String
-  recipes: RecipeUpdateManyWithoutCreatorInput
-}
-
 input UserUpdateInput {
   email: String
+  username: String
   name: String
   password: String
   recipes: RecipeUpdateManyWithoutCreatorInput
+  comments: CommentUpdateManyWithoutAuthorInput
+  likes: LikeUpdateManyWithoutAuthorInput
 }
 
-input UserUpdateOneInput {
-  create: UserCreateInput
+input UserUpdateOneWithoutCommentsInput {
+  create: UserCreateWithoutCommentsInput
   connect: UserWhereUniqueInput
   delete: Boolean
-  update: UserUpdateDataInput
-  upsert: UserUpsertNestedInput
+  update: UserUpdateWithoutCommentsDataInput
+  upsert: UserUpsertWithoutCommentsInput
+}
+
+input UserUpdateOneWithoutLikesInput {
+  create: UserCreateWithoutLikesInput
+  connect: UserWhereUniqueInput
+  delete: Boolean
+  update: UserUpdateWithoutLikesDataInput
+  upsert: UserUpsertWithoutLikesInput
 }
 
 input UserUpdateOneWithoutRecipesInput {
   create: UserCreateWithoutRecipesInput
   connect: UserWhereUniqueInput
+  disconnect: Boolean
   delete: Boolean
   update: UserUpdateWithoutRecipesDataInput
   upsert: UserUpsertWithoutRecipesInput
 }
 
-input UserUpdateWithoutRecipesDataInput {
+input UserUpdateWithoutCommentsDataInput {
   email: String
+  username: String
   name: String
   password: String
+  recipes: RecipeUpdateManyWithoutCreatorInput
+  likes: LikeUpdateManyWithoutAuthorInput
 }
 
-input UserUpsertNestedInput {
-  update: UserUpdateDataInput!
-  create: UserCreateInput!
+input UserUpdateWithoutLikesDataInput {
+  email: String
+  username: String
+  name: String
+  password: String
+  recipes: RecipeUpdateManyWithoutCreatorInput
+  comments: CommentUpdateManyWithoutAuthorInput
+}
+
+input UserUpdateWithoutRecipesDataInput {
+  email: String
+  username: String
+  name: String
+  password: String
+  comments: CommentUpdateManyWithoutAuthorInput
+  likes: LikeUpdateManyWithoutAuthorInput
+}
+
+input UserUpsertWithoutCommentsInput {
+  update: UserUpdateWithoutCommentsDataInput!
+  create: UserCreateWithoutCommentsInput!
+}
+
+input UserUpsertWithoutLikesInput {
+  update: UserUpdateWithoutLikesDataInput!
+  create: UserCreateWithoutLikesInput!
 }
 
 input UserUpsertWithoutRecipesInput {
@@ -1522,6 +1847,46 @@ input UserWhereInput {
 
   """All values not ending with the given string."""
   email_not_ends_with: String
+  username: String
+
+  """All values that are not equal to given value."""
+  username_not: String
+
+  """All values that are contained in given list."""
+  username_in: [String!]
+
+  """All values that are not contained in given list."""
+  username_not_in: [String!]
+
+  """All values less than the given value."""
+  username_lt: String
+
+  """All values less than or equal the given value."""
+  username_lte: String
+
+  """All values greater than the given value."""
+  username_gt: String
+
+  """All values greater than or equal the given value."""
+  username_gte: String
+
+  """All values containing the given string."""
+  username_contains: String
+
+  """All values not containing the given string."""
+  username_not_contains: String
+
+  """All values starting with the given string."""
+  username_starts_with: String
+
+  """All values not starting with the given string."""
+  username_not_starts_with: String
+
+  """All values ending with the given string."""
+  username_ends_with: String
+
+  """All values not ending with the given string."""
+  username_not_ends_with: String
   name: String
 
   """All values that are not equal to given value."""
@@ -1605,12 +1970,16 @@ input UserWhereInput {
   recipes_every: RecipeWhereInput
   recipes_some: RecipeWhereInput
   recipes_none: RecipeWhereInput
-  _MagicalBackRelation_CommentToUser_every: CommentWhereInput
-  _MagicalBackRelation_CommentToUser_some: CommentWhereInput
-  _MagicalBackRelation_CommentToUser_none: CommentWhereInput
+  comments_every: CommentWhereInput
+  comments_some: CommentWhereInput
+  comments_none: CommentWhereInput
+  likes_every: LikeWhereInput
+  likes_some: LikeWhereInput
+  likes_none: LikeWhereInput
 }
 
 input UserWhereUniqueInput {
   id: ID
   email: String
+  username: String
 }
