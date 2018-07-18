@@ -4,7 +4,7 @@ import { Switch, Route } from "react-router-dom"
 import HomePage from "./components/home-page/home-page"
 import CreateRecipeForm from "./components/create-recipe/create-recipe"
 import Signup from "./components/signup/signup"
-
+import CommentForm from "./components/commentrecipe/commentrecipe"
 import MyProfile from "./components/my-profile/my-profile"
 // import HomePage2 from "./components/home-page2/home-page2"
 import Post from "./components/post_click/post"
@@ -25,6 +25,7 @@ class App extends React.Component {
             path="/my-profile/create-recipe"
             component={CreateRecipeForm}
           />
+          <Route exact={true} path="/comment" component={CommentForm} />
           <Route exact={true} path="/signup" component={Signup} />
         </Switch>
       </div>

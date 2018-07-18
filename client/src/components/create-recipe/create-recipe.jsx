@@ -1,6 +1,7 @@
 import * as React from "react"
 import gql from "graphql-tag"
 import { Mutation } from "react-apollo"
+import "./create-recipe.css"
 
 const CREATE_RECIPE = gql`
   mutation createrecipe($data: RecipeCreateInput!) {
@@ -31,8 +32,7 @@ class CreateRecipeForm extends React.Component {
   }
   render() {
     let input
-    const raw_user = localStorage.getItem("user")
-    const user = JSON.parse(raw_user)
+    const username = localStorage.getItem("username")
 
     return (
       <div>
@@ -53,18 +53,25 @@ class CreateRecipeForm extends React.Component {
                             price: this.state.price,
                             process: this.state.process,
                             nutrition: this.state.nutrition,
-                            category: this.state.category
+                            category: this.state.category,
+                            creator: {
+                              connect: {
+                                username: username
+                              }
+                            }
                           }
                         }
                       })
                     } catch (error) {}
                   }}
                 >
-                  <input
-                    type="textarea"
-                    placeholder="name"
-                    onChange={e => this.setState({ name: e.target.value })}
-                  />
+                  <div className="name">
+                    <input
+                      type="textarea"
+                      placeholder="name"
+                      onChange={e => this.setState({ name: e.target.value })}
+                    />
+                  </div>
                   <input
                     type="textarea"
                     placeholder="description"

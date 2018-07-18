@@ -1,6 +1,6 @@
 import * as React from "react"
 import { Link } from "react-router-dom"
-import Navigation from "../navbar/navbar"
+import Navbar from "../navbar/navbar"
 import "./my-profile.css"
 import gql from "graphql-tag"
 import {
@@ -16,12 +16,8 @@ import { Query } from "react-apollo"
 
 const GET_RECIPES = gql`
   query {
-    recipes(where: RecipeWhereInput) {
-      # pictureURL
+    recipes {
       name
-      creator {
-        name
-      }
       category
     }
   }
@@ -32,7 +28,7 @@ class MyProfile extends React.Component {
     return (
       <div>
         <div>
-          <Navigation className="navbar" />
+          <Navbar history={this.props.history} className="navbar" />
         </div>
         <h1 id="header">My Profile</h1>
         <div>
@@ -41,20 +37,31 @@ class MyProfile extends React.Component {
             </Link>
         </div>
         <div className="likedposts">
-          <h2 className="likedtitle" id="likedtitle">LIKED POSTS</h2>
-          <div>
-            <Query query={GET_RECIPES}>
-              {({ loading, error, data }) => {
-                if (loading) {
-                  return "Loading..."
-                }
-                if (error) {
-                  return "Oops, something blew up."
-                }
-                return <div>test</div>
-              }}
-            </Query>
-          </div>
+          <h2 className="likedtitle" id="likedtitle">
+            LIKED POSTS
+          </h2>
+          <Query query={GET_RECIPES}>
+            {({ loading, error, data }) => {
+              if (loading) {
+                return "LOading..."
+              }
+              if (error) {
+                return "OOps, somehing blew up."
+              }
+              return console.log("hi")
+              // <div>
+              //   {data.me.feed.map(tweet => {
+              //     return (
+              //       <Tweet
+              //         key={tweet.id}
+              //         text={tweet.text}
+              //         author={tweet.author}
+              //       />
+              //     )
+              //   })}
+              // </div>
+            }}
+          </Query>
           <div>
             <Card>
               <CardImg
@@ -74,7 +81,9 @@ class MyProfile extends React.Component {
           </div>
         </div>
         <div className="myrecipes">
-          <h2 className="myrecipestitle" id="myrecipestitle">MY RECIPES</h2>
+          <h2 className="myrecipestitle" id="myrecipestitle">
+            MY RECIPES
+          </h2>
           <div>
             <Card>
               <CardImg

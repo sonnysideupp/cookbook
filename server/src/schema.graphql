@@ -4,6 +4,7 @@ scalar Upload
 type Query {
   me: User!
   recipes(where: RecipeWhereInput!): [Recipe]!
+  allrecipes: [Recipe]!
 }
 
 type Mutation {
@@ -15,7 +16,7 @@ type Mutation {
   ): AuthPayload!
   login(email: String!, password: String!): AuthPayload!
   createrecipe(data: RecipeCreateInput!): Recipe!
-  commentrecipe(text: String!, name: String!): Recipe!
+  commentRecipe(text: String!, name: String!): Recipe!
   likerecipe(name: String!): Recipe!
 }
 
