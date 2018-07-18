@@ -1,6 +1,6 @@
 import * as React from "react"
 import { Link } from "react-router-dom"
-import Navigation from "../navbar/navbar"
+import Navbar from "../navbar/navbar"
 import "./my-profile.css"
 import gql from "graphql-tag"
 import {
@@ -28,7 +28,7 @@ class MyProfile extends React.Component {
     return (
       <div>
         <div>
-          <Navigation className="navbar" />
+          <Navbar history={this.props.history} className="navbar" />
         </div>
         <h1 id="header">MY PROFILE PAGE</h1>
         <div className="likedposts">

@@ -99,7 +99,9 @@ class Navigation extends React.Component {
     return (
       <div>
         <Navbar className="Navbar" light expand="md">
-          <NavbarBrand className="NavbarTitle" href="/">iX Cooking App</NavbarBrand>
+          <NavbarBrand className="NavbarTitle" href="/">
+            iX Cooking App
+          </NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>

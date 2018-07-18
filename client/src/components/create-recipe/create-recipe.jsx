@@ -31,8 +31,9 @@ class CreateRecipeForm extends React.Component {
   }
   render() {
     let input
-    const raw_user = localStorage.getItem("username")
-    const username = JSON.parse(raw_user)
+    const username = localStorage.getItem("username")
+
+    console.log(username)
 
     return (
       <div>
@@ -63,14 +64,15 @@ class CreateRecipeForm extends React.Component {
                         }
                       })
                     } catch (error) {}
-                    this.props.refetchFeedTweets()
                   }}
                 >
-                  <input
-                    type="textarea"
-                    placeholder="name"
-                    onChange={e => this.setState({ name: e.target.value })}
-                  />
+                  <div className="name">
+                    <input
+                      type="textarea"
+                      placeholder="name"
+                      onChange={e => this.setState({ name: e.target.value })}
+                    />
+                  </div>
                   <input
                     type="textarea"
                     placeholder="description"
