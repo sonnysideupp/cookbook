@@ -81,7 +81,7 @@ class Navigation extends React.Component {
 
             <Nav className="ml-auto" navbar>
               <NavItem>
-                <NavLink href="/mypage/">My Page</NavLink>
+                <NavLink href="/my-profile/">My Page</NavLink>
               </NavItem>
               <NavItem>
                 <div className="welcome">Welcome : </div>

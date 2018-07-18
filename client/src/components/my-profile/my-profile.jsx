@@ -1,6 +1,8 @@
 import * as React from "react"
 import { Link } from "react-router-dom"
+import Navigation from "../navbar/navbar"
 import "./my-profile.css"
+import gql from "graphql-tag"
 import {
   Card,
   CardImg,
@@ -10,7 +12,20 @@ import {
   CardSubtitle,
   Button
 } from "reactstrap"
-import Navigation from "../navbar/navbar"
+import { Query } from "react-apollo"
+
+const GET_RECIPES = gql`
+  query {
+    recipes {
+      # pictureURL
+      name
+      creator {
+        name
+      }
+      category
+    }
+  }
+`
 
 class MyProfile extends React.Component {
   render() {
@@ -22,6 +37,20 @@ class MyProfile extends React.Component {
         <h1 id="header">MY PROFILE PAGE</h1>
         <div className="likedposts">
           <h2 id="likedtitle">LIKED POSTS</h2>
+          <div>
+            <Query query={GET_RECIPES}>
+              {({ loading, error, data }) => {
+                if (loading) {
+                  return "Loading..."
+                }
+
+                if (error) {
+                  return "Oops, somehing blew up."
+                }
+                return data.recipes.name
+              }}
+            </Query>
+          </div>
           <div>
             <Card>
               <CardImg
