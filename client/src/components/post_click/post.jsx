@@ -3,6 +3,7 @@ import "./post.css"
 import img from "./img/food_post.png"
 import { Jumbotron, Container } from "reactstrap"
 import "font-awesome/css/font-awesome.min.css"
+import Navbar from "../navbar/navbar"
 import FaClockO from "react-icons/lib/fa/clock-o.js"
 
 class Post extends React.Component {
@@ -14,13 +15,14 @@ class Post extends React.Component {
   render() {
     return (
       <div>
+        <Navbar />
         <div className="post_img">
           <img className = "post_imgs" src={img} alt={"img"} />
         </div>
-        <Jumbotron fluid>
-          <Container fluid>
+        <Jumbotron>
+          <Container>
             <div className="descrip">
-              <h3 className="display-3">Title</h3>
+              <h3>Title</h3>
               <p className="lead">Description</p>
               <hr />
               <p>
