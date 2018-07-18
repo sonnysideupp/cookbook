@@ -31,7 +31,7 @@ class CreateRecipeForm extends React.Component {
   }
   render() {
     let input
-    const raw_user = localStorage.getItem("username")
+    const username = localStorage.getItem("username")
 
     return (
       <div>
@@ -64,11 +64,13 @@ class CreateRecipeForm extends React.Component {
                     } catch (error) {}
                   }}
                 >
-                  <input
-                    type="textarea"
-                    placeholder="name"
-                    onChange={e => this.setState({ name: e.target.value })}
-                  />
+                  <div className="name">
+                    <input
+                      type="textarea"
+                      placeholder="name"
+                      onChange={e => this.setState({ name: e.target.value })}
+                    />
+                  </div>
                   <input
                     type="textarea"
                     placeholder="description"

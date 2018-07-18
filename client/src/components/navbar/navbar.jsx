@@ -37,7 +37,8 @@ const LOGIN = gql`
 class Navigation extends React.Component {
   state = {
     email: "",
-    password: ""
+    password: "",
+    error: ""
   }
   constructor(props) {
     super(props)
@@ -93,13 +94,20 @@ class Navigation extends React.Component {
 
   render() {
     const token = localStorage.getItem("token")
+    var uname = ""
+    // var uname = () => {
+    //   return token ? localStorage.getItem("username") : "guest"
+    // }
+
     if (this.state.loading) {
       return <div className="app__loading">Loading...</div>
     }
     return (
       <div>
         <Navbar className="Navbar" light expand="md">
-          <NavbarBrand className="NavbarTitle" href="/">iX Cooking App</NavbarBrand>
+          <NavbarBrand className="NavbarTitle" href="/">
+            iX Cooking App
+          </NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
@@ -118,12 +126,21 @@ class Navigation extends React.Component {
 
             <Nav className="ml-auto" navbar>
               <NavItem>
-                <NavLink className="my-page" href="/my-profile/">
+                <NavLink
+                  disabled={!localStorage.getItem("token")}
+                  className="my-page"
+                  href="/my-profile/"
+                >
                   My Page
                 </NavLink>
               </NavItem>
               <NavItem className="welcome">
                 <p className="welcomeText">Welcome : </p>
+                <div>
+                  {token
+                    ? (uname = localStorage.getItem("username"))
+                    : (uname = "guest")}
+                </div>
               </NavItem>
               <UncontrolledDropdown direction="left" nav inNavbar>
                 <div>
@@ -136,7 +153,7 @@ class Navigation extends React.Component {
                   )}
                 </div>
 
-                <DropdownMenu>
+                <DropdownMenu class="dropdown-toggle">
                   <Mutation mutation={LOGIN}>
                     {login => {
                       return (
@@ -157,13 +174,23 @@ class Navigation extends React.Component {
                                   "username",
                                   data.login.user.username
                                 )
+                                DropdownToggle.propTypes.disabled = true
                                 this.props.history.push("/")
                               } catch (error) {
                                 localStorage.removeItem("token")
                                 localStorage.removeItem("username")
+                                // window.confirm(
+                                //   "Wrong Account! Try again please"
+                                // )
+
                                 // this.input = "
                                 // this.clearForm()
-                                document.getElementById("myForm").reset()
+                                // document.getElementById("myForm").reset()
+                                this.setState({
+                                  email: "",
+                                  password: "",
+                                  error: "There is an error"
+                                })
                                 document.getElementById("warning").value =
                                   "yourv"
                               }
@@ -171,7 +198,7 @@ class Navigation extends React.Component {
                           >
                             <div className="inputBox">
                               <DropdownItem disabled id="warning">
-                                Please
+                                {this.state.error}
                               </DropdownItem>
                               <DropdownItem disabled>email:</DropdownItem>
                               <DropdownItem disabled>
@@ -198,7 +225,13 @@ class Navigation extends React.Component {
                             </div>
                             <DropdownItem divider />
                             <DropdownItem disabled>
-                              <button type="submit" className="LoginButton">
+                              <button
+                                // disabled={
+                                //   !this.state.email || !this.state.password
+                                // }
+                                type="submit"
+                                className="LoginButton"
+                              >
                                 LOGIN!
                               </button>
                             </DropdownItem>
