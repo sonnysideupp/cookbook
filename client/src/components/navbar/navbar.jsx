@@ -98,15 +98,10 @@ class Navigation extends React.Component {
     }
     return (
       <div>
-<<<<<<< HEAD
         <Navbar className="Navbar" light expand="md">
-          <NavbarBrand className="NavbarTitle" href="/">iX Cooking App</NavbarBrand>
-=======
-        <Navbar color="light" light expand="md">
           <NavbarBrand className="NavbarTitle" href="/">
-            Welcome to iXCooking!
+            iX Cooking App
           </NavbarBrand>
->>>>>>> 4732ab8cbb0d673e398f06f07a4a54e2db4bdf2f
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
