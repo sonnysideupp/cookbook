@@ -12,5 +12,12 @@
 }
 
 .welcome {
-  text-align: center;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  margin-bottom: 0px;
+}
+
+.welcomeText {
+  margin-bottom: 0;
 }
