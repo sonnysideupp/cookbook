@@ -1,0 +1,14 @@
+.likedposts{
+    width: 300px;
+    float: left;
+}
+.myrecipes{
+    width: 300px;
+    float: right; 
+}
+
+#header{
+    width: 100%;
+    background-color: palegreen;
+}
+
