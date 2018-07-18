@@ -20,8 +20,8 @@ import {
 } from "reactstrap"
 
 const LOGIN = gql`
-  mutation login($username: String!, $password: String!) {
-    login(email: $username, password: $password) {
+  mutation login($email: String!, $password: String!) {
+    login(email: $email, password: $password) {
       token
       user {
         id
@@ -129,14 +129,14 @@ class Navigation extends React.Component {
                             }}
                           >
                             <div className="inputBox">
-                              <DropdownItem disabled>username:</DropdownItem>
+                              <DropdownItem disabled>email:</DropdownItem>
                               <DropdownItem disabled>
                                 <input
                                   type="text"
                                   onChange={e => {
-                                    this.setState({ username: e.target.value })
+                                    this.setState({ email: e.target.value })
                                   }}
-                                  placeholder="username"
+                                  placeholder="email"
                                 />
                               </DropdownItem>
 
