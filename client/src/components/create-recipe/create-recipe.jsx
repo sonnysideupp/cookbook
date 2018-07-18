@@ -31,8 +31,8 @@ class CreateRecipeForm extends React.Component {
   }
   render() {
     let input
-    const raw_user = localStorage.getItem("user")
-    const user = JSON.parse(raw_user)
+    const raw_user = localStorage.getItem("username")
+    const username = JSON.parse(raw_user)
 
     return (
       <div>
@@ -53,11 +53,17 @@ class CreateRecipeForm extends React.Component {
                             price: this.state.price,
                             process: this.state.process,
                             nutrition: this.state.nutrition,
-                            category: this.state.category
+                            category: this.state.category,
+                            creator: {
+                              connect: {
+                                username: username
+                              }
+                            }
                           }
                         }
                       })
                     } catch (error) {}
+                    this.props.refetchFeedTweets()
                   }}
                 >
                   <input
