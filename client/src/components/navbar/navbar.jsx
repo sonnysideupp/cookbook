@@ -4,6 +4,7 @@ import "./navbar.css"
 import gql from "graphql-tag"
 import { Mutation } from "react-apollo"
 import { Link } from "react-router-dom"
+import { Button } from "reactstrap"
 
 import {
   Collapse,
@@ -72,7 +73,14 @@ class Navigation extends React.Component {
     console.log(value)
   }
 
+  onLogout = () => {
+    localStorage.removeItem("token")
+    localStorage.removeItem("username")
+    this.props.history.push("/")
+  }
+
   render() {
+    const token = localStorage.getItem("token")
     if (this.state.loading) {
       return <div className="app__loading">Loading...</div>
     }
@@ -104,7 +112,16 @@ class Navigation extends React.Component {
                 <p className="welcomeText">Welcome : </p>
               </NavItem>
               <UncontrolledDropdown direction="left" nav inNavbar>
-                <DropdownToggle caret>Login</DropdownToggle>
+                <div>
+                  {token ? (
+                    <Button onClick={this.onLogout} color="info">
+                      Log out
+                    </Button>
+                  ) : (
+                    <DropdownToggle caret>Login</DropdownToggle>
+                  )}
+                </div>
+
                 <DropdownMenu>
                   <Mutation mutation={LOGIN}>
                     {login => {
@@ -115,16 +132,18 @@ class Navigation extends React.Component {
                               e.preventDefault()
                               const { data } = await login({
                                 variables: {
-                                  email: this.state.username,
+                                  email: this.state.email,
                                   password: this.state.password
                                 }
                               })
                               // console.log({ data })
                               localStorage.setItem("token", data.login.token)
+                              console.log(data.login.token)
                               localStorage.setItem(
                                 "username",
                                 data.login.user.username
                               )
+
                               this.props.history.push("/")
                             }}
                           >
@@ -165,7 +184,7 @@ class Navigation extends React.Component {
 
                   <DropdownItem divider />
                   <DropdownItem disabled>
-                    You don't have a account?
+                    You don't have an account?
                   </DropdownItem>
                   <DropdownItem disabled>
                     <Link to="/signup">
