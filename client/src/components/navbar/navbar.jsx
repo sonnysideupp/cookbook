@@ -109,56 +109,55 @@ class Navigation extends React.Component {
                   <Mutation mutation={LOGIN}>
                     {login => {
                       return (
-                        
                         <div className="MainPart">
-
                           <form
-                  onSubmit={async e => {
-                    e.preventDefault()
-                    const { data } = await login({
-                      variables: {
-                        email: this.state.username,
-                        password: this.state.password
-                      }
-                    })
-                    // console.log({ data })
-                    localStorage.setItem("token", data.login.token)
-                    localStorage.setItem("username", data.login.user.username)
-                    this.props.history.push("/")
-                  }}
-                >
-                    <div className="inputBox">
-                    <DropdownItem disabled>username:</DropdownItem>
-                    <DropdownItem disabled>
-                    <input
-                      type="text"
-                      onChange={e => {
-                        this.setState({ username: e.target.value })
-                      }}
-                      placeholder="username"
-                    />
-                    </DropdownItem>
+                            onSubmit={async e => {
+                              e.preventDefault()
+                              const { data } = await login({
+                                variables: {
+                                  email: this.state.username,
+                                  password: this.state.password
+                                }
+                              })
+                              // console.log({ data })
+                              localStorage.setItem("token", data.login.token)
+                              localStorage.setItem(
+                                "username",
+                                data.login.user.username
+                              )
+                              this.props.history.push("/")
+                            }}
+                          >
+                            <div className="inputBox">
+                              <DropdownItem disabled>username:</DropdownItem>
+                              <DropdownItem disabled>
+                                <input
+                                  type="text"
+                                  onChange={e => {
+                                    this.setState({ username: e.target.value })
+                                  }}
+                                  placeholder="username"
+                                />
+                              </DropdownItem>
 
-                    <DropdownItem disabled>password:</DropdownItem>
-                    <DropdownItem disabled>
-                    <input
-                      type="text"
-                      onChange={e => {
-                        this.setState({ password: e.target.value })
-                      }}
-                      placeholder="password"
-                    />
-                    </DropdownItem>
-
-
-                    </div>
-                    <DropdownItem divider />
-                    <DropdownItem disabled>
-                    <button type="submit" className="LoginButton">
-                    LOGIN!
-                  </button>
-                  </DropdownItem >
-                </form>       
+                              <DropdownItem disabled>password:</DropdownItem>
+                              <DropdownItem disabled>
+                                <input
+                                  type="text"
+                                  onChange={e => {
+                                    this.setState({ password: e.target.value })
+                                  }}
+                                  placeholder="password"
+                                />
+                              </DropdownItem>
+                            </div>
+                            <DropdownItem divider />
+                            <DropdownItem disabled>
+                              <button type="submit" className="LoginButton">
+                                LOGIN!
+                              </button>
+                            </DropdownItem>
+                          </form>
                         </div>
                       )
                     }}
@@ -168,10 +167,10 @@ class Navigation extends React.Component {
                   <DropdownItem disabled>
                     You don't have a account?
                   </DropdownItem>
-                  <DropdownItem>
-                  <Link to="/signup">
-                  <button className="SignupButton">Sign up</button>
-                </Link>
+                  <DropdownItem disabled>
+                    <Link to="/signup">
+                      <button className="SignupButton">Sign up</button>
+                    </Link>
                   </DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>
