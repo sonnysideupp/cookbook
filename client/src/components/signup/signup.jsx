@@ -1,7 +1,6 @@
 import * as React from "react"
 import { Mutation } from "react-apollo"
 import gql from "graphql-tag"
-import Navigation from "../navigation/navigation"
 import "./signup.css"
 
 const SIGNUP = gql`
@@ -39,7 +38,6 @@ class SignUP extends React.Component {
   render() {
     return (
       <div>
-        <Navigation history={this.props.history} />
         <Mutation mutation={SIGNUP}>
           {signup => {
             return (
@@ -58,7 +56,7 @@ class SignUP extends React.Component {
                         }
                       })
                       localStorage.setItem("token", data.signup.token)
-                      this.props.history.push(`/myprofile`)
+                      this.props.history.push(`/my-profile`)
                     } catch (error) {
                       localStorage.removeItem("token")
                     }
