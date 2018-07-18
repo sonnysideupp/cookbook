@@ -21,8 +21,7 @@ class CommentForm extends React.Component {
   }
   render() {
     let input
-    const raw_user = localStorage.getItem("user")
-    const user = JSON.parse(raw_user)
+    const username = localStorage.getItem("username")
 
     return (
       <div>
@@ -43,7 +42,7 @@ class CommentForm extends React.Component {
                                 text: this.state.text,
                                 author: {
                                   connect: {
-                                    id: "cjjrbowf7iacf0b295tx5zpfp"
+                                    username: username
                                   }
                                 }
                               }
