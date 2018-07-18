@@ -14,7 +14,7 @@ type Recipe {
   name: String! @unique
   description: String!
   ingredients: [Ingredient!]!
-  # creator: User
+  creator: User!
   process: String!
   comments: [Comment!]!
   likes: [Like!]!

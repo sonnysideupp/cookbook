@@ -1,9 +1,14 @@
+.Navbar {
+  background-color: firebrick;
+}
+
 .search__component {
   width: 300px;
   position: relative;
   font-family: Montserrat;
 }
 .NavbarTitle {
+  color: white;
   font-family: Gaegu;
   font-size: 50px;
 }

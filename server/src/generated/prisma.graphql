@@ -1,5 +1,5 @@
 # source: https://eu1.prisma.sh/shengh/cooking/dev
-# timestamp: Wed Jul 18 2018 17:28:24 GMT+0100 (Western European Summer Time)
+# timestamp: Wed Jul 18 2018 22:21:07 GMT+0100 (Western European Summer Time)
 
 type AggregateComment {
   count: Int!
@@ -877,36 +877,36 @@ scalar Long
 
 type Mutation {
   createUser(data: UserCreateInput!): User!
+  createRecipe(data: RecipeCreateInput!): Recipe!
   createLike(data: LikeCreateInput!): Like!
   createComment(data: CommentCreateInput!): Comment!
-  createRecipe(data: RecipeCreateInput!): Recipe!
   createEquipment(data: EquipmentCreateInput!): Equipment!
   createIngredient(data: IngredientCreateInput!): Ingredient!
   updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
-  updateLike(data: LikeUpdateInput!, where: LikeWhereUniqueInput!): Like
   updateRecipe(data: RecipeUpdateInput!, where: RecipeWhereUniqueInput!): Recipe
+  updateLike(data: LikeUpdateInput!, where: LikeWhereUniqueInput!): Like
   updateEquipment(data: EquipmentUpdateInput!, where: EquipmentWhereUniqueInput!): Equipment
   updateIngredient(data: IngredientUpdateInput!, where: IngredientWhereUniqueInput!): Ingredient
   deleteUser(where: UserWhereUniqueInput!): User
-  deleteLike(where: LikeWhereUniqueInput!): Like
   deleteRecipe(where: RecipeWhereUniqueInput!): Recipe
+  deleteLike(where: LikeWhereUniqueInput!): Like
   deleteEquipment(where: EquipmentWhereUniqueInput!): Equipment
   deleteIngredient(where: IngredientWhereUniqueInput!): Ingredient
   upsertUser(where: UserWhereUniqueInput!, create: UserCreateInput!, update: UserUpdateInput!): User!
-  upsertLike(where: LikeWhereUniqueInput!, create: LikeCreateInput!, update: LikeUpdateInput!): Like!
   upsertRecipe(where: RecipeWhereUniqueInput!, create: RecipeCreateInput!, update: RecipeUpdateInput!): Recipe!
+  upsertLike(where: LikeWhereUniqueInput!, create: LikeCreateInput!, update: LikeUpdateInput!): Like!
   upsertEquipment(where: EquipmentWhereUniqueInput!, create: EquipmentCreateInput!, update: EquipmentUpdateInput!): Equipment!
   upsertIngredient(where: IngredientWhereUniqueInput!, create: IngredientCreateInput!, update: IngredientUpdateInput!): Ingredient!
   updateManyUsers(data: UserUpdateInput!, where: UserWhereInput): BatchPayload!
+  updateManyRecipes(data: RecipeUpdateInput!, where: RecipeWhereInput): BatchPayload!
   updateManyLikes(data: LikeUpdateInput!, where: LikeWhereInput): BatchPayload!
   updateManyComments(data: CommentUpdateInput!, where: CommentWhereInput): BatchPayload!
-  updateManyRecipes(data: RecipeUpdateInput!, where: RecipeWhereInput): BatchPayload!
   updateManyEquipments(data: EquipmentUpdateInput!, where: EquipmentWhereInput): BatchPayload!
   updateManyIngredients(data: IngredientUpdateInput!, where: IngredientWhereInput): BatchPayload!
   deleteManyUsers(where: UserWhereInput): BatchPayload!
+  deleteManyRecipes(where: RecipeWhereInput): BatchPayload!
   deleteManyLikes(where: LikeWhereInput): BatchPayload!
   deleteManyComments(where: CommentWhereInput): BatchPayload!
-  deleteManyRecipes(where: RecipeWhereInput): BatchPayload!
   deleteManyEquipments(where: EquipmentWhereInput): BatchPayload!
   deleteManyIngredients(where: IngredientWhereInput): BatchPayload!
 }
@@ -940,20 +940,20 @@ type PageInfo {
 
 type Query {
   users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
+  recipes(where: RecipeWhereInput, orderBy: RecipeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Recipe]!
   likes(where: LikeWhereInput, orderBy: LikeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Like]!
   comments(where: CommentWhereInput, orderBy: CommentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Comment]!
-  recipes(where: RecipeWhereInput, orderBy: RecipeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Recipe]!
   equipments(where: EquipmentWhereInput, orderBy: EquipmentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Equipment]!
   ingredients(where: IngredientWhereInput, orderBy: IngredientOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Ingredient]!
   user(where: UserWhereUniqueInput!): User
-  like(where: LikeWhereUniqueInput!): Like
   recipe(where: RecipeWhereUniqueInput!): Recipe
+  like(where: LikeWhereUniqueInput!): Like
   equipment(where: EquipmentWhereUniqueInput!): Equipment
   ingredient(where: IngredientWhereUniqueInput!): Ingredient
   usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
+  recipesConnection(where: RecipeWhereInput, orderBy: RecipeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): RecipeConnection!
   likesConnection(where: LikeWhereInput, orderBy: LikeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): LikeConnection!
   commentsConnection(where: CommentWhereInput, orderBy: CommentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): CommentConnection!
-  recipesConnection(where: RecipeWhereInput, orderBy: RecipeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): RecipeConnection!
   equipmentsConnection(where: EquipmentWhereInput, orderBy: EquipmentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): EquipmentConnection!
   ingredientsConnection(where: IngredientWhereInput, orderBy: IngredientOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): IngredientConnection!
 
@@ -969,6 +969,7 @@ type Recipe implements Node {
   name: String!
   description: String!
   ingredients(where: IngredientWhereInput, orderBy: IngredientOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Ingredient!]
+  creator(where: UserWhereInput): User!
   process: String!
   comments(where: CommentWhereInput, orderBy: CommentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Comment!]
   likes(where: LikeWhereInput, orderBy: LikeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Like!]
@@ -996,13 +997,14 @@ input RecipeCreateInput {
   nutrition: String!
   category: String!
   ingredients: IngredientCreateManyInput
+  creator: UserCreateOneWithoutRecipesInput!
   comments: CommentCreateManyWithoutRecipeInput
   likes: LikeCreateManyWithoutRecipeInput
   equipments: EquipmentCreateManyInput
 }
 
-input RecipeCreateManyInput {
-  create: [RecipeCreateInput!]
+input RecipeCreateManyWithoutCreatorInput {
+  create: [RecipeCreateWithoutCreatorInput!]
   connect: [RecipeWhereUniqueInput!]
 }
 
@@ -1024,6 +1026,20 @@ input RecipeCreateWithoutCommentsInput {
   nutrition: String!
   category: String!
   ingredients: IngredientCreateManyInput
+  creator: UserCreateOneWithoutRecipesInput!
+  likes: LikeCreateManyWithoutRecipeInput
+  equipments: EquipmentCreateManyInput
+}
+
+input RecipeCreateWithoutCreatorInput {
+  name: String!
+  description: String!
+  process: String!
+  price: Float!
+  nutrition: String!
+  category: String!
+  ingredients: IngredientCreateManyInput
+  comments: CommentCreateManyWithoutRecipeInput
   likes: LikeCreateManyWithoutRecipeInput
   equipments: EquipmentCreateManyInput
 }
@@ -1036,6 +1052,7 @@ input RecipeCreateWithoutLikesInput {
   nutrition: String!
   category: String!
   ingredients: IngredientCreateManyInput
+  creator: UserCreateOneWithoutRecipesInput!
   comments: CommentCreateManyWithoutRecipeInput
   equipments: EquipmentCreateManyInput
 }
@@ -1119,19 +1136,6 @@ input RecipeSubscriptionWhereInput {
   node: RecipeWhereInput
 }
 
-input RecipeUpdateDataInput {
-  name: String
-  description: String
-  process: String
-  price: Float
-  nutrition: String
-  category: String
-  ingredients: IngredientUpdateManyInput
-  comments: CommentUpdateManyWithoutRecipeInput
-  likes: LikeUpdateManyWithoutRecipeInput
-  equipments: EquipmentUpdateManyInput
-}
-
 input RecipeUpdateInput {
   name: String
   description: String
@@ -1140,18 +1144,19 @@ input RecipeUpdateInput {
   nutrition: String
   category: String
   ingredients: IngredientUpdateManyInput
+  creator: UserUpdateOneWithoutRecipesInput
   comments: CommentUpdateManyWithoutRecipeInput
   likes: LikeUpdateManyWithoutRecipeInput
   equipments: EquipmentUpdateManyInput
 }
 
-input RecipeUpdateManyInput {
-  create: [RecipeCreateInput!]
+input RecipeUpdateManyWithoutCreatorInput {
+  create: [RecipeCreateWithoutCreatorInput!]
   connect: [RecipeWhereUniqueInput!]
   disconnect: [RecipeWhereUniqueInput!]
   delete: [RecipeWhereUniqueInput!]
-  update: [RecipeUpdateWithWhereUniqueNestedInput!]
-  upsert: [RecipeUpsertWithWhereUniqueNestedInput!]
+  update: [RecipeUpdateWithWhereUniqueWithoutCreatorInput!]
+  upsert: [RecipeUpsertWithWhereUniqueWithoutCreatorInput!]
 }
 
 input RecipeUpdateOneWithoutCommentsInput {
@@ -1178,6 +1183,20 @@ input RecipeUpdateWithoutCommentsDataInput {
   nutrition: String
   category: String
   ingredients: IngredientUpdateManyInput
+  creator: UserUpdateOneWithoutRecipesInput
+  likes: LikeUpdateManyWithoutRecipeInput
+  equipments: EquipmentUpdateManyInput
+}
+
+input RecipeUpdateWithoutCreatorDataInput {
+  name: String
+  description: String
+  process: String
+  price: Float
+  nutrition: String
+  category: String
+  ingredients: IngredientUpdateManyInput
+  comments: CommentUpdateManyWithoutRecipeInput
   likes: LikeUpdateManyWithoutRecipeInput
   equipments: EquipmentUpdateManyInput
 }
@@ -1190,13 +1209,14 @@ input RecipeUpdateWithoutLikesDataInput {
   nutrition: String
   category: String
   ingredients: IngredientUpdateManyInput
+  creator: UserUpdateOneWithoutRecipesInput
   comments: CommentUpdateManyWithoutRecipeInput
   equipments: EquipmentUpdateManyInput
 }
 
-input RecipeUpdateWithWhereUniqueNestedInput {
+input RecipeUpdateWithWhereUniqueWithoutCreatorInput {
   where: RecipeWhereUniqueInput!
-  data: RecipeUpdateDataInput!
+  data: RecipeUpdateWithoutCreatorDataInput!
 }
 
 input RecipeUpsertWithoutCommentsInput {
@@ -1209,10 +1229,10 @@ input RecipeUpsertWithoutLikesInput {
   create: RecipeCreateWithoutLikesInput!
 }
 
-input RecipeUpsertWithWhereUniqueNestedInput {
+input RecipeUpsertWithWhereUniqueWithoutCreatorInput {
   where: RecipeWhereUniqueInput!
-  update: RecipeUpdateDataInput!
-  create: RecipeCreateInput!
+  update: RecipeUpdateWithoutCreatorDataInput!
+  create: RecipeCreateWithoutCreatorInput!
 }
 
 input RecipeWhereInput {
@@ -1489,6 +1509,7 @@ input RecipeWhereInput {
   ingredients_every: IngredientWhereInput
   ingredients_some: IngredientWhereInput
   ingredients_none: IngredientWhereInput
+  creator: UserWhereInput
   comments_every: CommentWhereInput
   comments_some: CommentWhereInput
   comments_none: CommentWhereInput
@@ -1498,9 +1519,6 @@ input RecipeWhereInput {
   equipments_every: EquipmentWhereInput
   equipments_some: EquipmentWhereInput
   equipments_none: EquipmentWhereInput
-  _MagicalBackRelation_RecipeToUser_every: UserWhereInput
-  _MagicalBackRelation_RecipeToUser_some: UserWhereInput
-  _MagicalBackRelation_RecipeToUser_none: UserWhereInput
 }
 
 input RecipeWhereUniqueInput {
@@ -1510,9 +1528,9 @@ input RecipeWhereUniqueInput {
 
 type Subscription {
   user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
+  recipe(where: RecipeSubscriptionWhereInput): RecipeSubscriptionPayload
   like(where: LikeSubscriptionWhereInput): LikeSubscriptionPayload
   comment(where: CommentSubscriptionWhereInput): CommentSubscriptionPayload
-  recipe(where: RecipeSubscriptionWhereInput): RecipeSubscriptionPayload
   equipment(where: EquipmentSubscriptionWhereInput): EquipmentSubscriptionPayload
   ingredient(where: IngredientSubscriptionWhereInput): IngredientSubscriptionPayload
 }
@@ -1543,7 +1561,7 @@ input UserCreateInput {
   username: String!
   name: String!
   password: String!
-  recipes: RecipeCreateManyInput
+  recipes: RecipeCreateManyWithoutCreatorInput
   comments: CommentCreateManyWithoutAuthorInput
   likes: LikeCreateManyWithoutAuthorInput
 }
@@ -1558,12 +1576,17 @@ input UserCreateOneWithoutLikesInput {
   connect: UserWhereUniqueInput
 }
 
+input UserCreateOneWithoutRecipesInput {
+  create: UserCreateWithoutRecipesInput
+  connect: UserWhereUniqueInput
+}
+
 input UserCreateWithoutCommentsInput {
   email: String!
   username: String!
   name: String!
   password: String!
-  recipes: RecipeCreateManyInput
+  recipes: RecipeCreateManyWithoutCreatorInput
   likes: LikeCreateManyWithoutAuthorInput
 }
 
@@ -1572,8 +1595,17 @@ input UserCreateWithoutLikesInput {
   username: String!
   name: String!
   password: String!
-  recipes: RecipeCreateManyInput
+  recipes: RecipeCreateManyWithoutCreatorInput
   comments: CommentCreateManyWithoutAuthorInput
+}
+
+input UserCreateWithoutRecipesInput {
+  email: String!
+  username: String!
+  name: String!
+  password: String!
+  comments: CommentCreateManyWithoutAuthorInput
+  likes: LikeCreateManyWithoutAuthorInput
 }
 
 """An edge in a connection."""
@@ -1654,7 +1686,7 @@ input UserUpdateInput {
   username: String
   name: String
   password: String
-  recipes: RecipeUpdateManyInput
+  recipes: RecipeUpdateManyWithoutCreatorInput
   comments: CommentUpdateManyWithoutAuthorInput
   likes: LikeUpdateManyWithoutAuthorInput
 }
@@ -1675,12 +1707,20 @@ input UserUpdateOneWithoutLikesInput {
   upsert: UserUpsertWithoutLikesInput
 }
 
+input UserUpdateOneWithoutRecipesInput {
+  create: UserCreateWithoutRecipesInput
+  connect: UserWhereUniqueInput
+  delete: Boolean
+  update: UserUpdateWithoutRecipesDataInput
+  upsert: UserUpsertWithoutRecipesInput
+}
+
 input UserUpdateWithoutCommentsDataInput {
   email: String
   username: String
   name: String
   password: String
-  recipes: RecipeUpdateManyInput
+  recipes: RecipeUpdateManyWithoutCreatorInput
   likes: LikeUpdateManyWithoutAuthorInput
 }
 
@@ -1689,8 +1729,17 @@ input UserUpdateWithoutLikesDataInput {
   username: String
   name: String
   password: String
-  recipes: RecipeUpdateManyInput
+  recipes: RecipeUpdateManyWithoutCreatorInput
   comments: CommentUpdateManyWithoutAuthorInput
+}
+
+input UserUpdateWithoutRecipesDataInput {
+  email: String
+  username: String
+  name: String
+  password: String
+  comments: CommentUpdateManyWithoutAuthorInput
+  likes: LikeUpdateManyWithoutAuthorInput
 }
 
 input UserUpsertWithoutCommentsInput {
@@ -1701,6 +1750,11 @@ input UserUpsertWithoutCommentsInput {
 input UserUpsertWithoutLikesInput {
   update: UserUpdateWithoutLikesDataInput!
   create: UserCreateWithoutLikesInput!
+}
+
+input UserUpsertWithoutRecipesInput {
+  update: UserUpdateWithoutRecipesDataInput!
+  create: UserCreateWithoutRecipesInput!
 }
 
 input UserWhereInput {

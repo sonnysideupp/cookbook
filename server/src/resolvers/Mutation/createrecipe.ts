@@ -21,11 +21,14 @@ const processUpload = async upload => {
 
 export const recipe = {
   createrecipe: async (parent, args, ctx: Context, info) => {
-    // const id = getUserId(ctx)
+    const id = getUserId(ctx)
     //  const pictureUrl = await processUpload(args.picture)
     return await ctx.db.mutation.createRecipe(
       {
-        ...args
+        ...args,
+        creator: {
+          id: id
+        }
       },
       info
     )
