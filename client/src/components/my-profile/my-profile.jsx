@@ -88,7 +88,7 @@ class MyProfile extends React.Component {
             </Card>
           </div>
           <div>
-            <Link to="/">
+            <Link to="/my-profile/create-recipe">
               <button type="button">NEW POST</button>
             </Link>
           </div>
