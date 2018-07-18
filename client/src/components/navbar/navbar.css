@@ -1,0 +1,16 @@
+.search__component {
+  width: 300px;
+  position: relative;
+}
+
+.search__dropdown {
+  position: absolute;
+  top: 53px;
+  z-index: 20;
+  background-color: white;
+  width: 100%;
+}
+
+.welcome {
+  text-align: center;
+}

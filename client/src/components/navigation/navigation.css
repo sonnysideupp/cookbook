@@ -1,0 +1,19 @@
+.content__search {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 40px;
+  padding-bottom: 30px;
+}
+
+.search__component {
+  width: 600px;
+}
+
+.search__info {
+  margin-bottom: 15px;
+}
+
+.search__component__result {
+  margin-top: 35px;
+}
