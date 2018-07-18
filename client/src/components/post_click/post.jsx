@@ -15,7 +15,7 @@ class Post extends React.Component {
     return (
       <div>
         <div className="post_img">
-          <img src={img} alt={"img"} />
+          <img className = "post_imgs" src={img} alt={"img"} />
         </div>
         <Jumbotron fluid>
           <Container fluid>
