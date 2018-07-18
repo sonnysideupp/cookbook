@@ -1,6 +1,7 @@
 import * as React from "react"
 import gql from "graphql-tag"
 import { Mutation } from "react-apollo"
+import "./create-recipe.css"
 
 const CREATE_RECIPE = gql`
   mutation createrecipe($data: RecipeCreateInput!) {
