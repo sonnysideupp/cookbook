@@ -98,9 +98,9 @@ class Navigation extends React.Component {
     }
     return (
       <div>
-        <Navbar color="light" light expand="md">
+        <Navbar className="Navbar" light expand="md">
           <NavbarBrand className="NavbarTitle" href="/">
-            Welcome to iXCooking!
+            iX Cooking App
           </NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
