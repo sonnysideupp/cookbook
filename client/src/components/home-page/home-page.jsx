@@ -23,9 +23,7 @@ class HomePage extends React.Component {
   render() {
     return (
       <div className="main">
-        {/* <Navigation /> */}
-        <Navbar />
-        {/* <DropdownFoodtype /> */}
+        <Navbar history={this.props.history} />
         <FoodSlide />
         <Foodtype />
 
