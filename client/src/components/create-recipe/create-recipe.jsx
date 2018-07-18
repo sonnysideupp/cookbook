@@ -3,16 +3,14 @@ import gql from "graphql-tag"
 import { Mutation } from "react-apollo"
 
 const CREATE_RECIPE = gql`
-  mutation createRecipe($data: RecipeCreateInput!) {
-    createRecipe(data: $data) {
+  mutation createrecipe($data: RecipeCreateInput!) {
+    createrecipe(data: $data) {
       name
       description
       price
       process
-      likes
       nutrition
       category
-      comments
     }
   }
 `
@@ -39,28 +37,23 @@ class CreateRecipeForm extends React.Component {
     return (
       <div>
         <Mutation mutation={CREATE_RECIPE}>
-          {(createRecipe, { data }) => {
+          {(createrecipe, { data }) => {
             return (
               <div>
                 <form
-                  className="login-form"
+                  className="createrecipe-form"
                   onSubmit={async e => {
                     e.preventDefault()
                     try {
-                      const { data } = await login({
+                      const { data } = await createrecipe({
                         variables: {
                           data: {
                             name: this.state.name,
                             description: this.state.description,
                             price: this.state.price,
                             process: this.state.process,
-                            likes: this.state.likes,
                             nutrition: this.state.nutrition,
-                            category: this.state.category,
-                            comments: this.state.category,
-                            ingredients: {
-                              connect: []
-                            }
+                            category: this.state.category
                           }
                         }
                       })

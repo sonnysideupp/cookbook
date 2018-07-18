@@ -36,7 +36,7 @@ class MyProfile extends React.Component {
         </div>
         <h1 id="header">MY PROFILE PAGE</h1>
         <div className="likedposts">
-          <h2 id="likedtitle">LIKED POSTS</h2>
+          <h2 className="likedtitle" id="likedtitle">LIKED POSTS</h2>
           <div>
             <Query query={GET_RECIPES}>
               {({ loading, error, data }) => {
@@ -44,7 +44,7 @@ class MyProfile extends React.Component {
                   return "Loading..."
                 }
                 if (error) {
-                  return "Oops, somehing blew up."
+                  return "Oops, something blew up."
                 }
                 return <div>test</div>
               }}
@@ -69,7 +69,7 @@ class MyProfile extends React.Component {
           </div>
         </div>
         <div className="myrecipes">
-          <h2 id="myrecipestitle">MY RECIPES</h2>
+          <h2 className="myrecipestitle" id="myrecipestitle">MY RECIPES</h2>
           <div>
             <Card>
               <CardImg

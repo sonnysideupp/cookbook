@@ -1,8 +1,12 @@
 .search__component {
   width: 300px;
   position: relative;
+  font-family: Montserrat;
 }
-
+.NavbarTitle {
+  font-family: Gaegu;
+  font-size: 50px;
+}
 .search__dropdown {
   position: absolute;
   top: 53px;
@@ -16,8 +20,13 @@
   align-items: center;
   align-content: center;
   margin-bottom: 0px;
+  font-family: Montserrat;
 }
 
 .welcomeText {
   margin-bottom: 0;
+  font-family: Montserrat;
+}
+.my-page {
+  font-family: Montserrat;
 }
