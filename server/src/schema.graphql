@@ -7,7 +7,12 @@ type Query {
 }
 
 type Mutation {
-  signup(email: String!, password: String!, name: String!): AuthPayload!
+  signup(
+    email: String!
+    password: String!
+    name: String!
+    username: String!
+  ): AuthPayload!
   login(email: String!, password: String!): AuthPayload!
   createrecipe(data: RecipeCreateInput!): Recipe!
   commentrecipe(text: String!, name: String!): Recipe!
@@ -28,6 +33,7 @@ type Ingredient {
 type User {
   id: ID!
   email: String!
+  username: String!
   name: String!
   password: String!
   recipes: [Recipe]!

@@ -1,9 +1,12 @@
 type User {
   id: ID! @unique
   email: String! @unique
+  username: String! @unique
   name: String!
   password: String!
   recipes: [Recipe!]!
+  comments: [Comment!]!
+  likes: [Like!]!
 }
 
 type Recipe {
@@ -14,12 +17,17 @@ type Recipe {
   creator: User!
   process: String!
   comments: [Comment!]!
-  likes: Int!
+  likes: [Like!]!
   # pictureUrl: String!
   price: Float!
   nutrition: String!
   category: String!
   equipments: [Equipment!]!
+}
+
+type Like {
+  author: User!
+  recipe: Recipe!
 }
 
 type Comment {
