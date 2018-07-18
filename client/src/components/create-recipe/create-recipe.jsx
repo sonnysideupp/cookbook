@@ -34,8 +34,6 @@ class CreateRecipeForm extends React.Component {
     let input
     const username = localStorage.getItem("username")
 
-    console.log(username)
-
     return (
       <div>
         <Mutation mutation={CREATE_RECIPE}>
