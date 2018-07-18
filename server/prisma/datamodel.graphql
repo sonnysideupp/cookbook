@@ -1,0 +1,39 @@
+type User {
+  id: ID! @unique
+  email: String! @unique
+  name: String!
+  password: String!
+  recipes: [Recipe!]!
+}
+
+type Recipe {
+  id: ID! @unique
+  name: String! @unique
+  description: String!
+  ingredients: [Ingredient!]!
+  creator: User!
+  process: String!
+  comments: [Comment!]!
+  likes: Int!
+  # pictureUrl: String!
+  price: Float!
+  nutrition: String!
+  category: String!
+  equipments: [Equipment!]!
+}
+
+type Comment {
+  text: String!
+  author: User!
+  recipe: Recipe!
+}
+type Ingredient {
+  id: ID! @unique
+  name: String! @unique
+  price: Float!
+}
+
+type Equipment {
+  id: ID! @unique
+  name: String! @unique
+}
