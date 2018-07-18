@@ -19,6 +19,8 @@
   left: 25%;
   border-radius: 10px;
   width: 50%;
+  border-style: solid;
+  border-color: gainsboro;
 }
 .jumbotron {
   background-color: #fff;

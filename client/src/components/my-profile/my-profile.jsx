@@ -16,7 +16,7 @@ import { Query } from "react-apollo"
 
 const GET_RECIPES = gql`
   query {
-    recipes {
+    recipes(where: RecipeWhereInput) {
       # pictureURL
       name
       creator {
@@ -43,11 +43,10 @@ class MyProfile extends React.Component {
                 if (loading) {
                   return "Loading..."
                 }
-
                 if (error) {
                   return "Oops, somehing blew up."
                 }
-                return data.recipes.name
+                return <div>test</div>
               }}
             </Query>
           </div>
