@@ -14,10 +14,10 @@ type Recipe {
   name: String! @unique
   description: String!
   ingredients: [Ingredient!]!
-  creator: User!
+  creator: User
   process: String!
   comments: [Comment!]!
-  likes: [Like!]!
+  likers: [Like!]!
   # pictureUrl: String!
   price: Float!
   nutrition: String!
@@ -26,6 +26,7 @@ type Recipe {
 }
 
 type Like {
+  id: ID! @unique
   author: User!
   recipe: Recipe!
 }

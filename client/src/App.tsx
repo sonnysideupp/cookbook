@@ -2,6 +2,9 @@ import * as React from "react"
 import { hot } from "react-hot-loader"
 import { Switch, Route } from "react-router-dom"
 import HomePage from "./components/home-page/home-page"
+import CreateRecipeForm from "./components/create-recipe/create-recipe"
+import Signup from "./components/signup/signup"
+
 import MyProfile from "./components/my-profile/my-profile"
 // import HomePage2 from "./components/home-page2/home-page2"
 import Post from "./components/post_click/post"
@@ -14,8 +17,15 @@ class App extends React.Component {
         <Switch>
           <Route exact={true} path="/" component={HomePage} />
           <Route exact={true} path="/post" component={Post} />
+
           {/* <Route exact={true} path="/HomePage2" component={HomePage2} /> */}
           <Route exact={true} path="/my-profile" component={MyProfile} />
+          <Route
+            exact={true}
+            path="/my-profile/create-recipe"
+            component={CreateRecipeForm}
+          />
+          <Route exact={true} path="/my-profile" component={Signup} />
         </Switch>
       </div>
     )

@@ -1,6 +1,9 @@
 import * as React from "react"
 import Search from "react-search-box"
 import "./navbar.css"
+import gql from "graphql-tag"
+import { Mutation } from "react-apollo"
+import { Link } from "react-router-dom"
 
 import {
   Collapse,
@@ -15,6 +18,20 @@ import {
   DropdownMenu,
   DropdownItem
 } from "reactstrap"
+
+const LOGIN = gql`
+  mutation login($username: String!, $password: String!) {
+    login(email: $username, password: $password) {
+      token
+      user {
+        id
+        name
+        username
+        email
+      }
+    }
+  }
+`
 
 class Navigation extends React.Component {
   constructor(props) {
@@ -83,25 +100,78 @@ class Navigation extends React.Component {
               <NavItem>
                 <NavLink href="/my-profile/">My Page</NavLink>
               </NavItem>
-              <NavItem>
-                <div className="welcome">Welcome : </div>
+              <NavItem className="welcome">
+                <p className="welcomeText">Welcome : </p>
               </NavItem>
               <UncontrolledDropdown direction="left" nav inNavbar>
                 <DropdownToggle caret>Login</DropdownToggle>
                 <DropdownMenu>
-                  <DropdownItem disabled>username:</DropdownItem>
-                  <DropdownItem disabled>
-                    <input type="text" className="username" />
-                  </DropdownItem>
-                  <DropdownItem disabled>password:</DropdownItem>
-                  <DropdownItem disabled>
-                    <input type="text" className="password" />
-                  </DropdownItem>
+                  <Mutation mutation={LOGIN}>
+                    {login => {
+                      return (
+                        
+                        <div className="MainPart">
+
+                          <form
+                  onSubmit={async e => {
+                    e.preventDefault()
+                    const { data } = await login({
+                      variables: {
+                        email: this.state.username,
+                        password: this.state.password
+                      }
+                    })
+                    // console.log({ data })
+                    localStorage.setItem("token", data.login.token)
+                    localStorage.setItem("username", data.login.user.username)
+                    this.props.history.push("/")
+                  }}
+                >
+                    <div className="inputBox">
+                    <DropdownItem disabled>username:</DropdownItem>
+                    <DropdownItem disabled>
+                    <input
+                      type="text"
+                      onChange={e => {
+                        this.setState({ username: e.target.value })
+                      }}
+                      placeholder="username"
+                    />
+                    </DropdownItem>
+
+                    <DropdownItem disabled>password:</DropdownItem>
+                    <DropdownItem disabled>
+                    <input
+                      type="text"
+                      onChange={e => {
+                        this.setState({ password: e.target.value })
+                      }}
+                      placeholder="password"
+                    />
+                    </DropdownItem>
+
+
+                    </div>
+                    <DropdownItem divider />
+                    <DropdownItem disabled>
+                    <button type="submit" className="LoginButton">
+                    LOGIN!
+                  </button>
+                  </DropdownItem >
+                </form>       
+                        </div>
+                      )
+                    }}
+                  </Mutation>
+
                   <DropdownItem divider />
                   <DropdownItem disabled>
-                    <button type="submit" className="loginButton">
-                      Log in
-                    </button>
+                    You don't have a account?
+                  </DropdownItem>
+                  <DropdownItem>
+                  <Link to="/signup">
+                  <button className="SignupButton">Sign up</button>
+                </Link>
                   </DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>
