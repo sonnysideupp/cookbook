@@ -16,12 +16,8 @@ import { Query } from "react-apollo"
 
 const GET_RECIPES = gql`
   query {
-    recipes(where: RecipeWhereInput) {
-      # pictureURL
+    recipes {
       name
-      creator {
-        name
-      }
       category
     }
   }
@@ -36,20 +32,31 @@ class MyProfile extends React.Component {
         </div>
         <h1 id="header">MY PROFILE PAGE</h1>
         <div className="likedposts">
-          <h2 className="likedtitle" id="likedtitle">LIKED POSTS</h2>
-          <div>
-            <Query query={GET_RECIPES}>
-              {({ loading, error, data }) => {
-                if (loading) {
-                  return "Loading..."
-                }
-                if (error) {
-                  return "Oops, something blew up."
-                }
-                return <div>test</div>
-              }}
-            </Query>
-          </div>
+          <h2 className="likedtitle" id="likedtitle">
+            LIKED POSTS
+          </h2>
+          <Query query={GET_RECIPES}>
+            {({ loading, error, data }) => {
+              if (loading) {
+                return "LOading..."
+              }
+              if (error) {
+                return "OOps, somehing blew up."
+              }
+              return console.log("hi")
+              // <div>
+              //   {data.me.feed.map(tweet => {
+              //     return (
+              //       <Tweet
+              //         key={tweet.id}
+              //         text={tweet.text}
+              //         author={tweet.author}
+              //       />
+              //     )
+              //   })}
+              // </div>
+            }}
+          </Query>
           <div>
             <Card>
               <CardImg
@@ -69,7 +76,9 @@ class MyProfile extends React.Component {
           </div>
         </div>
         <div className="myrecipes">
-          <h2 className="myrecipestitle" id="myrecipestitle">MY RECIPES</h2>
+          <h2 className="myrecipestitle" id="myrecipestitle">
+            MY RECIPES
+          </h2>
           <div>
             <Card>
               <CardImg
