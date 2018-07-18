@@ -56,7 +56,7 @@ class SignUP extends React.Component {
                         }
                       })
                       localStorage.setItem("token", data.signup.token)
-                      this.props.history.push(`/my-profile`)
+                      this.props.history.push(`/`)
                     } catch (error) {
                       localStorage.removeItem("token")
                     }
