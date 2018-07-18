@@ -34,7 +34,12 @@ class MyProfile extends React.Component {
         <div>
           <Navigation className="navbar" />
         </div>
-        <h1 id="header">MY PROFILE PAGE</h1>
+        <h1 id="header">My Profile</h1>
+        <div>
+          <Link to="/my-profile/create-recipe">
+              <button type="button" className="newrecipebutton">Create new recipe!</button>
+            </Link>
+        </div>
         <div className="likedposts">
           <h2 className="likedtitle" id="likedtitle">LIKED POSTS</h2>
           <div>
@@ -86,11 +91,6 @@ class MyProfile extends React.Component {
                 <Button>Button</Button>
               </CardBody>
             </Card>
-          </div>
-          <div>
-            <Link to="/my-profile/create-recipe">
-              <button type="button">NEW POST</button>
-            </Link>
           </div>
         </div>
       </div>

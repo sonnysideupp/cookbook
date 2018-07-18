@@ -3,25 +3,36 @@
     width: 300px;
     float: left;
     font-family: Montserrat;
+    margin-left: 200px;
 }
 .likedtitle {
     font-family: Gaegu;
-    color: #20bf55
+    color: firebrick;
 }
 .myrecipes{
     width: 300px;
     float: right;
     font-family: Montserrat;
+    margin-right: 200px;
 }
 
 .myrecipestitle {
     font-family: Gaegu;
-    color: #20bf55;
+    color: firebrick;
 }
 
 #header{
     width: 100%;
     font-family: Gaegu;
-    color: firebrick;
+    color: black;
+}
+.newrecipebutton {
+    float: center;
+    border: none;
+    background-color: #01baef;
+    color: white;
+    font-family: Montserrat;
+
+
 }
 

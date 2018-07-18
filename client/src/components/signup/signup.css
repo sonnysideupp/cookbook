@@ -1,0 +1,26 @@
+
+.signup-form {
+    display: flex;
+    width: 100px;
+    height: 100px;
+    margin-left: 300px;
+    font-family: Montserrat;
+    padding-top: 50px;
+
+  }
+
+  .SignupButton {
+    background-color: firebrick;
+    color: white;
+    border: none;
+    width: 100px;
+    font-family: Montserrat;
+  }
+
+  .signup-text {
+    color: firebrick;
+    font-family: Gaegu;
+    font-size: 75px;
+    padding-top: 75px;
+    padding-left: 10px;
+}
