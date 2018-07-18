@@ -78,7 +78,7 @@ class Navigation extends React.Component {
     }
     return (
       <div>
-        <Navbar color="light" light expand="md">
+        <Navbar className="Navbar" light expand="md">
           <NavbarBrand className="NavbarTitle" href="/">iX Cooking App</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
@@ -165,7 +165,7 @@ class Navigation extends React.Component {
 
                   <DropdownItem divider />
                   <DropdownItem disabled>
-                    You don't have a account?
+                    You don't have an account?
                   </DropdownItem>
                   <DropdownItem disabled>
                     <Link to="/signup">
