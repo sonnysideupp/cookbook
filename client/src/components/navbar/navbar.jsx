@@ -87,7 +87,7 @@ class Navigation extends React.Component {
     return (
       <div>
         <Navbar color="light" light expand="md">
-          <NavbarBrand href="/">Welcome to iXCooking!</NavbarBrand>
+          <NavbarBrand className="NavbarTitle" href="/">Welcome to iXCooking!</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
@@ -106,7 +106,7 @@ class Navigation extends React.Component {
 
             <Nav className="ml-auto" navbar>
               <NavItem>
-                <NavLink href="/my-profile/">My Page</NavLink>
+                <NavLink className="my-page" href="/my-profile/">My Page</NavLink>
               </NavItem>
               <NavItem className="welcome">
                 <p className="welcomeText">Welcome : </p>
