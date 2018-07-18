@@ -1,14 +1,27 @@
+
 .likedposts{
     width: 300px;
     float: left;
+    font-family: Montserrat;
+}
+.likedtitle {
+    font-family: Gaegu;
+    color: #20bf55
 }
 .myrecipes{
     width: 300px;
-    float: right; 
+    float: right;
+    font-family: Montserrat;
+}
+
+.myrecipestitle {
+    font-family: Gaegu;
+    color: #20bf55;
 }
 
 #header{
     width: 100%;
-    background-color: palegreen;
+    font-family: Gaegu;
+    color: #ff1b1c;
 }
 
