@@ -29,7 +29,7 @@ class DropdownLogin extends React.Component {
   render() {
     return (
       <ButtonDropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
-        <DropdownToggle caret>Login</DropdownToggle>
+        <DropdownToggle caret className="dropdown-toggle">Login</DropdownToggle>
         <DropdownMenu>
           <DropdownItem disabled>username:</DropdownItem>
           <DropdownItem disabled>

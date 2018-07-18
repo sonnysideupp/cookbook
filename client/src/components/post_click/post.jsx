@@ -22,7 +22,7 @@ class Post extends React.Component {
         <Jumbotron>
           <Container>
             <div className="descrip">
-              <h3>Title</h3>
+              <h3 className="title">Title</h3>
               <p className="lead">Description</p>
               <hr />
               <p>
@@ -30,8 +30,7 @@ class Post extends React.Component {
                   className="fa fa-heart"
                   onClick={this.getComponent.bind(this)}
                 />{" "}
-                like!
-                <FaClockO /> mins
+                like    <FaClockO /> mins
               </p>
             </div>
           </Container>
