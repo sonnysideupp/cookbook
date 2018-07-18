@@ -10,6 +10,8 @@ type Mutation {
   signup(email: String!, password: String!, name: String!): AuthPayload!
   login(email: String!, password: String!): AuthPayload!
   createrecipe(data: RecipeCreateInput!): Recipe!
+  commentrecipe(text: String!, name: String!): Recipe!
+  likerecipe(name: String!): Recipe!
 }
 
 type AuthPayload {

@@ -649,6 +649,7 @@ type Recipe implements Node {
   description: String!
   ingredients(where: IngredientWhereInput, orderBy: IngredientOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Ingredient!]
   process: String!
+  comment: String!
   price: Float!
   nutrition: String!
   category: String!
@@ -669,6 +670,7 @@ input RecipeCreateInput {
   name: String!
   description: String!
   process: String!
+  comment: String!
   price: Float!
   nutrition: String!
   category: String!
@@ -699,6 +701,8 @@ enum RecipeOrderByInput {
   description_DESC
   process_ASC
   process_DESC
+  comment_ASC
+  comment_DESC
   price_ASC
   price_DESC
   nutrition_ASC
@@ -716,6 +720,7 @@ type RecipePreviousValues {
   name: String!
   description: String!
   process: String!
+  comment: String!
   price: Float!
   nutrition: String!
   category: String!
@@ -764,6 +769,7 @@ input RecipeUpdateDataInput {
   name: String
   description: String
   process: String
+  comment: String
   price: Float
   nutrition: String
   category: String
@@ -775,6 +781,7 @@ input RecipeUpdateInput {
   name: String
   description: String
   process: String
+  comment: String
   price: Float
   nutrition: String
   category: String
@@ -971,6 +978,46 @@ input RecipeWhereInput {
 
   """All values not ending with the given string."""
   process_not_ends_with: String
+  comment: String
+
+  """All values that are not equal to given value."""
+  comment_not: String
+
+  """All values that are contained in given list."""
+  comment_in: [String!]
+
+  """All values that are not contained in given list."""
+  comment_not_in: [String!]
+
+  """All values less than the given value."""
+  comment_lt: String
+
+  """All values less than or equal the given value."""
+  comment_lte: String
+
+  """All values greater than the given value."""
+  comment_gt: String
+
+  """All values greater than or equal the given value."""
+  comment_gte: String
+
+  """All values containing the given string."""
+  comment_contains: String
+
+  """All values not containing the given string."""
+  comment_not_contains: String
+
+  """All values starting with the given string."""
+  comment_starts_with: String
+
+  """All values not starting with the given string."""
+  comment_not_starts_with: String
+
+  """All values ending with the given string."""
+  comment_ends_with: String
+
+  """All values not ending with the given string."""
+  comment_not_ends_with: String
   price: Float
 
   """All values that are not equal to given value."""
@@ -1404,6 +1451,8 @@ export type RecipeOrderByInput =   'id_ASC' |
   'description_DESC' |
   'process_ASC' |
   'process_DESC' |
+  'comment_ASC' |
+  'comment_DESC' |
   'price_ASC' |
   'price_DESC' |
   'nutrition_ASC' |
@@ -1649,6 +1698,7 @@ export interface RecipeUpdateDataInput {
   name?: String
   description?: String
   process?: String
+  comment?: String
   price?: Float
   nutrition?: String
   category?: String
@@ -1779,6 +1829,20 @@ export interface RecipeWhereInput {
   process_not_starts_with?: String
   process_ends_with?: String
   process_not_ends_with?: String
+  comment?: String
+  comment_not?: String
+  comment_in?: String[] | String
+  comment_not_in?: String[] | String
+  comment_lt?: String
+  comment_lte?: String
+  comment_gt?: String
+  comment_gte?: String
+  comment_contains?: String
+  comment_not_contains?: String
+  comment_starts_with?: String
+  comment_not_starts_with?: String
+  comment_ends_with?: String
+  comment_not_ends_with?: String
   price?: Float
   price_not?: Float
   price_in?: Float[] | Float
@@ -1861,6 +1925,7 @@ export interface RecipeCreateInput {
   name: String
   description: String
   process: String
+  comment: String
   price: Float
   nutrition: String
   category: String
@@ -1872,6 +1937,7 @@ export interface RecipeUpdateInput {
   name?: String
   description?: String
   process?: String
+  comment?: String
   price?: Float
   nutrition?: String
   category?: String
@@ -1918,6 +1984,7 @@ export interface RecipePreviousValues {
   name: String
   description: String
   process: String
+  comment: String
   price: Float
   nutrition: String
   category: String
@@ -1955,6 +2022,7 @@ export interface Recipe extends Node {
   description: String
   ingredients?: Ingredient[]
   process: String
+  comment: String
   price: Float
   nutrition: String
   category: String
