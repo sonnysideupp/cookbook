@@ -2,7 +2,7 @@
 
 # dependencies
 **/node_modules
-**/prisma
+**/prisma/prisma.yml
 
 # testing
 /coverage
