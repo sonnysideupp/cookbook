@@ -35,6 +35,10 @@ const LOGIN = gql`
 `
 
 class Navigation extends React.Component {
+  state = {
+    email: "",
+    password: ""
+  }
   constructor(props) {
     super(props)
 
@@ -79,6 +83,14 @@ class Navigation extends React.Component {
     this.props.history.push("/")
   }
 
+  clearForm = () => {
+    document.getElementById("myForm").reset()
+    // this.setState({
+    //   email: "",
+    //   password: ""
+    // })
+  }
+
   render() {
     const token = localStorage.getItem("token")
     if (this.state.loading) {
@@ -87,7 +99,9 @@ class Navigation extends React.Component {
     return (
       <div>
         <Navbar color="light" light expand="md">
-          <NavbarBrand className="NavbarTitle" href="/">Welcome to iXCooking!</NavbarBrand>
+          <NavbarBrand className="NavbarTitle" href="/">
+            Welcome to iXCooking!
+          </NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
@@ -106,7 +120,9 @@ class Navigation extends React.Component {
 
             <Nav className="ml-auto" navbar>
               <NavItem>
-                <NavLink className="my-page" href="/my-profile/">My Page</NavLink>
+                <NavLink className="my-page" href="/my-profile/">
+                  My Page
+                </NavLink>
               </NavItem>
               <NavItem className="welcome">
                 <p className="welcomeText">Welcome : </p>
@@ -128,30 +144,42 @@ class Navigation extends React.Component {
                       return (
                         <div className="MainPart">
                           <form
+                            id="myForm"
                             onSubmit={async e => {
                               e.preventDefault()
-                              const { data } = await login({
-                                variables: {
-                                  email: this.state.email,
-                                  password: this.state.password
-                                }
-                              })
-                              // console.log({ data })
-                              localStorage.setItem("token", data.login.token)
-                              console.log(data.login.token)
-                              localStorage.setItem(
-                                "username",
-                                data.login.user.username
-                              )
-
-                              this.props.history.push("/")
+                              try {
+                                const { data } = await login({
+                                  variables: {
+                                    email: this.state.email,
+                                    password: this.state.password
+                                  }
+                                })
+                                localStorage.setItem("token", data.login.token)
+                                localStorage.setItem(
+                                  "username",
+                                  data.login.user.username
+                                )
+                                this.props.history.push("/")
+                              } catch (error) {
+                                localStorage.removeItem("token")
+                                localStorage.removeItem("username")
+                                // this.input = "
+                                // this.clearForm()
+                                document.getElementById("myForm").reset()
+                                document.getElementById("warning").value =
+                                  "yourv"
+                              }
                             }}
                           >
                             <div className="inputBox">
+                              <DropdownItem disabled id="warning">
+                                Please
+                              </DropdownItem>
                               <DropdownItem disabled>email:</DropdownItem>
                               <DropdownItem disabled>
                                 <input
                                   type="text"
+                                  className="abc"
                                   onChange={e => {
                                     this.setState({ email: e.target.value })
                                   }}
