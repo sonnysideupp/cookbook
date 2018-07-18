@@ -25,7 +25,7 @@ class App extends React.Component {
             path="/my-profile/create-recipe"
             component={CreateRecipeForm}
           />
-          <Route exact={true} path="/my-profile" component={Signup} />
+          <Route exact={true} path="/signup" component={Signup} />
         </Switch>
       </div>
     )
