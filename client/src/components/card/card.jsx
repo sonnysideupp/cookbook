@@ -119,14 +119,16 @@ class FoodWindow extends React.Component {
                       />
                       <CardBody>
                         <CardTitle className="name_rec">
-                          <IoFork />
+                          <IoFork className="fork" />
                           {recipe.name}
                           <hr />
                         </CardTitle>
                         {/* <CardSubtitle>{recipe.creator.name}</CardSubtitle> */}
-                        <CardText>{recipe.description}</CardText>
-                        <CardText>
-                          <FaDollar />
+                        <CardText className="descrip_card">
+                          {recipe.description}
+                        </CardText>
+                        <CardText className="descrip_card">
+                          <FaDollar className="dollar" />
                           {recipe.price}
                         </CardText>
 

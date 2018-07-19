@@ -16,3 +16,13 @@
   /* justify-content: space-around; */
   justify-content: center;
 }
+.descrip_card {
+  font-family: Montserrat;
+}
+
+.dollar {
+  transform: rotate(10deg);
+}
+.fork {
+  transform: rotate(20deg);
+}
