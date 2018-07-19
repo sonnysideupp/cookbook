@@ -65,7 +65,7 @@ class Navigation extends Component {
                       <Search
                         data={recipe.name}
                         onChange={this.handleChange.bind(this)}
-                        placeholder="Search your food"
+                        placeholder="Search for a recipe..."
                         class="search-class"
                         searchKey="full_name"
                       />

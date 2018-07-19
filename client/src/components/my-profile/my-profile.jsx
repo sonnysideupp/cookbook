@@ -63,7 +63,28 @@ class MyProfile extends React.Component {
           <h2 className="likedtitle" id="likedtitle">
             LIKED POSTS
           </h2>
-
+          <Query query={GET_RECIPES}>
+            {({ loading, error, data }) => {
+              if (loading) {
+                return "Loading..."
+              }
+              if (error) {
+                return "Oops, something blew up."
+              }
+              return console.log("hi")
+              // <div>
+              //   {data.me.feed.map(tweet => {
+              //     return (
+              //       <Tweet
+              //         key={tweet.id}
+              //         text={tweet.text}
+              //         author={tweet.author}
+              //       />
+              //     )
+              //   })}
+              // </div>
+            }}
+          </Query>
           <div>
             <Card>
               <CardImg
