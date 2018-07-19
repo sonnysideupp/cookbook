@@ -39,3 +39,10 @@
 .welcome {
   margin-right: 20px;
 }
+.LoginButton {
+  background-color: firebrick;
+  color: white;
+  border: none;
+  width: 100px;
+  font-family: Montserrat;
+}

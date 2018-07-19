@@ -4,6 +4,7 @@ scalar Upload
 type Query {
   me: User!
   recipes(where: RecipeWhereInput!): [Recipe]!
+  allrecipes: [Recipe]!
 }
 
 type Mutation {

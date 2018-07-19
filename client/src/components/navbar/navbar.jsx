@@ -189,7 +189,7 @@ class Navigation extends React.Component {
                                 this.setState({
                                   email: "",
                                   password: "",
-                                  error: "There is an error"
+                                  error: "Oops! Something went wrong."
                                 })
                                 document.getElementById("warning").value =
                                   "yourv"
@@ -208,7 +208,6 @@ class Navigation extends React.Component {
                                   onChange={e => {
                                     this.setState({ email: e.target.value })
                                   }}
-                                  placeholder="email"
                                 />
                               </DropdownItem>
 
@@ -219,7 +218,6 @@ class Navigation extends React.Component {
                                   onChange={e => {
                                     this.setState({ password: e.target.value })
                                   }}
-                                  placeholder="password"
                                 />
                               </DropdownItem>
                             </div>
@@ -232,7 +230,7 @@ class Navigation extends React.Component {
                                 type="submit"
                                 className="LoginButton"
                               >
-                                LOGIN!
+                                Log in
                               </button>
                             </DropdownItem>
                           </form>
@@ -243,7 +241,7 @@ class Navigation extends React.Component {
 
                   <DropdownItem divider />
                   <DropdownItem disabled>
-                    You don't have an account?
+                    Don't have an account?
                   </DropdownItem>
                   <DropdownItem disabled>
                     <Link to="/signup">

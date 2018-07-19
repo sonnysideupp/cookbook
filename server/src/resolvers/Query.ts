@@ -9,5 +9,8 @@ export default {
     return ctx.db.query.recipes({
       where: args.where
     })
+  },
+  allrecipes: async (parent, args, ctx: Context, info) => {
+    return ctx.db.query.recipes({})
   }
 }

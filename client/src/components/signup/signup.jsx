@@ -42,6 +42,11 @@ class SignUP extends React.Component {
           {signup => {
             return (
               <div>
+                <div>
+                  <p class="signup-text">
+                    SIGN UP to start sharing your recipes today!
+                  </p>
+                </div>
                 <form
                   className="signup-form"
                   onSubmit={async e => {
@@ -110,6 +115,9 @@ class SignUP extends React.Component {
                     </button>
                   </div>
                 </form>
+                <button type="submit" className="SignupButton">
+                  Submit
+                </button>
               </div>
             )
           }}
