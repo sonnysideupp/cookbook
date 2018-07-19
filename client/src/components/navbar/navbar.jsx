@@ -2,7 +2,7 @@ import * as React from "react"
 import Search from "react-search-box"
 import "./navbar.css"
 import gql from "graphql-tag"
-import { Mutation } from "react-apollo"
+import { Mutation, Query } from "react-apollo"
 import { Link } from "react-router-dom"
 import { Button } from "reactstrap"
 
@@ -33,6 +33,23 @@ const LOGIN = gql`
     }
   }
 `
+const GET_ALL_PROFILES = gql`
+  query myRecipesQuery {
+    allrecipes {
+      name
+      # creator {
+      #   name
+      # }
+      description
+      price
+      likes {
+        author {
+          name
+        }
+      }
+    }
+  }
+`
 
 class Navigation extends React.Component {
   state = {
@@ -58,21 +75,21 @@ class Navigation extends React.Component {
     })
   }
 
-  componentDidMount() {
-    this.setState({
-      loading: true
-    })
+  // componentDidMount() {
+  //   this.setState({
+  //     loading: true
+  //   })
 
-    fetch("https://api.github.com/search/repositories?q=topic:ruby+topic:rails")
-      .then(res => res.json())
-      .then(data => {
-        console.log(data.items)
-        this.setState({
-          data: data.items,
-          loading: false
-        })
-      })
-  }
+  //   fetch("https://api.github.com/search/repositories?q=topic:ruby+topic:rails")
+  //     .then(res => res.json())
+  //     .then(data => {
+  //       console.log(data.items)
+  //       this.setState({
+  //         data: data.items,
+  //         loading: false
+  //       })
+  //     })
+  // }
 
   handleChange(value) {
     console.log(value)
@@ -102,6 +119,7 @@ class Navigation extends React.Component {
     if (this.state.loading) {
       return <div className="app__loading">Loading...</div>
     }
+
     return (
       <div>
         <Navbar className="Navbar" light expand="md">
@@ -110,19 +128,40 @@ class Navigation extends React.Component {
           </NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
-            <Nav className="ml-auto" navbar>
-              <NavItem className="search__nav">
-                <div className="search__component">
-                  <Search
-                    data={this.state.data}
-                    onChange={this.handleChange.bind(this)}
-                    placeholder="Search your food"
-                    class="search-class"
-                    searchKey="full_name"
-                  />
-                </div>
-              </NavItem>
-            </Nav>
+            <Query query={GET_ALL_PROFILES}>
+              {({ loading, error, data, refetch }) => {
+                if (loading) {
+                  return "Loading..."
+                }
+
+                if (error) {
+                  return "Oops, something blew up."
+                }
+
+                return (
+                  <div>
+                    {data.allrecipes.map(recipe => {
+                      console.log(recipe)
+                      return (
+                        <Nav className="ml-auto" navbar>
+                          <NavItem className="search__nav">
+                            <div className="search__component">
+                              <Search
+                                data={recipe.name}
+                                onChange={this.handleChange.bind(this)}
+                                placeholder="Search your food"
+                                class="search-class"
+                                searchKey="full_name"
+                              />
+                            </div>
+                          </NavItem>
+                        </Nav>
+                      )
+                    })}
+                  </div>
+                )
+              }}
+            </Query>
 
             <Nav className="ml-auto" navbar>
               <NavItem>

@@ -115,7 +115,7 @@ class CreateRecipeForm extends React.Component {
                   <div className="steps">
                     <input
                       id="step"
-                      type="textarea"
+                      type="text"
                       placeholder="steps"
                       onChange={e => this.setState({ process: e.target.value })}
                     />
