@@ -102,6 +102,7 @@ class FoodWindow extends React.Component {
         }}
       >
         {({ loading, error, data, refetch }) => {
+          const refetchAllRecipes = refetch
           if (loading) {
             return "Loading..."
           }
@@ -143,7 +144,6 @@ class FoodWindow extends React.Component {
                         </CardText>
                         <Query
                           query={GET_RECIPE_LIKES}
-                          pollInterval={300}
                           variables={{
                             where: {
                               recipe: { id_in: recipe_ids },
@@ -153,7 +153,7 @@ class FoodWindow extends React.Component {
                             }
                           }}
                         >
-                          {({ data, loading, error }) => {
+                          {({ data, loading, error, refetch }) => {
                             if (loading) {
                               return "loading likes..."
                             }
@@ -166,7 +166,11 @@ class FoodWindow extends React.Component {
 
                             return (
                               <Mutation mutation={LIKE}>
-                                {(likerecipe, { error }) => {
+                                {(likerecipe, { error, loading }) => {
+                                  if (loading) {
+                                    return <div>loading...</div>
+                                  }
+
                                   return (
                                     <div className="flex_btn">
                                       <Button
@@ -193,6 +197,8 @@ class FoodWindow extends React.Component {
                                               }
                                             })
                                           }
+                                          refetch()
+                                          refetchAllRecipes()
                                         }}
                                       >
                                         {recipe_likes && recipe_likes.length > 0
