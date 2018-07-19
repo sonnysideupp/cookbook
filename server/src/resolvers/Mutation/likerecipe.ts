@@ -1,6 +1,6 @@
 import { Context, getUserId } from "../../utils"
 export default {
-  likeRecipe: async (parent, args, ctx: Context, info) => {
+  likerecipe: async (parent, args, ctx: Context, info) => {
     const id = getUserId(ctx)
     return await ctx.db.mutation.updateRecipe(
       {
