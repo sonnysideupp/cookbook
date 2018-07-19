@@ -3,7 +3,7 @@ import Foodtype from "../foodtype/foodtype"
 import FoodWindow from "../card/card"
 import FoodSlide from "../carousel/carousel"
 import "./home-page.css"
-import Pages from "../pagination/pagination"
+// import Pages from "../pagination/pagination"
 import Navbar from "../navbar/navbar"
 
 class HomePage extends React.Component {
@@ -45,7 +45,7 @@ class HomePage extends React.Component {
           {/* console.log(this.props.selectedFoodType); */}
         </div>
 
-        <Pages />
+        {/* <Pages /> */}
       </div>
     )
   }
