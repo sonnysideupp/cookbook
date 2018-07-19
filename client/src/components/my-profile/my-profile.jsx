@@ -13,6 +13,7 @@ import {
   Button
 } from "reactstrap"
 import { Query } from "react-apollo"
+import logo from "./profile-logo.png"
 
 const GET_RECIPES = gql`
   query {
@@ -30,7 +31,7 @@ class MyProfile extends React.Component {
         <div>
           <Navbar history={this.props.history} className="navbar" />
         </div>
-        <h1 id="header">MY PROFILE</h1>
+        <h1><img src={logo} alt="My cookbook"/> </h1>
         <div>
           <Link to="/my-profile/create-recipe">
               <button type="button" className="newrecipebutton">Create new recipe!</button>
