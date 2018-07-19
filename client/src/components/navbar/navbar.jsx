@@ -1,10 +1,11 @@
 import * as React from "react"
-import Search from "react-search-box"
 import "./navbar.css"
 import gql from "graphql-tag"
-import { Mutation } from "react-apollo"
+import { Mutation, Query } from "react-apollo"
 import { Link } from "react-router-dom"
 import { Button } from "reactstrap"
+import logo from "./cookbooktitlelogo2.png"
+import Select from "react-select"
 
 import {
   Collapse,
@@ -33,63 +34,37 @@ const LOGIN = gql`
     }
   }
 `
+const GET_ALL_PROFILES = gql`
+  query myRecipesQuery {
+    allrecipes {
+      id
+      name
+      # creator {
+      #   name
+      # }
+      description
+      price
+      likes {
+        author {
+          name
+        }
+      }
+    }
+  }
+`
 
 class Navigation extends React.Component {
   state = {
     email: "",
     password: "",
-    error: ""
-  }
-  constructor(props) {
-    super(props)
-
-    this.toggle = this.toggle.bind(this)
-    this.state = {
-      isOpen: false,
-
-      // search box
-      data: [],
-      loading: false
-    }
-  }
-  toggle() {
-    this.setState({
-      isOpen: !this.state.isOpen
-    })
-  }
-
-  componentDidMount() {
-    this.setState({
-      loading: true
-    })
-
-    fetch("https://api.github.com/search/repositories?q=topic:ruby+topic:rails")
-      .then(res => res.json())
-      .then(data => {
-        console.log(data.items)
-        this.setState({
-          data: data.items,
-          loading: false
-        })
-      })
-  }
-
-  handleChange(value) {
-    console.log(value)
+    error: "",
+    selectedOption: ""
   }
 
   onLogout = () => {
     localStorage.removeItem("token")
     localStorage.removeItem("username")
     this.props.history.push("/")
-  }
-
-  clearForm = () => {
-    document.getElementById("myForm").reset()
-    // this.setState({
-    //   email: "",
-    //   password: ""
-    // })
   }
 
   render() {
@@ -102,27 +77,53 @@ class Navigation extends React.Component {
     if (this.state.loading) {
       return <div className="app__loading">Loading...</div>
     }
+
     return (
       <div>
         <Navbar className="Navbar" light expand="md">
           <NavbarBrand className="NavbarTitle" href="/">
-            <h3>iX Cooking App</h3>
+            <div className="titlelogo">
+              <img src={logo} alt="logo" />
+            </div>
           </NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
-            <Nav className="ml-auto" navbar>
-              <NavItem className="search__nav">
-                <div className="search__component">
-                  <Search
-                    data={this.state.data}
-                    onChange={this.handleChange.bind(this)}
-                    placeholder="Search your food"
-                    class="search-class"
-                    searchKey="full_name"
-                  />
-                </div>
-              </NavItem>
-            </Nav>
+            <Query query={GET_ALL_PROFILES}>
+              {({ loading, error, data, refetch }) => {
+                if (loading) {
+                  return "Loading..."
+                }
+
+                if (error) {
+                  return "Oops, something blew up."
+                }
+
+                if (!data.allrecipes) return "no data..."
+
+                const options = data.allrecipes.map(recipe => {
+                  return {
+                    value: recipe.id,
+                    label: recipe.name
+                  }
+                })
+
+                return (
+                  <div>
+                    <Nav className="ml-auto" navbar>
+                      <NavItem className="search__nav">
+                        <div className="search__component">
+                          <Select
+                            name="form-field-name"
+                            onChange={this.props.handleRecipeOnChange}
+                            options={options}
+                          />
+                        </div>
+                      </NavItem>
+                    </Nav>
+                  </div>
+                )
+              }}
+            </Query>
 
             <Nav className="ml-auto" navbar>
               <NavItem>
@@ -179,20 +180,12 @@ class Navigation extends React.Component {
                               } catch (error) {
                                 localStorage.removeItem("token")
                                 localStorage.removeItem("username")
-                                // window.confirm(
-                                //   "Wrong Account! Try again please"
-                                // )
 
-                                // this.input = "
-                                // this.clearForm()
-                                // document.getElementById("myForm").reset()
                                 this.setState({
                                   email: "",
                                   password: "",
                                   error: "Oops! Something went wrong."
                                 })
-                                // document.getElementById("warning").value =
-                                //   "yourv"
                               }
                             }}
                           >

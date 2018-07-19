@@ -1,72 +1,46 @@
-// import * as React from "react"
-// import Select from "react-select"
-// import Animated from "react-select/lib/animated"
-// // import "react-select/dist/react-select.css"
-
-// class Foodtype extends React.Component {
-//   state = {
-//     selectedOption: ""
-//   }
-//   handleChange = selectedOption => {
-//     this.setState({ selectedOption })
-//     // selectedOption can be null when the `x` (close) button is clicked
-//     if (selectedOption) {
-//       console.log(`Selected: ${selectedOption.label}`)
-//     }
-//   }
-//   render() {
-//     const { selectedOption } = this.state
-
-//     return (
-//       <Select
-//         isMulti={true}
-//         components={makeAnimated()}
-//         name="form-field-name"
-//         value={selectedOption}
-//         onChange={this.handleChange}
-//         options={[
-//           { value: "one", label: "One" },
-//           { value: "two", label: "Two" }
-//         ]}
-//       />
-//     )
-//   }
-// }
-
-// export default Foodtype
-
 import React from "react"
 
 import Select from "react-select"
+import { Query } from "react-apollo"
+import gql from "graphql-tag"
 import makeAnimated from "react-select/lib/animated"
 import "./foodtype.css"
 // import { colourOptions } from "../data"
 
-function AnimatedMulti() {
-  return (
-    <div className="selects">
-      <Select
-        closeMenuOnSelect={false}
-        components={makeAnimated()}
-        // defaultValue={[colourOptions[4], colourOptions[5]]}
-        isMulti
-        options={[
-          { value: "one", label: "One" },
-          { value: "two", label: "Two" }
-        ]}
-      />
+const GET_INGREDIENTS = gql`
+  query ingredients {
+    ingredients {
+      id
+      name
+    }
+  }
+`
 
-      <Select
-        closeMenuOnSelect={false}
-        components={makeAnimated()}
-        // defaultValue={[colourOptions[4], colourOptions[5]]}
-        isMulti
-        options={[
-          { value: "one", label: "One" },
-          { value: "two", label: "Two" }
-        ]}
-      />
-    </div>
+function AnimatedMulti(props) {
+  return (
+    <Query query={GET_INGREDIENTS}>
+      {({ data, loading, error }) => {
+        if (error) return "error"
+        if (loading) return "...lading"
+        const ingredients = data.ingredients.map(ingredient => {
+          return {
+            value: ingredient.id,
+            label: ingredient.name
+          }
+        })
+        return (
+          <div className="selects">
+            <Select
+              closeMenuOnSelect={false}
+              components={makeAnimated()}
+              isMulti
+              options={ingredients}
+              onChange={props.handleFoodTypeOnChange}
+            />
+          </div>
+        )
+      }}
+    </Query>
   )
 }
 

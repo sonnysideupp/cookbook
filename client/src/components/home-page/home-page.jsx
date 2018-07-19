@@ -10,7 +10,8 @@ class HomePage extends React.Component {
   constructor() {
     super()
     this.state = {
-      selectedFoodType: ""
+      selectedFoodType: "",
+      selectedRecipe: ""
     }
   }
 
@@ -18,15 +19,30 @@ class HomePage extends React.Component {
     this.setState({ selectedFoodType: event.target.value })
   }
 
+  handleFoodTypeOnChange = selectedOption => {
+    this.setState({ selectedFoodType: selectedOption })
+  }
+
+  handleRecipeOnChange = selectedOption => {
+    this.setState({ selectedRecipe: selectedOption })
+  }
+
   render() {
     return (
       <div className="main">
-        <Navbar history={this.props.history} />
+        <Navbar
+          handleRecipeOnChange={this.handleRecipeOnChange}
+          history={this.props.history}
+        />
         <FoodSlide />
-        <Foodtype />
+        <Foodtype handleFoodTypeOnChange={this.handleFoodTypeOnChange} />
 
         <div className="cards">
-          <FoodWindow />
+          <FoodWindow
+            selectedRecipe={this.state.selectedRecipe}
+            foodType={this.state.selectedFoodType}
+          />
+          {/* console.log(this.props.selectedFoodType); */}
         </div>
 
         <Pages />

@@ -13,13 +13,10 @@ import {
   Button
 } from "reactstrap"
 
-const GET_ALL_PROFILES = gql`
-  query myRecipesQuery {
-    allrecipes {
+const GET_ALL_RECIPES = gql`
+  query myRecipesQuery($where: RecipeWhereInput) {
+    recipes(where: $where) {
       name
-      # creator {
-      #   name
-      # }
       description
       price
       likes {
@@ -55,8 +52,44 @@ class FoodWindow extends React.Component {
   }
 
   render() {
+    const { foodType, selectedRecipe } = this.props
+    console.log({
+      selectedRecipe: selectedRecipe
+    })
+    const hasFoodFilter = foodType && foodType.length > 0
+
+    const hasRecipeFilter = selectedRecipe && selectedRecipe.length !== 0
+
+    const foodTypesIDS =
+      foodType &&
+      foodType.map(foodType => {
+        return foodType.value
+      })
+
+    let where = {}
+
+    if (hasFoodFilter) {
+      where = {
+        ingredients_some: {
+          id_in: foodTypesIDS
+        }
+      }
+    }
+
+    if (hasRecipeFilter) {
+      where = {
+        ...where,
+        id: selectedRecipe.value
+      }
+    }
+
     return (
-      <Query query={GET_ALL_PROFILES}>
+      <Query
+        query={GET_ALL_RECIPES}
+        variables={{
+          where: where
+        }}
+      >
         {({ loading, error, data, refetch }) => {
           if (loading) {
             return "Loading..."
@@ -66,10 +99,12 @@ class FoodWindow extends React.Component {
             return "Oops, something blew up."
           }
 
+          if (!data.recipes) return "no data yet.."
+
           return (
             <div>
-              {data.allrecipes.map(recipe => {
-                console.log(recipe)
+              {data.recipes.map(recipe => {
+                console.log(this.props.foodType)
                 return (
                   <div className="each_card">
                     <Card>
