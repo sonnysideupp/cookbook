@@ -106,7 +106,7 @@ class Navigation extends React.Component {
       <div>
         <Navbar className="Navbar" light expand="md">
           <NavbarBrand className="NavbarTitle" href="/">
-            iX Cooking App
+            <h3>iX Cooking App</h3>
           </NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
@@ -191,8 +191,8 @@ class Navigation extends React.Component {
                                   password: "",
                                   error: "Oops! Something went wrong."
                                 })
-                                document.getElementById("warning").value =
-                                  "yourv"
+                                // document.getElementById("warning").value =
+                                //   "yourv"
                               }
                             }}
                           >
@@ -240,9 +240,7 @@ class Navigation extends React.Component {
                   </Mutation>
 
                   <DropdownItem divider />
-                  <DropdownItem disabled>
-                    Don't have an account?
-                  </DropdownItem>
+                  <DropdownItem disabled>Don't have an account?</DropdownItem>
                   <DropdownItem disabled>
                     <Link to="/signup">
                       <button className="SignupButton">Sign up</button>
