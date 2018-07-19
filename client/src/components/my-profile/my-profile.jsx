@@ -3,6 +3,7 @@ import { Link } from "react-router-dom"
 import Navbar from "../navbar/navbar"
 import "./my-profile.css"
 import gql from "graphql-tag"
+
 import {
   Card,
   CardImg,
@@ -31,17 +32,21 @@ class MyProfile extends React.Component {
         <div>
           <Navbar history={this.props.history} className="navbar" />
         </div>
-        <h1><img src={logo} alt="My cookbook"/> </h1>
+        <h1>
+          <img src={logo} alt="My cookbook" />{" "}
+        </h1>
         <div>
           <Link to="/my-profile/create-recipe">
-              <button type="button" className="newrecipebutton">Create new recipe!</button>
-            </Link>
+            <button type="button" className="newrecipebutton">
+              Create new recipe!
+            </button>
+          </Link>
         </div>
         <div className="likedposts">
           <h2 className="likedtitle" id="likedtitle">
             LIKED POSTS
           </h2>
-          <Query query={GET_RECIPES}>
+          {/* <Query query={GET_RECIPES}>
             {({ loading, error, data }) => {
               if (loading) {
                 return "Loading..."
@@ -49,7 +54,6 @@ class MyProfile extends React.Component {
               if (error) {
                 return "Oops, somehing blew up."
               }
-              return console.log("hi")
               // <div>
               //   {data.me.feed.map(tweet => {
               //     return (
@@ -62,7 +66,7 @@ class MyProfile extends React.Component {
               //   })}
               // </div>
             }}
-          </Query>
+          </Query> */}
           <div>
             <Card>
               <CardImg
