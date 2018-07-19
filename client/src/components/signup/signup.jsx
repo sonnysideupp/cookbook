@@ -72,7 +72,7 @@ class SignUP extends React.Component {
                     <input
                       id="name"
                       placeholder="name"
-                      type="textarea"
+                      type="text"
                       onChange={e => this.setState({ name: e.target.value })}
                     />
                   </div>
@@ -80,7 +80,7 @@ class SignUP extends React.Component {
                     <input
                       id="username"
                       placeholder="username"
-                      type="textarea"
+                      type="text"
                       onChange={e =>
                         this.setState({ username: e.target.value })
                       }
@@ -90,7 +90,7 @@ class SignUP extends React.Component {
                     <input
                       id="email"
                       placeholder="email"
-                      type="textarea"
+                      type="text"
                       onChange={e => this.setState({ email: e.target.value })}
                     />
                   </div>
@@ -98,7 +98,7 @@ class SignUP extends React.Component {
                     <input
                       id="password"
                       placeholder="password"
-                      type="textarea"
+                      type="password"
                       onChange={e =>
                         this.setState({ password: e.target.value })
                       }
