@@ -67,7 +67,7 @@ class SignUP extends React.Component {
                     }
                   }}
                 >
-                  <h1> SIGNUP </h1>
+                  <h1> Create your account </h1>
                   <div>
                     <input
                       id="name"
