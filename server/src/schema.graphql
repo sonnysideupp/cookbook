@@ -5,6 +5,7 @@ type Query {
   me: User!
   recipes(where: RecipeWhereInput!): [Recipe]!
   allrecipes: [Recipe]!
+  ingreidents(where: IngredientWhereInput!): [Ingredient!]!
 }
 
 type Mutation {
