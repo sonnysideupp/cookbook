@@ -65,43 +65,6 @@ class CreateRecipeForm extends React.Component {
                     } catch (error) {}
                   }}
                 >
-<<<<<<< HEAD
-                  <input
-                    type="textarea"
-                    placeholder="name"
-                    onChange={e => this.setState({ name: e.target.value })}
-                  />
-
-                  <input
-                    type="textarea"
-                    placeholder="description"
-                    onChange={e =>
-                      this.setState({ description: e.target.value })
-                    }
-                  />
-                  <input
-                    type="textarea"
-                    placeholder="price"
-                    onChange={e => this.setState({ price: e.target.value })}
-                  />
-                  <input
-                    type="textarea"
-                    placeholder="process"
-                    onChange={e => this.setState({ process: e.target.value })}
-                  />
-                  <input
-                    type="textarea"
-                    placeholder="nutrition"
-                    onChange={e => this.setState({ nutrition: e.target.value })}
-                  />
-                  <input
-                    type="textarea"
-                    placeholder="category"
-                    onChange={e => this.setState({ category: e.target.value })}
-                  />
-
-                  <button type="submit">Submit</button>
-=======
                   <h1>YOUR RECIPE</h1>
                   <div className="recipe-title">
                     <input
@@ -160,7 +123,6 @@ class CreateRecipeForm extends React.Component {
                   <div>
                     <button type="submit">Submit</button>
                   </div>
->>>>>>> 0636a19e60aa0e3a5de793fda2b80784a24a6ac7
                 </form>
               </div>
             )
