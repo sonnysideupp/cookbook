@@ -47,7 +47,7 @@ class MyProfile extends React.Component {
                 return "Loading..."
               }
               if (error) {
-                return "Oops, somehing blew up."
+                return "Oops, something blew up."
               }
               return console.log("hi")
               // <div>
