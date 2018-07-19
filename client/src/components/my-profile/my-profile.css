@@ -1,10 +1,9 @@
 .likedposts {
   font-family: Montserrat;
-  width: 600px;
-  height: 500px;
-  margin-left: 100px;
-  padding-right: 300px;
   float: left;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
   border-right: 1px solid black;
 }
 .likedtitle {
@@ -13,10 +12,9 @@
 }
 .myrecipes {
   font-family: Montserrat;
-  float: right;
-  width: 300px;
-  height: 500px;
-  margin-right: 100px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
 }
 
 .myrecipestitle {
@@ -34,6 +32,10 @@
 #header {
   width: 100%;
   border-bottom: 1px solid black;
-  font-family: Gaegu;
+  font-family: Montserrat;
   color: #ab9b96;
+}
+
+.each_card {
+  font-family: Gaegu;
 }

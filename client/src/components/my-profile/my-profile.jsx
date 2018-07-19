@@ -16,11 +16,15 @@ import {
 import { Query } from "react-apollo"
 import logo from "./profile-logo.png"
 
-const GET_RECIPES = gql`
+const GET_MYRECIPES = gql`
   query {
-    recipes {
+    me {
       name
-      category
+      recipes {
+        name
+        description
+        category
+      }
     }
   }
 `
@@ -32,7 +36,7 @@ class MyProfile extends React.Component {
         <div>
           <Navbar history={this.props.history} className="navbar" />
         </div>
-        <h1>
+        <h1 id="mycookbook">
           <img src={logo} alt="My cookbook" />{" "}
         </h1>
         <div>
@@ -46,27 +50,7 @@ class MyProfile extends React.Component {
           <h2 className="likedtitle" id="likedtitle">
             LIKED POSTS
           </h2>
-          {/* <Query query={GET_RECIPES}>
-            {({ loading, error, data }) => {
-              if (loading) {
-                return "Loading..."
-              }
-              if (error) {
-                return "Oops, somehing blew up."
-              }
-              // <div>
-              //   {data.me.feed.map(tweet => {
-              //     return (
-              //       <Tweet
-              //         key={tweet.id}
-              //         text={tweet.text}
-              //         author={tweet.author}
-              //       />
-              //     )
-              //   })}
-              // </div>
-            }}
-          </Query> */}
+
           <div>
             <Card>
               <CardImg
@@ -89,23 +73,38 @@ class MyProfile extends React.Component {
           <h2 className="myrecipestitle" id="myrecipestitle">
             MY RECIPES
           </h2>
-          <div>
-            <Card>
-              <CardImg
-                src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180"
-                alt="Card image cap"
-              />
-              <CardBody>
-                <CardTitle>Card title</CardTitle>
-                <CardSubtitle>Card subtitle</CardSubtitle>
-                <CardText>
-                  Some quick example text to build on the card title and make up
-                  the bulk of the card's content.
-                </CardText>
-                <Button>Button</Button>
-              </CardBody>
-            </Card>
-          </div>
+          <Query query={GET_MYRECIPES}>
+            {({ loading, error, data, refetch }) => {
+              if (loading) {
+                return "Loading..."
+              }
+              if (error) {
+                return "Oops, something blew up."
+              }
+              if (!data.me.recipes) return "no data..."
+              return data.me.recipes.map(recipe => {
+                return (
+                  <div className="each_card">
+                    <Card>
+                      <CardImg
+                        className="image"
+                        top
+                        width="100%"
+                        src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180"
+                        alt="Card image cap"
+                      />
+                      <CardBody>
+                        <CardTitle>{recipe.name}</CardTitle>
+                        <CardText id="cardtext">{recipe.description}</CardText>
+                        <CardText id="cardtext">{recipe.category}</CardText>
+                        <Button>More</Button>
+                      </CardBody>
+                    </Card>
+                  </div>
+                )
+              })
+            }}
+          </Query>
         </div>
       </div>
     )
