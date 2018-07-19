@@ -1,6 +1,8 @@
 import * as React from "react"
 import gql from "graphql-tag"
 import { Mutation } from "react-apollo"
+import Select from "react-select"
+import makeAnimated from "react-select/lib/animated"
 import "./create-recipe.css"
 
 const CREATE_RECIPE = gql`
@@ -17,6 +19,10 @@ const CREATE_RECIPE = gql`
 `
 
 class CreateRecipeForm extends React.Component {
+  // handleEChange(e){
+  //   this.setState({process:  })
+  // }
+
   state = {
     name: "",
     description: "",
@@ -97,19 +103,32 @@ class CreateRecipeForm extends React.Component {
                       id="nutrition"
                       type="textarea"
                       placeholder="nutrition"
-                      onChange={e =>
-                        this.setState({ nutrition: e.target.value })
-                      }
+                      // onChange={e =>
+                      //   this.setState({ nutrition: e.target.value })
+                      // }
+                      onChange={this.handleEChange}
                     />
                   </div>
                   <div className="category">
-                    <input
+                    <Select
                       id="category"
-                      type="textarea"
-                      placeholder="category"
-                      onChange={e =>
-                        this.setState({ category: e.target.value })
-                      }
+                      closeMenuOnSelect={false}
+                      components={makeAnimated()}
+                      isMulti
+                      options={[
+                        { value: "breakfast", label: "breakfast" },
+                        { value: "chinese", label: "chinese" },
+                        { value: "dessert", label: "dessert" },
+                        { value: "dinner", label: "dinner" },
+                        { value: "drinks", label: "drinks" },
+                        { value: "easy", label: "easy" },
+                        { value: "lunch", label: "lunch" },
+                        { value: "meat", label: "meat" },
+                        { value: "salad", label: "salad" },
+                        { value: "snacks", label: "snacks" },
+                        { value: "soup", label: "soup" },
+                        { value: "vegetarian", label: "vegetarian" }
+                      ]}
                     />
                   </div>
                   <div className="steps">
@@ -117,7 +136,17 @@ class CreateRecipeForm extends React.Component {
                       id="step"
                       type="textarea"
                       placeholder="steps"
-                      onChange={e => this.setState({ process: e.target.value })}
+                      // onChange={e => this.setState({ process: e.target.value })}
+                      onChange={e =>
+                        this.props.text.split("\n").map((item, key) => {
+                          return (
+                            <span key={key}>
+                              {item}
+                              <br />
+                            </span>
+                          )
+                        })
+                      }
                     />
                   </div>
                   <div>

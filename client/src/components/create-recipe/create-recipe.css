@@ -47,11 +47,22 @@ h1 {
   text-align: center;
 }
 
+.css-1rtrksz {
+  padding: 0px;
+  background: white;
+  height: 50px;
+}
+
+.category {
+  display: flex;
+  justify-content: center;
+}
+
 #category {
   padding: 10px;
   margin: 10px;
-  width: 500px;
-  text-align: center;
+  width: 525px;
+  font-family: Montserrat;
 }
 
 button {

@@ -130,6 +130,7 @@ class Navigation extends React.Component {
                   disabled={!localStorage.getItem("token")}
                   className="my-page"
                   href="/my-profile/"
+                  id="my-page"
                 >
                   My Page
                 </NavLink>
