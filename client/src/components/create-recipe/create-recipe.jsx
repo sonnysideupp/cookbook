@@ -13,6 +13,9 @@ const CREATE_RECIPE = gql`
       name
       description
       price
+      ingredients {
+        name
+      }
       process
       nutrition
       category
@@ -117,6 +120,16 @@ class CreateRecipeForm extends React.Component {
                       placeholder="nutrition"
                       onChange={e =>
                         this.setState({ nutrition: e.target.value })
+                      }
+                    />
+                  </div>
+                  <div className="ingredients">
+                    <input
+                      id="ingredients"
+                      type="text"
+                      placeholder="ingredients"
+                      onChange={e =>
+                        this.setState({ ingredients: e.target.value })
                       }
                     />
                   </div>
