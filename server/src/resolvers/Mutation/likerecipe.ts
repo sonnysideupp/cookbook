@@ -5,9 +5,8 @@ export default {
     return await ctx.db.mutation.updateRecipe(
       {
         data: {
-          comments: {
+          likes: {
             create: {
-              text: args.text,
               author: {
                 connect: {
                   id: id

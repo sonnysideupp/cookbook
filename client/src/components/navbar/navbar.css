@@ -9,7 +9,7 @@
 }
 .NavbarTitle h3 {
   color: white;
-  font-family: Gaegu;
+  font-family: Montserrat;
   /* font-size: 50px; */
 }
 .search__dropdown {
@@ -43,6 +43,14 @@
   background-color: firebrick;
   color: white;
   border: none;
-  width: 100px;
+  width: 100%;
   font-family: Montserrat;
+}
+.signupButton {
+  background-color: firebrick;
+  color: white;
+  border: none;
+  width: 100%;
+  font-family: Montserrat;
+
 }

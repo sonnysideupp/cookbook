@@ -1,3 +1,6 @@
+.logo {
+    float: left;
+}
 #name {
   padding: 10px;
   margin: 10px;
@@ -25,9 +28,8 @@
 }
 
 h1 {
-  width: 100%;
-  padding: 20px;
-  font-family: Gaegu;
+  float: left;
+  font-family: Montserrat;
   color: #f0e7d8;
   background: firebrick;
 }
@@ -37,9 +39,10 @@ input[type="textarea"] {
   color: #928380;
 }
 
-.SignupButton {
-    font-family: Gaegu;
+.SubmitAccountButton {
+    font-family: Montserrat;
     background-color: firebrick;
     color: white;
     font-size: 20px;
+    width: 20%;
 }

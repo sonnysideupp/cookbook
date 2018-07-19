@@ -12,5 +12,8 @@ export default {
   },
   allrecipes: async (parent, args, ctx: Context, info) => {
     return ctx.db.query.recipes({})
+  },
+  ingredients: async (parent, args, ctx: Context, info) => {
+    return ctx.db.query.ingredients({ ...args }, info)
   }
 }

@@ -2,6 +2,7 @@ import * as React from "react"
 import { Mutation } from "react-apollo"
 import gql from "graphql-tag"
 import "./signup.css"
+import Navbar from "../navbar/navbar"
 
 const SIGNUP = gql`
   mutation signup(
@@ -67,7 +68,10 @@ class SignUP extends React.Component {
                     }
                   }}
                 >
-                  <h1> Create your account </h1>
+                <div>
+          <Navbar history={this.props.history} className="navbar" />
+              </div>
+                  <h1> Create an account </h1>
                   <div>
                     <input
                       id="name"
@@ -105,7 +109,7 @@ class SignUP extends React.Component {
                     />
                   </div>
                 </form>
-                <button type="submit" className="SignupButton">
+                <button type="submit" className="SubmitAccountButton">
                   Submit
                 </button>
               </div>
