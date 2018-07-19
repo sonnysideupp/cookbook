@@ -34,6 +34,16 @@
 #header {
   width: 100%;
   border-bottom: 1px solid black;
-  font-family: Gaegu;
+  font-family: Montserrat;
   color: #ab9b96;
+}
+
+.card {
+  display: flex;
+  flex-wrap: wrap;
+  font-family: Montserrat;
+}
+
+#cardtext {
+  font-family: Montserrat;
 }
