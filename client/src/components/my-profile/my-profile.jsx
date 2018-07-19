@@ -29,6 +29,19 @@ const GET_MYRECIPES = gql`
   }
 `
 
+const GET_LIKEDRECIPES = gql`
+  query {
+    me {
+      name
+      recipes {
+        name
+        description
+        category
+      }
+    }
+  }
+`
+
 class MyProfile extends React.Component {
   render() {
     return (
@@ -95,9 +108,9 @@ class MyProfile extends React.Component {
                       />
                       <CardBody>
                         <CardTitle>{recipe.name}</CardTitle>
-                        <CardText>{recipe.description}</CardText>
-                        <CardText>{recipe.category}</CardText>
-                        <Button>Button</Button>
+                        <CardText id="cardtext">{recipe.description}</CardText>
+                        <CardText id="cardtext">{recipe.category}</CardText>
+                        <Button>More</Button>
                       </CardBody>
                     </Card>
                   </div>

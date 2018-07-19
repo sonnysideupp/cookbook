@@ -37,3 +37,13 @@
   font-family: Gaegu;
   color: #ab9b96;
 }
+
+.card {
+  display: flex;
+  flex-wrap: wrap;
+  font-family: Gaegu;
+}
+
+#cardtext {
+  font-family: Montserrat;
+}
