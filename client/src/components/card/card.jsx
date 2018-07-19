@@ -102,7 +102,7 @@ class FoodWindow extends React.Component {
           if (!data.recipes) return "no data yet.."
 
           return (
-            <div>
+            <div className="card_flex">
               {data.recipes.map(recipe => {
                 console.log(this.props.foodType)
                 return (
