@@ -39,11 +39,12 @@ import React from "react"
 
 import Select from "react-select"
 import makeAnimated from "react-select/lib/animated"
+import "./foodtype.css"
 // import { colourOptions } from "../data"
 
 function AnimatedMulti() {
   return (
-    <div>
+    <div className="selects">
       <Select
         closeMenuOnSelect={false}
         components={makeAnimated()}

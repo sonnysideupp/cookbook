@@ -30,7 +30,12 @@ class MyProfile extends React.Component {
         <div>
           <Navbar history={this.props.history} className="navbar" />
         </div>
-        <h1 id="header">MY PROFILE PAGE</h1>
+        <h1 id="header">MY PROFILE</h1>
+        <div>
+          <Link to="/my-profile/create-recipe">
+              <button type="button" className="newrecipebutton">Create new recipe!</button>
+            </Link>
+        </div>
         <div className="likedposts">
           <h2 className="likedtitle" id="likedtitle">
             LIKED POSTS
@@ -38,10 +43,10 @@ class MyProfile extends React.Component {
           <Query query={GET_RECIPES}>
             {({ loading, error, data }) => {
               if (loading) {
-                return "LOading..."
+                return "Loading..."
               }
               if (error) {
-                return "OOps, somehing blew up."
+                return "Oops, somehing blew up."
               }
               return console.log("hi")
               // <div>
@@ -95,11 +100,6 @@ class MyProfile extends React.Component {
                 <Button>Button</Button>
               </CardBody>
             </Card>
-          </div>
-          <div>
-            <Link to="/my-profile/create-recipe">
-              <button type="button">NEW POST</button>
-            </Link>
           </div>
         </div>
       </div>

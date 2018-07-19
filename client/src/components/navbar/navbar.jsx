@@ -106,7 +106,7 @@ class Navigation extends React.Component {
       <div>
         <Navbar className="Navbar" light expand="md">
           <NavbarBrand className="NavbarTitle" href="/">
-            iX Cooking App
+            <h3>iX Cooking App</h3>
           </NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
@@ -135,7 +135,7 @@ class Navigation extends React.Component {
                 </NavLink>
               </NavItem>
               <NavItem className="welcome">
-                <p className="welcomeText">Welcome : </p>
+                <p className="welcomeText">Welcome, </p>
                 <div>
                   {token
                     ? (uname = localStorage.getItem("username"))
@@ -189,10 +189,10 @@ class Navigation extends React.Component {
                                 this.setState({
                                   email: "",
                                   password: "",
-                                  error: "There is an error"
+                                  error: "Oops! Something went wrong."
                                 })
-                                document.getElementById("warning").value =
-                                  "yourv"
+                                // document.getElementById("warning").value =
+                                //   "yourv"
                               }
                             }}
                           >
@@ -208,7 +208,6 @@ class Navigation extends React.Component {
                                   onChange={e => {
                                     this.setState({ email: e.target.value })
                                   }}
-                                  placeholder="email"
                                 />
                               </DropdownItem>
 
@@ -219,7 +218,6 @@ class Navigation extends React.Component {
                                   onChange={e => {
                                     this.setState({ password: e.target.value })
                                   }}
-                                  placeholder="password"
                                 />
                               </DropdownItem>
                             </div>
@@ -232,7 +230,7 @@ class Navigation extends React.Component {
                                 type="submit"
                                 className="LoginButton"
                               >
-                                LOGIN!
+                                Log in
                               </button>
                             </DropdownItem>
                           </form>
@@ -242,9 +240,7 @@ class Navigation extends React.Component {
                   </Mutation>
 
                   <DropdownItem divider />
-                  <DropdownItem disabled>
-                    You don't have an account?
-                  </DropdownItem>
+                  <DropdownItem disabled>Don't have an account?</DropdownItem>
                   <DropdownItem disabled>
                     <Link to="/signup">
                       <button className="SignupButton">Sign up</button>

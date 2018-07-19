@@ -67,30 +67,47 @@ class SignUP extends React.Component {
                     }
                   }}
                 >
-                  <input
-                    placeholder="name"
-                    onChange={e => this.setState({ name: e.target.value })}
-                  />
-
-                  <input
-                    placeholder="username"
-                    onChange={e => this.setState({ username: e.target.value })}
-                  />
-
-                  <input
-                    placeholder="email"
-                    onChange={e => this.setState({ email: e.target.value })}
-                  />
-
-                  <input
-                    placeholder="password"
-                    onChange={e => this.setState({ password: e.target.value })}
-                  />
-
-                  <button type="submit" className="SignupButton">
-                    SIGNUP!
-                  </button>
+                  <h1> Create your account </h1>
+                  <div>
+                    <input
+                      id="name"
+                      placeholder="name"
+                      type="text"
+                      onChange={e => this.setState({ name: e.target.value })}
+                    />
+                  </div>
+                  <div>
+                    <input
+                      id="username"
+                      placeholder="username"
+                      type="text"
+                      onChange={e =>
+                        this.setState({ username: e.target.value })
+                      }
+                    />
+                  </div>
+                  <div>
+                    <input
+                      id="email"
+                      placeholder="email"
+                      type="text"
+                      onChange={e => this.setState({ email: e.target.value })}
+                    />
+                  </div>
+                  <div>
+                    <input
+                      id="password"
+                      placeholder="password"
+                      type="password"
+                      onChange={e =>
+                        this.setState({ password: e.target.value })
+                      }
+                    />
+                  </div>
                 </form>
+                <button type="submit" className="SignupButton">
+                  Submit
+                </button>
               </div>
             )
           }}
