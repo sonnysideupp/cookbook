@@ -1,10 +1,10 @@
 import * as React from "react"
-import Search from "react-search-box"
 import "./navbar.css"
 import gql from "graphql-tag"
 import { Mutation, Query } from "react-apollo"
 import { Link } from "react-router-dom"
 import { Button } from "reactstrap"
+import Select from "react-select"
 
 import {
   Collapse,
@@ -36,6 +36,7 @@ const LOGIN = gql`
 const GET_ALL_PROFILES = gql`
   query myRecipesQuery {
     allrecipes {
+      id
       name
       # creator {
       #   name
@@ -55,58 +56,14 @@ class Navigation extends React.Component {
   state = {
     email: "",
     password: "",
-    error: ""
-  }
-  constructor(props) {
-    super(props)
-
-    this.toggle = this.toggle.bind(this)
-    this.state = {
-      isOpen: false,
-
-      // search box
-      data: [],
-      loading: false
-    }
-  }
-  toggle() {
-    this.setState({
-      isOpen: !this.state.isOpen
-    })
-  }
-
-  // componentDidMount() {
-  //   this.setState({
-  //     loading: true
-  //   })
-
-  //   fetch("https://api.github.com/search/repositories?q=topic:ruby+topic:rails")
-  //     .then(res => res.json())
-  //     .then(data => {
-  //       console.log(data.items)
-  //       this.setState({
-  //         data: data.items,
-  //         loading: false
-  //       })
-  //     })
-  // }
-
-  handleChange(value) {
-    console.log(value)
+    error: "",
+    selectedOption: ""
   }
 
   onLogout = () => {
     localStorage.removeItem("token")
     localStorage.removeItem("username")
     this.props.history.push("/")
-  }
-
-  clearForm = () => {
-    document.getElementById("myForm").reset()
-    // this.setState({
-    //   email: "",
-    //   password: ""
-    // })
   }
 
   render() {
@@ -138,26 +95,28 @@ class Navigation extends React.Component {
                   return "Oops, something blew up."
                 }
 
+                if (!data.allrecipes) return "no data..."
+
+                const options = data.allrecipes.map(recipe => {
+                  return {
+                    value: recipe.id,
+                    label: recipe.name
+                  }
+                })
+
                 return (
                   <div>
-                    {data.allrecipes.map(recipe => {
-                      console.log(recipe)
-                      return (
-                        <Nav className="ml-auto" navbar>
-                          <NavItem className="search__nav">
-                            <div className="search__component">
-                              <Search
-                                data={recipe.name}
-                                onChange={this.handleChange.bind(this)}
-                                placeholder="Search your food"
-                                class="search-class"
-                                searchKey="full_name"
-                              />
-                            </div>
-                          </NavItem>
-                        </Nav>
-                      )
-                    })}
+                    <Nav className="ml-auto" navbar>
+                      <NavItem className="search__nav">
+                        <div className="search__component">
+                          <Select
+                            name="form-field-name"
+                            onChange={this.props.handleRecipeOnChange}
+                            options={options}
+                          />
+                        </div>
+                      </NavItem>
+                    </Nav>
                   </div>
                 )
               }}
@@ -218,20 +177,12 @@ class Navigation extends React.Component {
                               } catch (error) {
                                 localStorage.removeItem("token")
                                 localStorage.removeItem("username")
-                                // window.confirm(
-                                //   "Wrong Account! Try again please"
-                                // )
 
-                                // this.input = "
-                                // this.clearForm()
-                                // document.getElementById("myForm").reset()
                                 this.setState({
                                   email: "",
                                   password: "",
                                   error: "Oops! Something went wrong."
                                 })
-                                // document.getElementById("warning").value =
-                                //   "yourv"
                               }
                             }}
                           >
