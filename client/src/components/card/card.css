@@ -5,15 +5,11 @@
 .name_rec {
   font-family: Gaegu;
 }
-/* .image {
-  width: 100px;
-} */
 
 .card_flex {
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
-  /* justify-content: space-around; */
   justify-content: center;
 }
 .descrip_card {

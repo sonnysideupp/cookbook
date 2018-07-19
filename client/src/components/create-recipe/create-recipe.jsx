@@ -142,9 +142,7 @@ class CreateRecipeForm extends React.Component {
                       ]}
                       type="text"
                       placeholder="category"
-                      onChange={e =>
-                        this.setState({ category: e.target.value })
-                      }
+                      onChange={e => this.setState({ category: e.target })}
                     />
                   </div>
                   <div className="steps">

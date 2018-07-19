@@ -36,7 +36,7 @@ class MyProfile extends React.Component {
         <div>
           <Navbar history={this.props.history} className="navbar" />
         </div>
-        <h1>
+        <h1 id="mycookbook">
           <img src={logo} alt="My cookbook" />{" "}
         </h1>
         <div>
@@ -95,9 +95,9 @@ class MyProfile extends React.Component {
                       />
                       <CardBody>
                         <CardTitle>{recipe.name}</CardTitle>
-                        <CardText>{recipe.description}</CardText>
-                        <CardText>{recipe.category}</CardText>
-                        <Button>Button</Button>
+                        <CardText id="cardtext">{recipe.description}</CardText>
+                        <CardText id="cardtext">{recipe.category}</CardText>
+                        <Button>More</Button>
                       </CardBody>
                     </Card>
                   </div>
