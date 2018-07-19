@@ -2,6 +2,8 @@ import * as React from "react"
 import gql from "graphql-tag"
 import { Mutation, Query } from "react-apollo"
 import "./card.css"
+import IoFork from "react-icons/lib/io/fork.js"
+import FaDollar from "react-icons/lib/fa/dollar.js"
 
 import {
   Card,
@@ -116,10 +118,17 @@ class FoodWindow extends React.Component {
                         alt="Card image cap"
                       />
                       <CardBody>
-                        <CardTitle>{recipe.name}</CardTitle>
+                        <CardTitle className="name_rec">
+                          <IoFork />
+                          {recipe.name}
+                          <hr />
+                        </CardTitle>
                         {/* <CardSubtitle>{recipe.creator.name}</CardSubtitle> */}
                         <CardText>{recipe.description}</CardText>
-                        <CardText>{recipe.price}</CardText>
+                        <CardText>
+                          <FaDollar />
+                          {recipe.price}
+                        </CardText>
 
                         <Mutation mutation={LIKE}>
                           {(likerecipe, { data, error }) => {
