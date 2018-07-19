@@ -6,6 +6,7 @@ type Query {
   recipes(where: RecipeWhereInput): [Recipe]!
   allrecipes: [Recipe]!
   ingredients(where: IngredientWhereInput): [Ingredient!]!
+  likes(where: LikeWhereInput): [Like!]!
 }
 
 type Mutation {
@@ -40,4 +41,5 @@ type User {
   name: String!
   password: String!
   recipes: [Recipe]!
+  likes: [Like!]!
 }
