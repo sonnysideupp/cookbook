@@ -2,6 +2,8 @@ import * as React from "react"
 import gql from "graphql-tag"
 import { Mutation, Query } from "react-apollo"
 import "./card.css"
+import IoFork from "react-icons/lib/io/fork.js"
+import FaDollar from "react-icons/lib/fa/dollar.js"
 
 import {
   Card,
@@ -102,7 +104,7 @@ class FoodWindow extends React.Component {
           if (!data.recipes) return "no data yet.."
 
           return (
-            <div>
+            <div className="card_flex">
               {data.recipes.map(recipe => {
                 console.log(this.props.foodType)
                 return (
@@ -116,16 +118,30 @@ class FoodWindow extends React.Component {
                         alt="Card image cap"
                       />
                       <CardBody>
-                        <CardTitle>{recipe.name}</CardTitle>
+                        <CardTitle className="name_rec">
+                          <IoFork className="fork" />
+                          {recipe.name}
+                          <hr />
+                        </CardTitle>
                         {/* <CardSubtitle>{recipe.creator.name}</CardSubtitle> */}
-                        <CardText>{recipe.description}</CardText>
-                        <CardText>{recipe.price}</CardText>
+                        <CardText className="descrip_card">
+                          {recipe.description}
+                        </CardText>
+                        <CardText className="descrip_card">
+                          <FaDollar className="dollar" />
+                          {recipe.price}
+                        </CardText>
 
                         <Mutation mutation={LIKE}>
                           {(likerecipe, { data, error }) => {
                             return (
-                              <div>
+                              <div className="flex_btn">
+                                <Button className="move_link" color="primary">
+                                  {" "}
+                                  More{" "}
+                                </Button>
                                 <Button
+                                  className="like_btn"
                                   color="danger"
                                   onClick={async () => {
                                     await likerecipe({

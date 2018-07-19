@@ -5,7 +5,7 @@ import { recipe } from "./Mutation/createrecipe"
 import { AuthPayload } from "./AuthPayload"
 import commentrecipe from "./Mutation/commentrecipe"
 import likerecipe from "./Mutation/likerecipe"
-// import unlikerecipe from "./Mutation/unlikerecipe"
+import unlikerecipe from "./Mutation/unlikerecipe"
 
 export const resolvers = {
   Query,
@@ -13,8 +13,8 @@ export const resolvers = {
     ...auth,
     ...recipe,
     ...commentrecipe,
-    ...likerecipe
-    // ...unlikerecipe
+    ...likerecipe,
+    ...unlikerecipe
   },
   AuthPayload
 }

@@ -1,7 +1,43 @@
 .each_card {
   width: 250px;
+  margin: 50px;
 }
-
+.name_rec {
+  font-family: Gaegu;
+}
 /* .image {
   width: 100px;
 } */
+
+.card_flex {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  /* justify-content: space-around; */
+  justify-content: center;
+}
+.descrip_card {
+  font-family: Montserrat;
+}
+
+.dollar {
+  transform: rotate(10deg);
+}
+.fork {
+  transform: rotate(20deg);
+}
+.move_link {
+  width: 40%;
+  margin-right: 10%;
+}
+.like_btn {
+  width: 40%;
+}
+
+.flex_btn {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-around;
+  /* justify-content: center; */
+}

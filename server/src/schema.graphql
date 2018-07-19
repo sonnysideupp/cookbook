@@ -19,7 +19,7 @@ type Mutation {
   createrecipe(data: RecipeCreateInput!): Recipe!
   commentRecipe(text: String!, name: String!): Recipe!
   likerecipe(name: String!): Recipe!
-  unlikerecipe(name: String!): Recipe!
+  unlikerecipe(name: String!): Like!
 }
 
 type AuthPayload {

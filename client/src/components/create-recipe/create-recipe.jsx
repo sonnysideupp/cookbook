@@ -5,6 +5,7 @@ import Select from "react-select"
 import makeAnimated from "react-select/lib/animated"
 import "./create-recipe.css"
 import Navbar from "../navbar/navbar"
+import { Query } from "react-apollo"
 
 const CREATE_RECIPE = gql`
   mutation createrecipe($data: RecipeCreateInput!) {
@@ -14,6 +15,17 @@ const CREATE_RECIPE = gql`
       price
       process
       nutrition
+      category
+    }
+  }
+`
+
+const GET_LIKED = gql`
+  query user {
+    recipes {
+      name
+      description
+      price
       category
     }
   }
