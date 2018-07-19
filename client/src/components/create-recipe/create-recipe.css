@@ -1,7 +1,7 @@
 h1 {
   width: 100%;
   padding: 20px;
-  font-family: Gaegu;
+  font-family: Montserrat;
   color: #f0e7d8;
   background: firebrick;
 }
@@ -55,9 +55,11 @@ h1 {
 }
 
 button {
-  padding: 10px;
-  font-family: Gaegu;
-  color: #a63a50;
+  padding: 15px;
+  font-family: Montserrat;
+  background-color: firebrick;
+  color: white;
+  width: 100%;
 }
 
 ::placeholder {

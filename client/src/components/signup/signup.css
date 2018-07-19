@@ -29,7 +29,7 @@
 
 h1 {
   float: left;
-  font-family: Gaegu;
+  font-family: Montserrat;
   color: #f0e7d8;
   background: firebrick;
 }
@@ -39,9 +39,10 @@ input[type="textarea"] {
   color: #928380;
 }
 
-.SignupButton {
-    font-family: Gaegu;
+.SubmitAccountButton {
+    font-family: Montserrat;
     background-color: firebrick;
     color: white;
     font-size: 20px;
+    width: 20%;
 }

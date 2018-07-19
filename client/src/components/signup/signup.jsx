@@ -109,7 +109,7 @@ class SignUP extends React.Component {
                     />
                   </div>
                 </form>
-                <button type="submit" className="SignupButton">
+                <button type="submit" className="SubmitAccountButton">
                   Submit
                 </button>
               </div>

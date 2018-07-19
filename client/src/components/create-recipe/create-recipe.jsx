@@ -2,6 +2,7 @@ import * as React from "react"
 import gql from "graphql-tag"
 import { Mutation } from "react-apollo"
 import "./create-recipe.css"
+import Navbar from "../navbar/navbar"
 
 const CREATE_RECIPE = gql`
   mutation createrecipe($data: RecipeCreateInput!) {
@@ -65,11 +66,14 @@ class CreateRecipeForm extends React.Component {
                     } catch (error) {}
                   }}
                 >
-                  <h1>YOUR RECIPE</h1>
+                <div>
+                <Navbar history={this.props.history} className="navbar" />
+                </div>
+                  <h1>New Recipe</h1>
                   <div className="recipe-title">
                     <input
                       id="recipe-title"
-                      type="textarea"
+                      type="text"
                       placeholder="recipe title"
                       onChange={e => this.setState({ name: e.target.value })}
                     />
@@ -77,7 +81,7 @@ class CreateRecipeForm extends React.Component {
                   <div className="description">
                     <input
                       id="description"
-                      type="textarea"
+                      type="text"
                       placeholder="description"
                       onChange={e =>
                         this.setState({ description: e.target.value })
@@ -87,7 +91,7 @@ class CreateRecipeForm extends React.Component {
                   <div className="price">
                     <input
                       id="price"
-                      type="textarea"
+                      type="text"
                       placeholder="price"
                       onChange={e => this.setState({ price: e.target.value })}
                     />
@@ -95,7 +99,7 @@ class CreateRecipeForm extends React.Component {
                   <div className="nutrition">
                     <input
                       id="nutrition"
-                      type="textarea"
+                      type="text"
                       placeholder="nutrition"
                       onChange={e =>
                         this.setState({ nutrition: e.target.value })
@@ -105,7 +109,7 @@ class CreateRecipeForm extends React.Component {
                   <div className="category">
                     <input
                       id="category"
-                      type="textarea"
+                      type="text"
                       placeholder="category"
                       onChange={e =>
                         this.setState({ category: e.target.value })
@@ -121,7 +125,7 @@ class CreateRecipeForm extends React.Component {
                     />
                   </div>
                   <div>
-                    <button type="submit">Submit</button>
+                    <button type="submit" className="submitbutton">Submit</button>
                   </div>
                 </form>
               </div>
