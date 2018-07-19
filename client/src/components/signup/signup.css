@@ -1,0 +1,38 @@
+#name {
+  padding: 10px;
+  margin: 10px;
+  width: 500px;
+  text-align: center;
+}
+
+#username {
+  padding: 10px;
+  margin: 10px;
+  width: 500px;
+  text-align: center;
+}
+#email {
+  padding: 10px;
+  margin: 10px;
+  width: 500px;
+  text-align: center;
+}
+#password {
+  padding: 10px;
+  margin: 10px;
+  width: 500px;
+  text-align: center;
+}
+
+h1 {
+  width: 100%;
+  padding: 20px;
+  font-family: Gaegu;
+  color: #f0e7d8;
+  background: firebrick;
+}
+
+input[type="textarea"] {
+  font-family: Montserrat;
+  color: #928380;
+}

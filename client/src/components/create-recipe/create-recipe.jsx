@@ -65,42 +65,64 @@ class CreateRecipeForm extends React.Component {
                     } catch (error) {}
                   }}
                 >
-                  <div className="name">
+                  <h1>YOUR RECIPE</h1>
+                  <div className="recipe-title">
                     <input
+                      id="recipe-title"
                       type="textarea"
-                      placeholder="name"
+                      placeholder="recipe title"
                       onChange={e => this.setState({ name: e.target.value })}
                     />
                   </div>
-                  <input
-                    type="textarea"
-                    placeholder="description"
-                    onChange={e =>
-                      this.setState({ description: e.target.value })
-                    }
-                  />
-                  <input
-                    type="textarea"
-                    placeholder="price"
-                    onChange={e => this.setState({ price: e.target.value })}
-                  />
-                  <input
-                    type="textarea"
-                    placeholder="process"
-                    onChange={e => this.setState({ process: e.target.value })}
-                  />
-                  <input
-                    type="textarea"
-                    placeholder="nutrition"
-                    onChange={e => this.setState({ nutrition: e.target.value })}
-                  />
-                  <input
-                    type="textarea"
-                    placeholder="category"
-                    onChange={e => this.setState({ category: e.target.value })}
-                  />
-
-                  <button type="submit">Submit</button>
+                  <div className="description">
+                    <input
+                      id="description"
+                      type="textarea"
+                      placeholder="description"
+                      onChange={e =>
+                        this.setState({ description: e.target.value })
+                      }
+                    />
+                  </div>
+                  <div className="price">
+                    <input
+                      id="price"
+                      type="textarea"
+                      placeholder="price"
+                      onChange={e => this.setState({ price: e.target.value })}
+                    />
+                  </div>
+                  <div className="nutrition">
+                    <input
+                      id="nutrition"
+                      type="textarea"
+                      placeholder="nutrition"
+                      onChange={e =>
+                        this.setState({ nutrition: e.target.value })
+                      }
+                    />
+                  </div>
+                  <div className="category">
+                    <input
+                      id="category"
+                      type="textarea"
+                      placeholder="category"
+                      onChange={e =>
+                        this.setState({ category: e.target.value })
+                      }
+                    />
+                  </div>
+                  <div className="steps">
+                    <input
+                      id="step"
+                      type="textarea"
+                      placeholder="steps"
+                      onChange={e => this.setState({ process: e.target.value })}
+                    />
+                  </div>
+                  <div>
+                    <button type="submit">Submit</button>
+                  </div>
                 </form>
               </div>
             )

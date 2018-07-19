@@ -1,3 +1,71 @@
-.test {
-  color: red;
+h1 {
+  width: 100%;
+  padding: 20px;
+  font-family: Gaegu;
+  color: #f0e7d8;
+  background: firebrick;
+}
+#recipe-title {
+  padding: 10px;
+  margin: 10px;
+  width: 500px;
+  text-align: center;
+}
+
+#description {
+  margin: 10px;
+  padding: 10px;
+  width: 500px;
+  text-align: center;
+}
+
+#price {
+  padding: 10px;
+  margin: 10px;
+  width: 500px;
+  text-align: center;
+}
+
+.steps {
+  padding: 10px;
+}
+
+#step {
+  width: 500px;
+  height: 150px;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  resize: none;
+  text-align: center;
+  margin: 10px;
+}
+
+#nutrition {
+  padding: 10px;
+  margin: 10px;
+  width: 500px;
+  text-align: center;
+}
+
+#category {
+  padding: 10px;
+  margin: 10px;
+  width: 500px;
+  text-align: center;
+}
+
+button {
+  padding: 10px;
+  font-family: Gaegu;
+  color: #a63a50;
+}
+
+::placeholder {
+  font-family: Montserrat;
+  color: #ab9b96;
+}
+
+input[type="textarea"] {
+  font-family: Montserrat;
+  color: #928380;
 }
