@@ -34,7 +34,11 @@ const GET_ALL_PROFILES = gql`
 const LIKE = gql`
   mutation likeARecipe($name: String!) {
     likerecipe(name: $name) {
-      likes
+      likes {
+        author {
+          name
+        }
+      }
     }
   }
 `
