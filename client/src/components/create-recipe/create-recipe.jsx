@@ -65,13 +65,12 @@ class CreateRecipeForm extends React.Component {
                     } catch (error) {}
                   }}
                 >
-                  <div className="name">
-                    <input
-                      type="textarea"
-                      placeholder="name"
-                      onChange={e => this.setState({ name: e.target.value })}
-                    />
-                  </div>
+                  <input
+                    type="textarea"
+                    placeholder="name"
+                    onChange={e => this.setState({ name: e.target.value })}
+                  />
+
                   <input
                     type="textarea"
                     placeholder="description"

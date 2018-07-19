@@ -36,21 +36,8 @@ class CommentForm extends React.Component {
                     try {
                       const { data } = await commentRecipe({
                         variables: {
-                          data: {
-                            comments: {
-                              create: {
-                                text: this.state.text,
-                                author: {
-                                  connect: {
-                                    username: username
-                                  }
-                                }
-                              }
-                            }
-                          },
-                          where: {
-                            name: this.state.name
-                          }
+                          text: this.state.text,
+                          name: this.state.name
                         }
                       })
                     } catch (error) {}
