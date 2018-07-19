@@ -36,3 +36,10 @@ input[type="textarea"] {
   font-family: Montserrat;
   color: #928380;
 }
+
+.SignupButton {
+    font-family: Gaegu;
+    background-color: firebrick;
+    color: white;
+    font-size: 20px;
+}
