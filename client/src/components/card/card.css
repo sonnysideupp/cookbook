@@ -26,3 +26,18 @@
 .fork {
   transform: rotate(20deg);
 }
+.move_link {
+  width: 40%;
+  margin-right: 10%;
+}
+.like_btn {
+  width: 40%;
+}
+
+.flex_btn {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-around;
+  /* justify-content: center; */
+}

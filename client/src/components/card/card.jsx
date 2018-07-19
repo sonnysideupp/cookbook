@@ -135,8 +135,13 @@ class FoodWindow extends React.Component {
                         <Mutation mutation={LIKE}>
                           {(likerecipe, { data, error }) => {
                             return (
-                              <div>
+                              <div className="flex_btn">
+                                <Button className="move_link" color="primary">
+                                  {" "}
+                                  More{" "}
+                                </Button>
                                 <Button
+                                  className="like_btn"
                                   color="danger"
                                   onClick={async () => {
                                     await likerecipe({
