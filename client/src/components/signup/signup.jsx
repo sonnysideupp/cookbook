@@ -108,10 +108,11 @@ class SignUP extends React.Component {
                       }
                     />
                   </div>
+
+                  <button type="submit" className="SubmitAccountButton">
+                    Submit
+                  </button>
                 </form>
-                <button type="submit" className="SubmitAccountButton">
-                  Submit
-                </button>
               </div>
             )
           }}
