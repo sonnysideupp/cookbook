@@ -29,19 +29,6 @@ const GET_MYRECIPES = gql`
   }
 `
 
-const GET_LIKEDRECIPES = gql`
-  query {
-    me {
-      name
-      recipes {
-        name
-        description
-        category
-      }
-    }
-  }
-`
-
 class MyProfile extends React.Component {
   render() {
     return (
@@ -63,28 +50,7 @@ class MyProfile extends React.Component {
           <h2 className="likedtitle" id="likedtitle">
             LIKED POSTS
           </h2>
-          <Query query={GET_RECIPES}>
-            {({ loading, error, data }) => {
-              if (loading) {
-                return "Loading..."
-              }
-              if (error) {
-                return "Oops, something blew up."
-              }
-              return console.log("hi")
-              // <div>
-              //   {data.me.feed.map(tweet => {
-              //     return (
-              //       <Tweet
-              //         key={tweet.id}
-              //         text={tweet.text}
-              //         author={tweet.author}
-              //       />
-              //     )
-              //   })}
-              // </div>
-            }}
-          </Query>
+
           <div>
             <Card>
               <CardImg
@@ -129,9 +95,9 @@ class MyProfile extends React.Component {
                       />
                       <CardBody>
                         <CardTitle>{recipe.name}</CardTitle>
-                        <CardText id="cardtext">{recipe.description}</CardText>
-                        <CardText id="cardtext">{recipe.category}</CardText>
-                        <Button>More</Button>
+                        <CardText>{recipe.description}</CardText>
+                        <CardText>{recipe.category}</CardText>
+                        <Button>Button</Button>
                       </CardBody>
                     </Card>
                   </div>
