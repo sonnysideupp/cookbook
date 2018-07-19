@@ -18,13 +18,27 @@ import {
 const GET_ALL_RECIPES = gql`
   query myRecipesQuery($where: RecipeWhereInput) {
     recipes(where: $where) {
+      id
       name
       description
       price
       likes {
+        id
         author {
           name
         }
+      }
+    }
+  }
+`
+
+const GET_RECIPE_LIKES = gql`
+  query recipeLikes($where: LikeWhereInput) {
+    likes(where: $where) {
+      id
+      recipe {
+        id
+        name
       }
     }
   }
@@ -34,6 +48,7 @@ const LIKE = gql`
   mutation likeARecipe($name: String!) {
     likerecipe(name: $name) {
       likes {
+        id
         author {
           name
         }
@@ -49,15 +64,9 @@ class FoodWindow extends React.Component {
     like: false
   }
 
-  handleClick = () => {
-    this.setState({ liked: !this.state.liked })
-  }
-
   render() {
     const { foodType, selectedRecipe } = this.props
-    console.log({
-      selectedRecipe: selectedRecipe
-    })
+
     const hasFoodFilter = foodType && foodType.length > 0
 
     const hasRecipeFilter = selectedRecipe && selectedRecipe.length !== 0
@@ -93,6 +102,7 @@ class FoodWindow extends React.Component {
         }}
       >
         {({ loading, error, data, refetch }) => {
+          const refetchAllRecipes = refetch
           if (loading) {
             return "Loading..."
           }
@@ -103,10 +113,11 @@ class FoodWindow extends React.Component {
 
           if (!data.recipes) return "no data yet.."
 
+          const recipe_ids = data.recipes.map(r => r.id)
+
           return (
             <div className="card_flex">
               {data.recipes.map(recipe => {
-                console.log(this.props.foodType)
                 return (
                   <div className="each_card">
                     <Card>
@@ -131,33 +142,76 @@ class FoodWindow extends React.Component {
                           <FaDollar className="dollar" />
                           {recipe.price}
                         </CardText>
+                        <Query
+                          query={GET_RECIPE_LIKES}
+                          variables={{
+                            where: {
+                              recipe: { id_in: recipe_ids },
+                              author: {
+                                username: localStorage.getItem("username")
+                              }
+                            }
+                          }}
+                        >
+                          {({ data, loading, error, refetch }) => {
+                            if (loading) {
+                              return "loading likes..."
+                            }
 
-                        <Mutation mutation={LIKE}>
-                          {(likerecipe, { data, error }) => {
+                            if (error) return "error..."
+
+                            const recipe_likes = data.likes.filter(like => {
+                              return like.recipe.id === recipe.id
+                            })
+
                             return (
-                              <div className="flex_btn">
-                                <Button className="move_link" color="primary">
-                                  {" "}
-                                  More{" "}
-                                </Button>
-                                <Button
-                                  className="like_btn"
-                                  color="danger"
-                                  onClick={async () => {
-                                    await likerecipe({
-                                      variables: {
-                                        name: recipe.name
-                                      }
-                                    })
-                                    this.handleClick()
-                                  }}
-                                >
-                                  {this.state.liked ? "Unlike" : "Like!"}
-                                </Button>
-                              </div>
+                              <Mutation mutation={LIKE}>
+                                {(likerecipe, { error, loading }) => {
+                                  if (loading) {
+                                    return <div>loading...</div>
+                                  }
+
+                                  return (
+                                    <div className="flex_btn">
+                                      <Button
+                                        className="move_link"
+                                        color="primary"
+                                      >
+                                        {" "}
+                                        More{" "}
+                                      </Button>
+                                      <Button
+                                        className="like_btn"
+                                        color="danger"
+                                        onClick={async () => {
+                                          if (
+                                            recipe_likes &&
+                                            recipe_likes.length
+                                          ) {
+                                            // here
+                                            alert("unlike mutation")
+                                          } else {
+                                            await likerecipe({
+                                              variables: {
+                                                name: recipe.name
+                                              }
+                                            })
+                                          }
+                                          refetch()
+                                          refetchAllRecipes()
+                                        }}
+                                      >
+                                        {recipe_likes && recipe_likes.length > 0
+                                          ? "Unlike"
+                                          : "Like!"}
+                                      </Button>
+                                    </div>
+                                  )
+                                }}
+                              </Mutation>
                             )
                           }}
-                        </Mutation>
+                        </Query>
                         <CardText>
                           {recipe.likes && recipe.likes.length}
                         </CardText>

@@ -32,20 +32,10 @@
 #header {
   width: 100%;
   border-bottom: 1px solid black;
-  font-family: Gaegu;
+  font-family: Montserrat;
   color: #ab9b96;
 }
 
 .each_card {
   font-family: Gaegu;
-}
-
-#cardtext {
-  font-family: Montserrat;
-}
-
-#mycookbook {
-  border-top: 1px solid black;
-  width: 100%;
-  padding-top: 10px;
 }
