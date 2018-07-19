@@ -68,9 +68,9 @@ class SignUP extends React.Component {
                     }
                   }}
                 >
-                <div>
-          <Navbar history={this.props.history} className="navbar" />
-              </div>
+                  <div>
+                    <Navbar history={this.props.history} className="navbar" />
+                  </div>
                   <h1> Create an account </h1>
                   <div>
                     <input

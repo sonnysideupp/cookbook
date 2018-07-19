@@ -1,5 +1,5 @@
 .logo {
-    float: left;
+  float: left;
 }
 #name {
   padding: 10px;
@@ -40,9 +40,9 @@ input[type="textarea"] {
 }
 
 .SubmitAccountButton {
-    font-family: Montserrat;
-    background-color: firebrick;
-    color: white;
-    font-size: 20px;
-    width: 20%;
+  font-family: Montserrat;
+  background-color: firebrick;
+  color: white;
+  font-size: 20px;
+  width: 20%;
 }
