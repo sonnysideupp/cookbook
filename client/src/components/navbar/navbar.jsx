@@ -5,6 +5,7 @@ import gql from "graphql-tag"
 import { Mutation } from "react-apollo"
 import { Link } from "react-router-dom"
 import { Button } from "reactstrap"
+import logo from "./cookbooktitlelogo2.png"
 
 import {
   Collapse,
@@ -106,7 +107,8 @@ class Navigation extends React.Component {
       <div>
         <Navbar className="Navbar" light expand="md">
           <NavbarBrand className="NavbarTitle" href="/">
-            <h3>iX Cooking App</h3>
+          <div className="titlelogo">
+          <img src={logo} alt="logo"/></div>
           </NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
