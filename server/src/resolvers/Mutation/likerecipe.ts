@@ -6,8 +6,7 @@ export default {
       {
         data: {
           likes: {
-            connect: {
-              recipe: args.name,}
+            create: {
               author: {
                 connect: {
                   id: id

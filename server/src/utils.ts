@@ -24,3 +24,13 @@ export class AuthError extends Error {
     super("Not authorized")
   }
 }
+
+export function getLikeId(name, ctx: Context, info) {
+  const id = getUserId(ctx)
+  return ctx.db.query.likes(
+    { where: { recipe: { name: name }, author: { id: id } } },
+    info
+  )
+
+  throw new AuthError()
+}
