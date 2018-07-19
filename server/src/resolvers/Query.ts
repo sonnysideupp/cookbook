@@ -15,5 +15,12 @@ export default {
   },
   ingredients: async (parent, args, ctx: Context, info) => {
     return ctx.db.query.ingredients({ ...args }, info)
+  },
+  likedrecipes: (parent, args, ctx: Context, info) => {
+    const id = getUserId(ctx)
+    return ctx.db.query.recipes(
+      { where: { likes_every: { author: { id: id } } } },
+      info
+    )
   }
 }

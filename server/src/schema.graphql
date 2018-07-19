@@ -4,6 +4,7 @@ scalar Upload
 type Query {
   me: User!
   recipes(where: RecipeWhereInput): [Recipe]!
+  likedrecipes: [Recipe]!
   allrecipes: [Recipe]!
   ingredients(where: IngredientWhereInput): [Ingredient!]!
 }
