@@ -9,23 +9,33 @@ import {
 import screen from "./src/screen.png"
 import screen2 from "./src/screen2.jpg"
 import screen3 from "./src/screen3.jpg"
+import screen4 from "./src/screen4.jpg"
+import scr5 from "./src/scr5.png"
+import scr6 from "./src/scr6.jpg"
+import scr7 from "./src/scr7.jpg"
 import "./carousel.css"
 
 const items = [
   {
-    src: screen,
-    altText: "Slide 1",
-    caption: "Slide 1"
+    src: screen
   },
   {
-    src: screen2,
-    altText: "Slide 2",
-    caption: "Slide 2"
+    src: screen2
   },
   {
-    src: screen3,
-    altText: "Slide 3",
-    caption: "Slide 3"
+    src: screen3
+  },
+  {
+    src: screen4
+  },
+  {
+    src: scr5
+  },
+  {
+    src: scr6
+  },
+  {
+    src: scr7
   }
 ]
 
