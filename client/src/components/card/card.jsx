@@ -174,6 +174,7 @@ class FoodWindow extends React.Component {
 
                             return (
                               <Mutation mutation={LIKE}>
+                                {/* <Mutation mutation={UNLIKE}> */}
                                 {(
                                   likerecipe,
                                   // unlikerecipe,
@@ -213,6 +214,8 @@ class FoodWindow extends React.Component {
                                             })
                                             refetch()
                                             refetchAllRecipes()
+                                            // recipe_likes.length--
+                                            recipe_likes != recipe_likes
 
                                             alert("unlike mutation")
                                           } else {
@@ -234,6 +237,7 @@ class FoodWindow extends React.Component {
                                   )
                                 }}
                               </Mutation>
+                              // </Mutation>
                             )
                           }}
                         </Query>
