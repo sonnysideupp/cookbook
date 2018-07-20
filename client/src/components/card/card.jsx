@@ -207,15 +207,15 @@ class FoodWindow extends React.Component {
                                             recipe_likes.length
                                           ) {
                                             // here for unlike mutation
-                                            unlikerecipe({
-                                              variables: {
-                                                name: recipe.name
-                                              }
-                                            })
-                                            refetch()
-                                            refetchAllRecipes()
+                                            // unlikerecipe({
+                                            //   variables: {
+                                            //     name: recipe.name
+                                            //   }
+                                            // })
+                                            // refetch()
+                                            // refetchAllRecipes()
                                             // recipe_likes.length--
-                                            recipe_likes != recipe_likes
+                                            // recipe_likes != recipe_likes
 
                                             alert("unlike mutation")
                                           } else {
