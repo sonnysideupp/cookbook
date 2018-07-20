@@ -4,22 +4,33 @@
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
-  border-right: 1px solid black;
+  height: 100%;
+  width: 50%;
 }
 .likedtitle {
   font-family: Montserrat;
-  color: #a63a50;
+  color: black;
+  text-align: center;
+  width: 50%;
+  margin-right: auto;
 }
 .myrecipes {
   font-family: Montserrat;
   display: flex;
+  margin-left: auto;
   flex-wrap: wrap;
   flex-direction: row;
+  border-left: 1px solid black;
+  width: 50%;
 }
 
 .myrecipestitle {
   font-family: Montserrat;
-  color: #a63a50;
+  color: black;
+  text-align: center;
+  border-bottom: 1px solid black;
+  width: 50%;
+  margin-left: auto;
 }
 .newrecipebutton {
   background-color: firebrick;
@@ -27,6 +38,7 @@
   border: none;
   width: 200px;
   font-family: Montserrat;
+  padding-top: 20px;
 }
 
 #header {
@@ -38,4 +50,11 @@
 
 .each_card {
   font-family: Gaegu;
+}
+
+#mycookbook {
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+
+  padding-top: 10px;
 }

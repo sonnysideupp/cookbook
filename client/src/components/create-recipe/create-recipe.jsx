@@ -13,6 +13,9 @@ const CREATE_RECIPE = gql`
       name
       description
       price
+      ingredients {
+        name
+      }
       process
       nutrition
       category
@@ -123,6 +126,16 @@ class CreateRecipeForm extends React.Component {
                       }
                     />
                   </div>
+                  <div className="ingredients">
+                    <input
+                      id="ingredients"
+                      type="text"
+                      placeholder="ingredients"
+                      onChange={e =>
+                        this.setState({ ingredients: e.target.value })
+                      }
+                    />
+                  </div>
                   <div className="category">
                     <input
                       id="category"
@@ -161,17 +174,17 @@ class CreateRecipeForm extends React.Component {
                       id="step"
                       type="text"
                       placeholder="steps"
-                      // onChange={e => this.setState({ process: e.target.value })}
-                      onChange={e =>
-                        this.props.text.split("\n").map((item, key) => {
-                          return (
-                            <span key={key}>
-                              {item}
-                              <br />
-                            </span>
-                          )
-                        })
-                      }
+                      onChange={e => this.setState({ process: e.target.value })}
+                      // onChange={e =>
+                      //   this.props.text.split("\n").map((item, key) => {
+                      //     return (
+                      //       <span key={key}>
+                      //         {item}
+                      //         <br />
+                      //       </span>
+                      //     )
+                      //   })
+                      // }
                     />
                   </div>
                   <div className="picture">

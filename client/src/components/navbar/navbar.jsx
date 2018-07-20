@@ -3,7 +3,6 @@ import "./navbar.css"
 import gql from "graphql-tag"
 import { Mutation, Query } from "react-apollo"
 import { Link } from "react-router-dom"
-import { Button } from "reactstrap"
 import logo from "./cookbooktitlelogo2.png"
 import Select from "react-select"
 
@@ -15,7 +14,9 @@ import {
   Nav,
   NavItem,
   NavLink,
+  Button,
   UncontrolledDropdown,
+  Dropdown,
   DropdownToggle,
   DropdownMenu,
   DropdownItem
@@ -58,7 +59,8 @@ class Navigation extends React.Component {
     email: "",
     password: "",
     error: "",
-    selectedOption: ""
+    selectedOption: "",
+    isDropDownOpen: false
   }
 
   onLogout = () => {
@@ -67,6 +69,11 @@ class Navigation extends React.Component {
     this.props.history.push("/")
   }
 
+  toggleDropdown = () => {
+    this.setState({
+      isDropDownOpen: !this.state.isDropDownOpen
+    })
+  }
   render() {
     const token = localStorage.getItem("token")
     var uname = ""
@@ -151,96 +158,114 @@ class Navigation extends React.Component {
                       Log out
                     </Button>
                   ) : (
-                    <DropdownToggle caret>Login</DropdownToggle>
+                    <DropdownToggle onClick={this.toggleDropdown} caret>
+                      Login
+                    </DropdownToggle>
                   )}
                 </div>
 
-                <DropdownMenu class="dropdown-toggle">
-                  <Mutation mutation={LOGIN}>
-                    {login => {
-                      return (
-                        <div className="MainPart">
-                          <form
-                            id="myForm"
-                            onSubmit={async e => {
-                              e.preventDefault()
-                              try {
-                                const { data } = await login({
-                                  variables: {
-                                    email: this.state.email,
-                                    password: this.state.password
-                                  }
-                                })
-                                localStorage.setItem("token", data.login.token)
-                                localStorage.setItem(
-                                  "username",
-                                  data.login.user.username
-                                )
-                                DropdownToggle.propTypes.disabled = true
-                                this.props.history.push("/")
-                              } catch (error) {
-                                localStorage.removeItem("token")
-                                localStorage.removeItem("username")
+                <Dropdown isOpen={this.state.isDropDownOpen} inNavbar>
+                  <DropdownMenu class="dropdown-toggle">
+                    <Mutation mutation={LOGIN}>
+                      {login => {
+                        return (
+                          <div className="MainPart">
+                            <form
+                              id="myForm"
+                              onSubmit={async e => {
+                                e.preventDefault()
+                                try {
+                                  const { data } = await login({
+                                    variables: {
+                                      email: this.state.email,
+                                      password: this.state.password
+                                    }
+                                  })
+                                  localStorage.setItem(
+                                    "token",
+                                    data.login.token
+                                  )
+                                  localStorage.setItem(
+                                    "username",
+                                    data.login.user.username
+                                  )
+                                  // isOpen: PropTypes.bool,
+                                  // DropdownMenu.propTypes.bool = false
+                                  this.toggleDropdown()
 
-                                this.setState({
-                                  email: "",
-                                  password: "",
-                                  error: "Oops! Something went wrong."
-                                })
-                              }
-                            }}
-                          >
-                            <div className="inputBox">
-                              <DropdownItem disabled id="warning">
-                                {this.state.error}
-                              </DropdownItem>
-                              <DropdownItem disabled>email:</DropdownItem>
+                                  this.setState({
+                                    email: "",
+                                    password: "",
+                                    error: ""
+                                  })
+
+                                  this.props.history.push("/")
+                                } catch (error) {
+                                  localStorage.removeItem("token")
+                                  localStorage.removeItem("username")
+
+                                  this.setState({
+                                    email: "",
+                                    password: "",
+                                    error: "Oops! Something went wrong."
+                                  })
+                                }
+                              }}
+                            >
+                              <div className="inputBox">
+                                <DropdownItem disabled id="warning">
+                                  {this.state.error}
+                                </DropdownItem>
+                                <DropdownItem disabled>email:</DropdownItem>
+                                <DropdownItem disabled>
+                                  <input
+                                    type="text"
+                                    className="abc"
+                                    onChange={e => {
+                                      this.setState({ email: e.target.value })
+                                    }}
+                                  />
+                                </DropdownItem>
+
+                                <DropdownItem disabled>password:</DropdownItem>
+                                <DropdownItem disabled>
+                                  <input
+                                    type="text"
+                                    onChange={e => {
+                                      this.setState({
+                                        password: e.target.value
+                                      })
+                                    }}
+                                  />
+                                </DropdownItem>
+                              </div>
+                              <DropdownItem divider />
                               <DropdownItem disabled>
-                                <input
-                                  type="text"
-                                  className="abc"
-                                  onChange={e => {
-                                    this.setState({ email: e.target.value })
-                                  }}
-                                />
+                                <button
+                                  // disabled={
+                                  //   !this.state.email || !this.state.password
+                                  // }
+                                  type="submit"
+                                  className="LoginButton"
+                                >
+                                  Log in
+                                </button>
                               </DropdownItem>
+                            </form>
+                          </div>
+                        )
+                      }}
+                    </Mutation>
 
-                              <DropdownItem disabled>password:</DropdownItem>
-                              <DropdownItem disabled>
-                                <input
-                                  type="text"
-                                  onChange={e => {
-                                    this.setState({ password: e.target.value })
-                                  }}
-                                />
-                              </DropdownItem>
-                            </div>
-                            <DropdownItem divider />
-                            <DropdownItem disabled>
-                              <button
-                                // disabled={
-                                //   !this.state.email || !this.state.password
-                                // }
-                                type="submit"
-                                className="LoginButton"
-                              >
-                                Log in
-                              </button>
-                            </DropdownItem>
-                          </form>
-                        </div>
-                      )
-                    }}
-                  </Mutation>
-
-                  <DropdownItem divider />
-                  <DropdownItem disabled>Don't have an account?</DropdownItem>
-                  <DropdownItem disabled>
-                    <Link to="/signup">
-                      <button className="SignupButton">Sign up</button>
-                    </Link>
-                  </DropdownItem>
-                </DropdownMenu>
+                    <DropdownItem divider />
+                    <DropdownItem disabled>Don't have an account?</DropdownItem>
+                    <DropdownItem disabled>
+                      <Link to="/signup">
+                        <button className="SignupButton">Sign up</button>
+                      </Link>
+                    </DropdownItem>
+                  </DropdownMenu>
+                </Dropdown>
               </UncontrolledDropdown>
             </Nav>
           </Collapse>
