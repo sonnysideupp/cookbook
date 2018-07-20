@@ -96,7 +96,16 @@ class MyProfile extends React.Component {
                         <CardText id="cardtext">
                           {/* {like.recipe.category.name} */}
                         </CardText>
-                        <Button>More</Button>
+                        <Button
+                          className="move_link"
+                          color="primary"
+                          onClick={() =>
+                            this.props.history.push(`/${like.recipe.name}`)
+                          }
+                        >
+                          {" "}
+                          More{" "}
+                        </Button>
                       </CardBody>
                     </Card>
                   </div>
@@ -133,7 +142,16 @@ class MyProfile extends React.Component {
                         <CardText id="cardtext">
                           {recipe.category.name}
                         </CardText>
-                        <Button>More</Button>
+                        <Button
+                          className="move_link"
+                          color="primary"
+                          onClick={() =>
+                            this.props.history.push(`/${recipe.name}`)
+                          }
+                        >
+                          {" "}
+                          More{" "}
+                        </Button>
                       </CardBody>
                     </Card>
                   </div>

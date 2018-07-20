@@ -68,38 +68,39 @@ class Post extends React.Component {
                 <div>
                   {data.recipes.map(recipe => {
                     return (
-                      <Container>
+                      <div>
                         <div className="post_img">
                           <img
                             className="post_imgs"
-                            src={{ uri: recipe.pictureUrl }}
+                            src={{ url: recipe.pictureUrl }}
                             alt={"img"}
                           />
                         </div>
-                        <div className="descrip">
-                          <h3 className="title">{recipe.name}</h3>
-                          <p className="recipedescription">
-                            {recipe.description}
-                          </p>
-                          <p className="recipeprice">${recipe.price}</p>
-                          <p className="process">{recipe.process}</p>
-                          <p className="calories">{recipe.nutrition}</p>
-                          <p className="ingredients">
-                            {recipe.ingredients.name}
-                          </p>
-                          <p className="comments">{recipe.comments[0].text}</p>
-                          <p>
-                            <i
-                              className="fa fa-heart"
-                              onClick={this.getComponent.bind(this)}
-                            />{" "}
-                            like <FaClockO /> mins
-                          </p>
-                          <CommentForm
-                            recipename={this.props.match.params.recipename}
-                          />
-                        </div>
-                      </Container>
+                        <h1 className="title">{recipe.name}</h1>
+                        <p className="recipedescription">
+                          {recipe.description}
+                        </p>
+                        <p className="recipeprice">${recipe.price}</p>
+                        <p className="calories">{recipe.nutrition}</p>
+
+                        <h2 id="directions">Directions</h2>
+                        <p className="process">{recipe.process}</p>
+                        <p className="ingredients">{recipe.ingredients.name}</p>
+                        <p>
+                          <i
+                            className="fa fa-heart"
+                            onClick={this.getComponent.bind(this)}
+                          />{" "}
+                          like <FaClockO /> mins
+                        </p>
+                        <p>
+                          <h3 id="review">Reviews</h3>
+                        </p>
+                        <CommentForm
+                          recipename={this.props.match.params.recipename}
+                        />
+                        <p className="comments">{recipe.comments[0].text}</p>
+                      </div>
                     )
                   })}
                 </div>
