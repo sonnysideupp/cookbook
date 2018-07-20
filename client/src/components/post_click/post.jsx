@@ -8,6 +8,14 @@ import FaClockO from "react-icons/lib/fa/clock-o.js"
 import gql from "graphql-tag"
 import { Query } from "react-apollo"
 import CommentForm from "../commentrecipe/commentrecipe"
+const image = [
+  require("./1.png"),
+  require("./2.png"),
+  require("./3.png"),
+  require("./4.png"),
+  require("./5.png"),
+  require("./6.png")
+]
 
 const GET_ALL_RECIPES = gql`
   query myRecipesQuery($where: RecipeWhereInput) {
@@ -72,7 +80,7 @@ class Post extends React.Component {
                         <div className="post_img">
                           <img
                             className="post_imgs"
-                            src={{ uri: recipe.pictureUrl }}
+                            src={image[recipe.price - 1]}
                             alt={"img"}
                           />
                         </div>
@@ -87,7 +95,62 @@ class Post extends React.Component {
                           <p className="ingredients">
                             {recipe.ingredients.name}
                           </p>
-                          <p className="comments">{recipe.comments[0].text}</p>
+                          {recipe.comments.length >= 1 ? (
+                            <p className="comments">
+                              {" "}
+                              {recipe.comments[0].text}{" "}
+                            </p>
+                          ) : null}
+
+                          {recipe.comments.length >= 2 ? (
+                            <p className="comments">
+                              {" "}
+                              {recipe.comments[1].text}{" "}
+                            </p>
+                          ) : null}
+
+                          {recipe.comments.length >= 3 ? (
+                            <p className="comments">
+                              {" "}
+                              {recipe.comments[2].text}{" "}
+                            </p>
+                          ) : null}
+
+                          {recipe.comments.length >= 4 ? (
+                            <p className="comments">
+                              {" "}
+                              {recipe.comments[3].text}{" "}
+                            </p>
+                          ) : null}
+
+                          {recipe.comments.length >= 5 ? (
+                            <p className="comments">
+                              {" "}
+                              {recipe.comments[4].text}{" "}
+                            </p>
+                          ) : null}
+
+                          {recipe.comments.length >= 6 ? (
+                            <p className="comments">
+                              {" "}
+                              {recipe.comments[5].text}{" "}
+                            </p>
+                          ) : null}
+
+                          {recipe.comments.length >= 7 ? (
+                            <p className="comments">
+                              {" "}
+                              {recipe.comments[6].text}{" "}
+                            </p>
+                          ) : null}
+
+                          {recipe.comments.length >= 8 ? (
+                            <p className="comments">
+                              {" "}
+                              {recipe.comments[7].text}{" "}
+                            </p>
+                          ) : null}
+
                           <p>
                             <i
                               className="fa fa-heart"
@@ -96,6 +159,7 @@ class Post extends React.Component {
                             like <FaClockO /> mins
                           </p>
                           <CommentForm
+                            history={this.props.history}
                             recipename={this.props.match.params.recipename}
                           />
                         </div>

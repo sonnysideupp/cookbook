@@ -15,6 +15,15 @@ import {
   Button
 } from "reactstrap"
 
+const image = [
+  require("./1 copy.png"),
+  require("./2 copy.png"),
+  require("./3 copy.png"),
+  require("./4 copy.png"),
+  require("./5 copy.png"),
+  require("./6 copy.png")
+]
+
 const GET_ALL_RECIPES = gql`
   query myRecipesQuery($where: RecipeWhereInput) {
     recipes(where: $where) {
@@ -134,7 +143,7 @@ class FoodWindow extends React.Component {
                         className="image"
                         top
                         width="100%"
-                        src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180"
+                        src={image[recipe.price - 1]}
                         alt="Card image cap"
                       />
                       <CardBody>

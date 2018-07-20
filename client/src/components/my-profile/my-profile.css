@@ -1,4 +1,6 @@
 .likedposts {
+  border-top: 1px solid black;
+
   font-family: Montserrat;
   float: left;
   display: flex;
@@ -10,11 +12,11 @@
 .likedtitle {
   font-family: Montserrat;
   color: black;
-  text-align: center;
+  float: left;
   width: 50%;
-  margin-right: auto;
 }
 .myrecipes {
+  border-top: 1px solid black;
   font-family: Montserrat;
   display: flex;
   margin-left: auto;
@@ -27,10 +29,8 @@
 .myrecipestitle {
   font-family: Montserrat;
   color: black;
-  text-align: center;
-  border-bottom: 1px solid black;
+  float: right;
   width: 50%;
-  margin-left: auto;
 }
 .newrecipebutton {
   background-color: firebrick;

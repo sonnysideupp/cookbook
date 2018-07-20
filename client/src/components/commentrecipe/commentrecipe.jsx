@@ -20,7 +20,6 @@ class CommentForm extends React.Component {
   }
   render() {
     let input
-    const username = localStorage.getItem("username")
 
     return (
       <div>
@@ -39,6 +38,7 @@ class CommentForm extends React.Component {
                           name: this.props.recipename
                         }
                       })
+                      this.props.history.push(`/${this.props.recipename}`)
                     } catch (error) {}
                   }}
                 >

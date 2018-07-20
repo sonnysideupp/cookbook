@@ -126,7 +126,7 @@ class CreateRecipeForm extends React.Component {
                       }
                     />
                   </div>
-                  <div className="ingredients">
+                  {/* <div className="ingredients">
                     <input
                       id="ingredients"
                       type="text"
@@ -135,7 +135,7 @@ class CreateRecipeForm extends React.Component {
                         this.setState({ ingredients: e.target.value })
                       }
                     />
-                  </div>
+                  </div> */}
                   <div className="category">
                     <input
                       id="category"
@@ -187,7 +187,7 @@ class CreateRecipeForm extends React.Component {
                       // }
                     />
                   </div>
-                  <div className="picture">
+                  {/* <div className="picture">
                     <input
                       type="file"
                       required
@@ -201,7 +201,7 @@ class CreateRecipeForm extends React.Component {
                         createrecipe({ variables: { picture: file } })
                       }
                     />
-                  </div>
+                  </div> */}
                   <div>
                     <button type="submit" className="submitbutton">
                       Submit
