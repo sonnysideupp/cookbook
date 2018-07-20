@@ -8,20 +8,17 @@ export interface Query {
     recipes: <T = Recipe[]>(args: { where?: RecipeWhereInput, orderBy?: RecipeOrderByInput, skip?: Int, after?: String, before?: String, first?: Int, last?: Int }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     likes: <T = Like[]>(args: { where?: LikeWhereInput, orderBy?: LikeOrderByInput, skip?: Int, after?: String, before?: String, first?: Int, last?: Int }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     comments: <T = Comment[]>(args: { where?: CommentWhereInput, orderBy?: CommentOrderByInput, skip?: Int, after?: String, before?: String, first?: Int, last?: Int }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
-    categories: <T = Category[]>(args: { where?: CategoryWhereInput, orderBy?: CategoryOrderByInput, skip?: Int, after?: String, before?: String, first?: Int, last?: Int }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     equipments: <T = Equipment[]>(args: { where?: EquipmentWhereInput, orderBy?: EquipmentOrderByInput, skip?: Int, after?: String, before?: String, first?: Int, last?: Int }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     ingredients: <T = Ingredient[]>(args: { where?: IngredientWhereInput, orderBy?: IngredientOrderByInput, skip?: Int, after?: String, before?: String, first?: Int, last?: Int }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     user: <T = User | null>(args: { where: UserWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     recipe: <T = Recipe | null>(args: { where: RecipeWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     like: <T = Like | null>(args: { where: LikeWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
-    category: <T = Category | null>(args: { where: CategoryWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     equipment: <T = Equipment | null>(args: { where: EquipmentWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     ingredient: <T = Ingredient | null>(args: { where: IngredientWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     usersConnection: <T = UserConnection>(args: { where?: UserWhereInput, orderBy?: UserOrderByInput, skip?: Int, after?: String, before?: String, first?: Int, last?: Int }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     recipesConnection: <T = RecipeConnection>(args: { where?: RecipeWhereInput, orderBy?: RecipeOrderByInput, skip?: Int, after?: String, before?: String, first?: Int, last?: Int }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     likesConnection: <T = LikeConnection>(args: { where?: LikeWhereInput, orderBy?: LikeOrderByInput, skip?: Int, after?: String, before?: String, first?: Int, last?: Int }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     commentsConnection: <T = CommentConnection>(args: { where?: CommentWhereInput, orderBy?: CommentOrderByInput, skip?: Int, after?: String, before?: String, first?: Int, last?: Int }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
-    categoriesConnection: <T = CategoryConnection>(args: { where?: CategoryWhereInput, orderBy?: CategoryOrderByInput, skip?: Int, after?: String, before?: String, first?: Int, last?: Int }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     equipmentsConnection: <T = EquipmentConnection>(args: { where?: EquipmentWhereInput, orderBy?: EquipmentOrderByInput, skip?: Int, after?: String, before?: String, first?: Int, last?: Int }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     ingredientsConnection: <T = IngredientConnection>(args: { where?: IngredientWhereInput, orderBy?: IngredientOrderByInput, skip?: Int, after?: String, before?: String, first?: Int, last?: Int }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     node: <T = Node | null>(args: { id: ID_Output }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> 
@@ -32,39 +29,33 @@ export interface Mutation {
     createRecipe: <T = Recipe>(args: { data: RecipeCreateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     createLike: <T = Like>(args: { data: LikeCreateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     createComment: <T = Comment>(args: { data: CommentCreateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
-    createCategory: <T = Category>(args: { data: CategoryCreateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     createEquipment: <T = Equipment>(args: { data: EquipmentCreateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     createIngredient: <T = Ingredient>(args: { data: IngredientCreateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     updateUser: <T = User | null>(args: { data: UserUpdateInput, where: UserWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     updateRecipe: <T = Recipe | null>(args: { data: RecipeUpdateInput, where: RecipeWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     updateLike: <T = Like | null>(args: { data: LikeUpdateInput, where: LikeWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
-    updateCategory: <T = Category | null>(args: { data: CategoryUpdateInput, where: CategoryWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     updateEquipment: <T = Equipment | null>(args: { data: EquipmentUpdateInput, where: EquipmentWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     updateIngredient: <T = Ingredient | null>(args: { data: IngredientUpdateInput, where: IngredientWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     deleteUser: <T = User | null>(args: { where: UserWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     deleteRecipe: <T = Recipe | null>(args: { where: RecipeWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     deleteLike: <T = Like | null>(args: { where: LikeWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
-    deleteCategory: <T = Category | null>(args: { where: CategoryWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     deleteEquipment: <T = Equipment | null>(args: { where: EquipmentWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     deleteIngredient: <T = Ingredient | null>(args: { where: IngredientWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     upsertUser: <T = User>(args: { where: UserWhereUniqueInput, create: UserCreateInput, update: UserUpdateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     upsertRecipe: <T = Recipe>(args: { where: RecipeWhereUniqueInput, create: RecipeCreateInput, update: RecipeUpdateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     upsertLike: <T = Like>(args: { where: LikeWhereUniqueInput, create: LikeCreateInput, update: LikeUpdateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
-    upsertCategory: <T = Category>(args: { where: CategoryWhereUniqueInput, create: CategoryCreateInput, update: CategoryUpdateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     upsertEquipment: <T = Equipment>(args: { where: EquipmentWhereUniqueInput, create: EquipmentCreateInput, update: EquipmentUpdateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     upsertIngredient: <T = Ingredient>(args: { where: IngredientWhereUniqueInput, create: IngredientCreateInput, update: IngredientUpdateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     updateManyUsers: <T = BatchPayload>(args: { data: UserUpdateInput, where?: UserWhereInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     updateManyRecipes: <T = BatchPayload>(args: { data: RecipeUpdateInput, where?: RecipeWhereInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     updateManyLikes: <T = BatchPayload>(args: { data: LikeUpdateInput, where?: LikeWhereInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     updateManyComments: <T = BatchPayload>(args: { data: CommentUpdateInput, where?: CommentWhereInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
-    updateManyCategories: <T = BatchPayload>(args: { data: CategoryUpdateInput, where?: CategoryWhereInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     updateManyEquipments: <T = BatchPayload>(args: { data: EquipmentUpdateInput, where?: EquipmentWhereInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     updateManyIngredients: <T = BatchPayload>(args: { data: IngredientUpdateInput, where?: IngredientWhereInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     deleteManyUsers: <T = BatchPayload>(args: { where?: UserWhereInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     deleteManyRecipes: <T = BatchPayload>(args: { where?: RecipeWhereInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     deleteManyLikes: <T = BatchPayload>(args: { where?: LikeWhereInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     deleteManyComments: <T = BatchPayload>(args: { where?: CommentWhereInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
-    deleteManyCategories: <T = BatchPayload>(args: { where?: CategoryWhereInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     deleteManyEquipments: <T = BatchPayload>(args: { where?: EquipmentWhereInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     deleteManyIngredients: <T = BatchPayload>(args: { where?: IngredientWhereInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> 
   }
@@ -74,7 +65,6 @@ export interface Subscription {
     recipe: <T = RecipeSubscriptionPayload | null>(args: { where?: RecipeSubscriptionWhereInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<AsyncIterator<T>> ,
     like: <T = LikeSubscriptionPayload | null>(args: { where?: LikeSubscriptionWhereInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<AsyncIterator<T>> ,
     comment: <T = CommentSubscriptionPayload | null>(args: { where?: CommentSubscriptionWhereInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<AsyncIterator<T>> ,
-    category: <T = CategorySubscriptionPayload | null>(args: { where?: CategorySubscriptionWhereInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<AsyncIterator<T>> ,
     equipment: <T = EquipmentSubscriptionPayload | null>(args: { where?: EquipmentSubscriptionWhereInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<AsyncIterator<T>> ,
     ingredient: <T = IngredientSubscriptionPayload | null>(args: { where?: IngredientSubscriptionWhereInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<AsyncIterator<T>> 
   }
@@ -84,7 +74,6 @@ export interface Exists {
   Recipe: (where?: RecipeWhereInput) => Promise<boolean>
   Like: (where?: LikeWhereInput) => Promise<boolean>
   Comment: (where?: CommentWhereInput) => Promise<boolean>
-  Category: (where?: CategoryWhereInput) => Promise<boolean>
   Equipment: (where?: EquipmentWhereInput) => Promise<boolean>
   Ingredient: (where?: IngredientWhereInput) => Promise<boolean>
 }
@@ -111,11 +100,7 @@ export interface BindingConstructor<T> {
  * Type Defs
 */
 
-const typeDefs = `type AggregateCategory {
-  count: Int!
-}
-
-type AggregateComment {
+const typeDefs = `type AggregateComment {
   count: Int!
 }
 
@@ -142,221 +127,6 @@ type AggregateUser {
 type BatchPayload {
   """The number of nodes that have been affected by the Batch operation."""
   count: Long!
-}
-
-type Category implements Node {
-  id: ID!
-  name: String!
-}
-
-"""A connection to a list of items."""
-type CategoryConnection {
-  """Information to aid in pagination."""
-  pageInfo: PageInfo!
-
-  """A list of edges."""
-  edges: [CategoryEdge]!
-  aggregate: AggregateCategory!
-}
-
-input CategoryCreateInput {
-  name: String!
-}
-
-input CategoryCreateManyInput {
-  create: [CategoryCreateInput!]
-  connect: [CategoryWhereUniqueInput!]
-}
-
-"""An edge in a connection."""
-type CategoryEdge {
-  """The item at the end of the edge."""
-  node: Category!
-
-  """A cursor for use in pagination."""
-  cursor: String!
-}
-
-enum CategoryOrderByInput {
-  id_ASC
-  id_DESC
-  name_ASC
-  name_DESC
-  updatedAt_ASC
-  updatedAt_DESC
-  createdAt_ASC
-  createdAt_DESC
-}
-
-type CategoryPreviousValues {
-  id: ID!
-  name: String!
-}
-
-type CategorySubscriptionPayload {
-  mutation: MutationType!
-  node: Category
-  updatedFields: [String!]
-  previousValues: CategoryPreviousValues
-}
-
-input CategorySubscriptionWhereInput {
-  """Logical AND on all given filters."""
-  AND: [CategorySubscriptionWhereInput!]
-
-  """Logical OR on all given filters."""
-  OR: [CategorySubscriptionWhereInput!]
-
-  """Logical NOT on all given filters combined by AND."""
-  NOT: [CategorySubscriptionWhereInput!]
-
-  """
-  The subscription event gets dispatched when it's listed in mutation_in
-  """
-  mutation_in: [MutationType!]
-
-  """
-  The subscription event gets only dispatched when one of the updated fields names is included in this list
-  """
-  updatedFields_contains: String
-
-  """
-  The subscription event gets only dispatched when all of the field names included in this list have been updated
-  """
-  updatedFields_contains_every: [String!]
-
-  """
-  The subscription event gets only dispatched when some of the field names included in this list have been updated
-  """
-  updatedFields_contains_some: [String!]
-  node: CategoryWhereInput
-}
-
-input CategoryUpdateDataInput {
-  name: String
-}
-
-input CategoryUpdateInput {
-  name: String
-}
-
-input CategoryUpdateManyInput {
-  create: [CategoryCreateInput!]
-  connect: [CategoryWhereUniqueInput!]
-  disconnect: [CategoryWhereUniqueInput!]
-  delete: [CategoryWhereUniqueInput!]
-  update: [CategoryUpdateWithWhereUniqueNestedInput!]
-  upsert: [CategoryUpsertWithWhereUniqueNestedInput!]
-}
-
-input CategoryUpdateWithWhereUniqueNestedInput {
-  where: CategoryWhereUniqueInput!
-  data: CategoryUpdateDataInput!
-}
-
-input CategoryUpsertWithWhereUniqueNestedInput {
-  where: CategoryWhereUniqueInput!
-  update: CategoryUpdateDataInput!
-  create: CategoryCreateInput!
-}
-
-input CategoryWhereInput {
-  """Logical AND on all given filters."""
-  AND: [CategoryWhereInput!]
-
-  """Logical OR on all given filters."""
-  OR: [CategoryWhereInput!]
-
-  """Logical NOT on all given filters combined by AND."""
-  NOT: [CategoryWhereInput!]
-  id: ID
-
-  """All values that are not equal to given value."""
-  id_not: ID
-
-  """All values that are contained in given list."""
-  id_in: [ID!]
-
-  """All values that are not contained in given list."""
-  id_not_in: [ID!]
-
-  """All values less than the given value."""
-  id_lt: ID
-
-  """All values less than or equal the given value."""
-  id_lte: ID
-
-  """All values greater than the given value."""
-  id_gt: ID
-
-  """All values greater than or equal the given value."""
-  id_gte: ID
-
-  """All values containing the given string."""
-  id_contains: ID
-
-  """All values not containing the given string."""
-  id_not_contains: ID
-
-  """All values starting with the given string."""
-  id_starts_with: ID
-
-  """All values not starting with the given string."""
-  id_not_starts_with: ID
-
-  """All values ending with the given string."""
-  id_ends_with: ID
-
-  """All values not ending with the given string."""
-  id_not_ends_with: ID
-  name: String
-
-  """All values that are not equal to given value."""
-  name_not: String
-
-  """All values that are contained in given list."""
-  name_in: [String!]
-
-  """All values that are not contained in given list."""
-  name_not_in: [String!]
-
-  """All values less than the given value."""
-  name_lt: String
-
-  """All values less than or equal the given value."""
-  name_lte: String
-
-  """All values greater than the given value."""
-  name_gt: String
-
-  """All values greater than or equal the given value."""
-  name_gte: String
-
-  """All values containing the given string."""
-  name_contains: String
-
-  """All values not containing the given string."""
-  name_not_contains: String
-
-  """All values starting with the given string."""
-  name_starts_with: String
-
-  """All values not starting with the given string."""
-  name_not_starts_with: String
-
-  """All values ending with the given string."""
-  name_ends_with: String
-
-  """All values not ending with the given string."""
-  name_not_ends_with: String
-  _MagicalBackRelation_CategoryToRecipe_every: RecipeWhereInput
-  _MagicalBackRelation_CategoryToRecipe_some: RecipeWhereInput
-  _MagicalBackRelation_CategoryToRecipe_none: RecipeWhereInput
-}
-
-input CategoryWhereUniqueInput {
-  id: ID
-  name: String
 }
 
 type Comment {
@@ -1209,39 +979,33 @@ type Mutation {
   createRecipe(data: RecipeCreateInput!): Recipe!
   createLike(data: LikeCreateInput!): Like!
   createComment(data: CommentCreateInput!): Comment!
-  createCategory(data: CategoryCreateInput!): Category!
   createEquipment(data: EquipmentCreateInput!): Equipment!
   createIngredient(data: IngredientCreateInput!): Ingredient!
   updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
   updateRecipe(data: RecipeUpdateInput!, where: RecipeWhereUniqueInput!): Recipe
   updateLike(data: LikeUpdateInput!, where: LikeWhereUniqueInput!): Like
-  updateCategory(data: CategoryUpdateInput!, where: CategoryWhereUniqueInput!): Category
   updateEquipment(data: EquipmentUpdateInput!, where: EquipmentWhereUniqueInput!): Equipment
   updateIngredient(data: IngredientUpdateInput!, where: IngredientWhereUniqueInput!): Ingredient
   deleteUser(where: UserWhereUniqueInput!): User
   deleteRecipe(where: RecipeWhereUniqueInput!): Recipe
   deleteLike(where: LikeWhereUniqueInput!): Like
-  deleteCategory(where: CategoryWhereUniqueInput!): Category
   deleteEquipment(where: EquipmentWhereUniqueInput!): Equipment
   deleteIngredient(where: IngredientWhereUniqueInput!): Ingredient
   upsertUser(where: UserWhereUniqueInput!, create: UserCreateInput!, update: UserUpdateInput!): User!
   upsertRecipe(where: RecipeWhereUniqueInput!, create: RecipeCreateInput!, update: RecipeUpdateInput!): Recipe!
   upsertLike(where: LikeWhereUniqueInput!, create: LikeCreateInput!, update: LikeUpdateInput!): Like!
-  upsertCategory(where: CategoryWhereUniqueInput!, create: CategoryCreateInput!, update: CategoryUpdateInput!): Category!
   upsertEquipment(where: EquipmentWhereUniqueInput!, create: EquipmentCreateInput!, update: EquipmentUpdateInput!): Equipment!
   upsertIngredient(where: IngredientWhereUniqueInput!, create: IngredientCreateInput!, update: IngredientUpdateInput!): Ingredient!
   updateManyUsers(data: UserUpdateInput!, where: UserWhereInput): BatchPayload!
   updateManyRecipes(data: RecipeUpdateInput!, where: RecipeWhereInput): BatchPayload!
   updateManyLikes(data: LikeUpdateInput!, where: LikeWhereInput): BatchPayload!
   updateManyComments(data: CommentUpdateInput!, where: CommentWhereInput): BatchPayload!
-  updateManyCategories(data: CategoryUpdateInput!, where: CategoryWhereInput): BatchPayload!
   updateManyEquipments(data: EquipmentUpdateInput!, where: EquipmentWhereInput): BatchPayload!
   updateManyIngredients(data: IngredientUpdateInput!, where: IngredientWhereInput): BatchPayload!
   deleteManyUsers(where: UserWhereInput): BatchPayload!
   deleteManyRecipes(where: RecipeWhereInput): BatchPayload!
   deleteManyLikes(where: LikeWhereInput): BatchPayload!
   deleteManyComments(where: CommentWhereInput): BatchPayload!
-  deleteManyCategories(where: CategoryWhereInput): BatchPayload!
   deleteManyEquipments(where: EquipmentWhereInput): BatchPayload!
   deleteManyIngredients(where: IngredientWhereInput): BatchPayload!
 }
@@ -1278,20 +1042,17 @@ type Query {
   recipes(where: RecipeWhereInput, orderBy: RecipeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Recipe]!
   likes(where: LikeWhereInput, orderBy: LikeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Like]!
   comments(where: CommentWhereInput, orderBy: CommentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Comment]!
-  categories(where: CategoryWhereInput, orderBy: CategoryOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Category]!
   equipments(where: EquipmentWhereInput, orderBy: EquipmentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Equipment]!
   ingredients(where: IngredientWhereInput, orderBy: IngredientOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Ingredient]!
   user(where: UserWhereUniqueInput!): User
   recipe(where: RecipeWhereUniqueInput!): Recipe
   like(where: LikeWhereUniqueInput!): Like
-  category(where: CategoryWhereUniqueInput!): Category
   equipment(where: EquipmentWhereUniqueInput!): Equipment
   ingredient(where: IngredientWhereUniqueInput!): Ingredient
   usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
   recipesConnection(where: RecipeWhereInput, orderBy: RecipeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): RecipeConnection!
   likesConnection(where: LikeWhereInput, orderBy: LikeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): LikeConnection!
   commentsConnection(where: CommentWhereInput, orderBy: CommentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): CommentConnection!
-  categoriesConnection(where: CategoryWhereInput, orderBy: CategoryOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): CategoryConnection!
   equipmentsConnection(where: EquipmentWhereInput, orderBy: EquipmentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): EquipmentConnection!
   ingredientsConnection(where: IngredientWhereInput, orderBy: IngredientOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): IngredientConnection!
 
@@ -1314,7 +1075,7 @@ type Recipe implements Node {
   pictureUrl: String
   price: Float!
   nutrition: String!
-  category(where: CategoryWhereInput, orderBy: CategoryOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Category!]
+  category: String!
   equipments(where: EquipmentWhereInput, orderBy: EquipmentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Equipment!]
 }
 
@@ -1335,11 +1096,11 @@ input RecipeCreateInput {
   pictureUrl: String
   price: Float!
   nutrition: String!
+  category: String!
   ingredients: IngredientCreateManyInput
   creator: UserCreateOneWithoutRecipesInput!
   comments: CommentCreateManyWithoutRecipeInput
   likes: LikeCreateManyWithoutRecipeInput
-  category: CategoryCreateManyInput
   equipments: EquipmentCreateManyInput
 }
 
@@ -1365,10 +1126,10 @@ input RecipeCreateWithoutCommentsInput {
   pictureUrl: String
   price: Float!
   nutrition: String!
+  category: String!
   ingredients: IngredientCreateManyInput
   creator: UserCreateOneWithoutRecipesInput!
   likes: LikeCreateManyWithoutRecipeInput
-  category: CategoryCreateManyInput
   equipments: EquipmentCreateManyInput
 }
 
@@ -1379,10 +1140,10 @@ input RecipeCreateWithoutCreatorInput {
   pictureUrl: String
   price: Float!
   nutrition: String!
+  category: String!
   ingredients: IngredientCreateManyInput
   comments: CommentCreateManyWithoutRecipeInput
   likes: LikeCreateManyWithoutRecipeInput
-  category: CategoryCreateManyInput
   equipments: EquipmentCreateManyInput
 }
 
@@ -1393,10 +1154,10 @@ input RecipeCreateWithoutLikesInput {
   pictureUrl: String
   price: Float!
   nutrition: String!
+  category: String!
   ingredients: IngredientCreateManyInput
   creator: UserCreateOneWithoutRecipesInput!
   comments: CommentCreateManyWithoutRecipeInput
-  category: CategoryCreateManyInput
   equipments: EquipmentCreateManyInput
 }
 
@@ -1424,6 +1185,8 @@ enum RecipeOrderByInput {
   price_DESC
   nutrition_ASC
   nutrition_DESC
+  category_ASC
+  category_DESC
   updatedAt_ASC
   updatedAt_DESC
   createdAt_ASC
@@ -1438,6 +1201,7 @@ type RecipePreviousValues {
   pictureUrl: String
   price: Float!
   nutrition: String!
+  category: String!
 }
 
 type RecipeSubscriptionPayload {
@@ -1486,11 +1250,11 @@ input RecipeUpdateInput {
   pictureUrl: String
   price: Float
   nutrition: String
+  category: String
   ingredients: IngredientUpdateManyInput
   creator: UserUpdateOneWithoutRecipesInput
   comments: CommentUpdateManyWithoutRecipeInput
   likes: LikeUpdateManyWithoutRecipeInput
-  category: CategoryUpdateManyInput
   equipments: EquipmentUpdateManyInput
 }
 
@@ -1526,10 +1290,10 @@ input RecipeUpdateWithoutCommentsDataInput {
   pictureUrl: String
   price: Float
   nutrition: String
+  category: String
   ingredients: IngredientUpdateManyInput
   creator: UserUpdateOneWithoutRecipesInput
   likes: LikeUpdateManyWithoutRecipeInput
-  category: CategoryUpdateManyInput
   equipments: EquipmentUpdateManyInput
 }
 
@@ -1540,10 +1304,10 @@ input RecipeUpdateWithoutCreatorDataInput {
   pictureUrl: String
   price: Float
   nutrition: String
+  category: String
   ingredients: IngredientUpdateManyInput
   comments: CommentUpdateManyWithoutRecipeInput
   likes: LikeUpdateManyWithoutRecipeInput
-  category: CategoryUpdateManyInput
   equipments: EquipmentUpdateManyInput
 }
 
@@ -1554,10 +1318,10 @@ input RecipeUpdateWithoutLikesDataInput {
   pictureUrl: String
   price: Float
   nutrition: String
+  category: String
   ingredients: IngredientUpdateManyInput
   creator: UserUpdateOneWithoutRecipesInput
   comments: CommentUpdateManyWithoutRecipeInput
-  category: CategoryUpdateManyInput
   equipments: EquipmentUpdateManyInput
 }
 
@@ -1853,6 +1617,46 @@ input RecipeWhereInput {
 
   """All values not ending with the given string."""
   nutrition_not_ends_with: String
+  category: String
+
+  """All values that are not equal to given value."""
+  category_not: String
+
+  """All values that are contained in given list."""
+  category_in: [String!]
+
+  """All values that are not contained in given list."""
+  category_not_in: [String!]
+
+  """All values less than the given value."""
+  category_lt: String
+
+  """All values less than or equal the given value."""
+  category_lte: String
+
+  """All values greater than the given value."""
+  category_gt: String
+
+  """All values greater than or equal the given value."""
+  category_gte: String
+
+  """All values containing the given string."""
+  category_contains: String
+
+  """All values not containing the given string."""
+  category_not_contains: String
+
+  """All values starting with the given string."""
+  category_starts_with: String
+
+  """All values not starting with the given string."""
+  category_not_starts_with: String
+
+  """All values ending with the given string."""
+  category_ends_with: String
+
+  """All values not ending with the given string."""
+  category_not_ends_with: String
   ingredients_every: IngredientWhereInput
   ingredients_some: IngredientWhereInput
   ingredients_none: IngredientWhereInput
@@ -1863,9 +1667,6 @@ input RecipeWhereInput {
   likes_every: LikeWhereInput
   likes_some: LikeWhereInput
   likes_none: LikeWhereInput
-  category_every: CategoryWhereInput
-  category_some: CategoryWhereInput
-  category_none: CategoryWhereInput
   equipments_every: EquipmentWhereInput
   equipments_some: EquipmentWhereInput
   equipments_none: EquipmentWhereInput
@@ -1881,7 +1682,6 @@ type Subscription {
   recipe(where: RecipeSubscriptionWhereInput): RecipeSubscriptionPayload
   like(where: LikeSubscriptionWhereInput): LikeSubscriptionPayload
   comment(where: CommentSubscriptionWhereInput): CommentSubscriptionPayload
-  category(where: CategorySubscriptionWhereInput): CategorySubscriptionPayload
   equipment(where: EquipmentSubscriptionWhereInput): EquipmentSubscriptionPayload
   ingredient(where: IngredientSubscriptionWhereInput): IngredientSubscriptionPayload
 }
@@ -2370,6 +2170,8 @@ export type RecipeOrderByInput =   'id_ASC' |
   'price_DESC' |
   'nutrition_ASC' |
   'nutrition_DESC' |
+  'category_ASC' |
+  'category_DESC' |
   'updatedAt_ASC' |
   'updatedAt_DESC' |
   'createdAt_ASC' |
@@ -2402,15 +2204,6 @@ export type LikeOrderByInput =   'id_ASC' |
   'createdAt_ASC' |
   'createdAt_DESC'
 
-export type CategoryOrderByInput =   'id_ASC' |
-  'id_DESC' |
-  'name_ASC' |
-  'name_DESC' |
-  'updatedAt_ASC' |
-  'updatedAt_DESC' |
-  'createdAt_ASC' |
-  'createdAt_DESC'
-
 export type EquipmentOrderByInput =   'id_ASC' |
   'id_DESC' |
   'name_ASC' |
@@ -2424,9 +2217,13 @@ export type MutationType =   'CREATED' |
   'UPDATED' |
   'DELETED'
 
-export interface CategoryCreateManyInput {
-  create?: CategoryCreateInput[] | CategoryCreateInput
-  connect?: CategoryWhereUniqueInput[] | CategoryWhereUniqueInput
+export interface UserCreateWithoutLikesInput {
+  email: String
+  username: String
+  name: String
+  password: String
+  recipes?: RecipeCreateManyWithoutCreatorInput
+  comments?: CommentCreateManyWithoutAuthorInput
 }
 
 export interface UserWhereInput {
@@ -2556,18 +2353,20 @@ export interface EquipmentWhereInput {
   _MagicalBackRelation_EquipmentToRecipe_none?: RecipeWhereInput
 }
 
-export interface CommentCreateManyWithoutRecipeInput {
-  create?: CommentCreateWithoutRecipeInput[] | CommentCreateWithoutRecipeInput
-}
-
-export interface EquipmentUpdateWithWhereUniqueNestedInput {
-  where: EquipmentWhereUniqueInput
-  data: EquipmentUpdateDataInput
-}
-
 export interface CommentCreateWithoutRecipeInput {
   text: String
   author: UserCreateOneWithoutCommentsInput
+}
+
+export interface EquipmentUpsertWithWhereUniqueNestedInput {
+  where: EquipmentWhereUniqueInput
+  update: EquipmentUpdateDataInput
+  create: EquipmentCreateInput
+}
+
+export interface UserCreateOneWithoutCommentsInput {
+  create?: UserCreateWithoutCommentsInput
+  connect?: UserWhereUniqueInput
 }
 
 export interface CommentCreateInput {
@@ -2576,9 +2375,13 @@ export interface CommentCreateInput {
   recipe: RecipeCreateOneWithoutCommentsInput
 }
 
-export interface UserCreateOneWithoutCommentsInput {
-  create?: UserCreateWithoutCommentsInput
-  connect?: UserWhereUniqueInput
+export interface UserCreateWithoutCommentsInput {
+  email: String
+  username: String
+  name: String
+  password: String
+  recipes?: RecipeCreateManyWithoutCreatorInput
+  likes?: LikeCreateManyWithoutAuthorInput
 }
 
 export interface IngredientSubscriptionWhereInput {
@@ -2592,13 +2395,9 @@ export interface IngredientSubscriptionWhereInput {
   node?: IngredientWhereInput
 }
 
-export interface UserCreateWithoutCommentsInput {
-  email: String
-  username: String
-  name: String
-  password: String
-  recipes?: RecipeCreateManyWithoutCreatorInput
-  likes?: LikeCreateManyWithoutAuthorInput
+export interface LikeCreateManyWithoutAuthorInput {
+  create?: LikeCreateWithoutAuthorInput[] | LikeCreateWithoutAuthorInput
+  connect?: LikeWhereUniqueInput[] | LikeWhereUniqueInput
 }
 
 export interface EquipmentSubscriptionWhereInput {
@@ -2610,22 +2409,6 @@ export interface EquipmentSubscriptionWhereInput {
   updatedFields_contains_every?: String[] | String
   updatedFields_contains_some?: String[] | String
   node?: EquipmentWhereInput
-}
-
-export interface LikeCreateManyWithoutAuthorInput {
-  create?: LikeCreateWithoutAuthorInput[] | LikeCreateWithoutAuthorInput
-  connect?: LikeWhereUniqueInput[] | LikeWhereUniqueInput
-}
-
-export interface CategorySubscriptionWhereInput {
-  AND?: CategorySubscriptionWhereInput[] | CategorySubscriptionWhereInput
-  OR?: CategorySubscriptionWhereInput[] | CategorySubscriptionWhereInput
-  NOT?: CategorySubscriptionWhereInput[] | CategorySubscriptionWhereInput
-  mutation_in?: MutationType[] | MutationType
-  updatedFields_contains?: String
-  updatedFields_contains_every?: String[] | String
-  updatedFields_contains_some?: String[] | String
-  node?: CategoryWhereInput
 }
 
 export interface LikeCreateWithoutAuthorInput {
@@ -2666,10 +2449,10 @@ export interface RecipeCreateWithoutLikesInput {
   pictureUrl?: String
   price: Float
   nutrition: String
+  category: String
   ingredients?: IngredientCreateManyInput
   creator: UserCreateOneWithoutRecipesInput
   comments?: CommentCreateManyWithoutRecipeInput
-  category?: CategoryCreateManyInput
   equipments?: EquipmentCreateManyInput
 }
 
@@ -2703,7 +2486,7 @@ export interface UserCreateWithoutRecipesInput {
   likes?: LikeCreateManyWithoutAuthorInput
 }
 
-export interface CategoryWhereUniqueInput {
+export interface EquipmentWhereUniqueInput {
   id?: ID_Input
   name?: String
 }
@@ -2712,9 +2495,9 @@ export interface CommentCreateManyWithoutAuthorInput {
   create?: CommentCreateWithoutAuthorInput[] | CommentCreateWithoutAuthorInput
 }
 
-export interface IngredientWhereUniqueInput {
-  id?: ID_Input
-  name?: String
+export interface RecipeUpsertWithoutCommentsInput {
+  update: RecipeUpdateWithoutCommentsDataInput
+  create: RecipeCreateWithoutCommentsInput
 }
 
 export interface CommentCreateWithoutAuthorInput {
@@ -2722,18 +2505,12 @@ export interface CommentCreateWithoutAuthorInput {
   recipe: RecipeCreateOneWithoutCommentsInput
 }
 
-export interface RecipeUpdateWithoutCommentsDataInput {
-  name?: String
-  description?: String
-  process?: String
-  pictureUrl?: String
-  price?: Float
-  nutrition?: String
-  ingredients?: IngredientUpdateManyInput
-  creator?: UserUpdateOneWithoutRecipesInput
-  likes?: LikeUpdateManyWithoutRecipeInput
-  category?: CategoryUpdateManyInput
-  equipments?: EquipmentUpdateManyInput
+export interface RecipeUpdateOneWithoutCommentsInput {
+  create?: RecipeCreateWithoutCommentsInput
+  connect?: RecipeWhereUniqueInput
+  delete?: Boolean
+  update?: RecipeUpdateWithoutCommentsDataInput
+  upsert?: RecipeUpsertWithoutCommentsInput
 }
 
 export interface RecipeCreateOneWithoutCommentsInput {
@@ -2741,9 +2518,13 @@ export interface RecipeCreateOneWithoutCommentsInput {
   connect?: RecipeWhereUniqueInput
 }
 
-export interface UserUpsertWithoutCommentsInput {
-  update: UserUpdateWithoutCommentsDataInput
-  create: UserCreateWithoutCommentsInput
+export interface UserUpdateWithoutCommentsDataInput {
+  email?: String
+  username?: String
+  name?: String
+  password?: String
+  recipes?: RecipeUpdateManyWithoutCreatorInput
+  likes?: LikeUpdateManyWithoutAuthorInput
 }
 
 export interface RecipeCreateWithoutCommentsInput {
@@ -2753,19 +2534,17 @@ export interface RecipeCreateWithoutCommentsInput {
   pictureUrl?: String
   price: Float
   nutrition: String
+  category: String
   ingredients?: IngredientCreateManyInput
   creator: UserCreateOneWithoutRecipesInput
   likes?: LikeCreateManyWithoutRecipeInput
-  category?: CategoryCreateManyInput
   equipments?: EquipmentCreateManyInput
 }
 
-export interface UserUpdateOneWithoutCommentsInput {
-  create?: UserCreateWithoutCommentsInput
-  connect?: UserWhereUniqueInput
-  delete?: Boolean
-  update?: UserUpdateWithoutCommentsDataInput
-  upsert?: UserUpsertWithoutCommentsInput
+export interface CommentUpdateInput {
+  text?: String
+  author?: UserUpdateOneWithoutCommentsInput
+  recipe?: RecipeUpdateOneWithoutCommentsInput
 }
 
 export interface LikeCreateManyWithoutRecipeInput {
@@ -2773,22 +2552,12 @@ export interface LikeCreateManyWithoutRecipeInput {
   connect?: LikeWhereUniqueInput[] | LikeWhereUniqueInput
 }
 
-export interface IngredientUpdateInput {
+export interface EquipmentUpdateInput {
   name?: String
-  price?: Float
 }
 
 export interface LikeCreateWithoutRecipeInput {
   author: UserCreateOneWithoutLikesInput
-}
-
-export interface CategoryUpdateInput {
-  name?: String
-}
-
-export interface UserCreateOneWithoutLikesInput {
-  create?: UserCreateWithoutLikesInput
-  connect?: UserWhereUniqueInput
 }
 
 export interface RecipeUpdateInput {
@@ -2798,72 +2567,22 @@ export interface RecipeUpdateInput {
   pictureUrl?: String
   price?: Float
   nutrition?: String
+  category?: String
   ingredients?: IngredientUpdateManyInput
   creator?: UserUpdateOneWithoutRecipesInput
   comments?: CommentUpdateManyWithoutRecipeInput
   likes?: LikeUpdateManyWithoutRecipeInput
-  category?: CategoryUpdateManyInput
   equipments?: EquipmentUpdateManyInput
 }
 
-export interface UserCreateWithoutLikesInput {
-  email: String
-  username: String
-  name: String
-  password: String
-  recipes?: RecipeCreateManyWithoutCreatorInput
-  comments?: CommentCreateManyWithoutAuthorInput
+export interface UserCreateOneWithoutLikesInput {
+  create?: UserCreateWithoutLikesInput
+  connect?: UserWhereUniqueInput
 }
 
 export interface RecipeUpsertWithoutLikesInput {
   update: RecipeUpdateWithoutLikesDataInput
   create: RecipeCreateWithoutLikesInput
-}
-
-export interface EquipmentUpsertWithWhereUniqueNestedInput {
-  where: EquipmentWhereUniqueInput
-  update: EquipmentUpdateDataInput
-  create: EquipmentCreateInput
-}
-
-export interface UserUpdateWithoutRecipesDataInput {
-  email?: String
-  username?: String
-  name?: String
-  password?: String
-  comments?: CommentUpdateManyWithoutAuthorInput
-  likes?: LikeUpdateManyWithoutAuthorInput
-}
-
-export interface CategoryCreateInput {
-  name: String
-}
-
-export interface RecipeUpdateWithoutLikesDataInput {
-  name?: String
-  description?: String
-  process?: String
-  pictureUrl?: String
-  price?: Float
-  nutrition?: String
-  ingredients?: IngredientUpdateManyInput
-  creator?: UserUpdateOneWithoutRecipesInput
-  comments?: CommentUpdateManyWithoutRecipeInput
-  category?: CategoryUpdateManyInput
-  equipments?: EquipmentUpdateManyInput
-}
-
-export interface EquipmentCreateManyInput {
-  create?: EquipmentCreateInput[] | EquipmentCreateInput
-  connect?: EquipmentWhereUniqueInput[] | EquipmentWhereUniqueInput
-}
-
-export interface LikeUpdateWithoutAuthorDataInput {
-  recipe?: RecipeUpdateOneWithoutLikesInput
-}
-
-export interface EquipmentCreateInput {
-  name: String
 }
 
 export interface LikeUpdateManyWithoutAuthorInput {
@@ -2875,6 +2594,42 @@ export interface LikeUpdateManyWithoutAuthorInput {
   upsert?: LikeUpsertWithWhereUniqueWithoutAuthorInput[] | LikeUpsertWithWhereUniqueWithoutAuthorInput
 }
 
+export interface UserUpdateWithoutRecipesDataInput {
+  email?: String
+  username?: String
+  name?: String
+  password?: String
+  comments?: CommentUpdateManyWithoutAuthorInput
+  likes?: LikeUpdateManyWithoutAuthorInput
+}
+
+export interface EquipmentCreateManyInput {
+  create?: EquipmentCreateInput[] | EquipmentCreateInput
+  connect?: EquipmentWhereUniqueInput[] | EquipmentWhereUniqueInput
+}
+
+export interface RecipeUpdateWithoutLikesDataInput {
+  name?: String
+  description?: String
+  process?: String
+  pictureUrl?: String
+  price?: Float
+  nutrition?: String
+  category?: String
+  ingredients?: IngredientUpdateManyInput
+  creator?: UserUpdateOneWithoutRecipesInput
+  comments?: CommentUpdateManyWithoutRecipeInput
+  equipments?: EquipmentUpdateManyInput
+}
+
+export interface EquipmentCreateInput {
+  name: String
+}
+
+export interface LikeUpdateWithoutAuthorDataInput {
+  recipe?: RecipeUpdateOneWithoutLikesInput
+}
+
 export interface RecipeCreateInput {
   name: String
   description: String
@@ -2882,11 +2637,11 @@ export interface RecipeCreateInput {
   pictureUrl?: String
   price: Float
   nutrition: String
+  category: String
   ingredients?: IngredientCreateManyInput
   creator: UserCreateOneWithoutRecipesInput
   comments?: CommentCreateManyWithoutRecipeInput
   likes?: LikeCreateManyWithoutRecipeInput
-  category?: CategoryCreateManyInput
   equipments?: EquipmentCreateManyInput
 }
 
@@ -2900,8 +2655,10 @@ export interface UserCreateInput {
   likes?: LikeCreateManyWithoutAuthorInput
 }
 
-export interface EquipmentUpdateDataInput {
-  name?: String
+export interface RecipeUpsertWithWhereUniqueWithoutCreatorInput {
+  where: RecipeWhereUniqueInput
+  update: RecipeUpdateWithoutCreatorDataInput
+  create: RecipeCreateWithoutCreatorInput
 }
 
 export interface RecipeCreateWithoutCreatorInput {
@@ -2911,10 +2668,10 @@ export interface RecipeCreateWithoutCreatorInput {
   pictureUrl?: String
   price: Float
   nutrition: String
+  category: String
   ingredients?: IngredientCreateManyInput
   comments?: CommentCreateManyWithoutRecipeInput
   likes?: LikeCreateManyWithoutRecipeInput
-  category?: CategoryCreateManyInput
   equipments?: EquipmentCreateManyInput
 }
 
@@ -3105,6 +2862,20 @@ export interface RecipeWhereInput {
   nutrition_not_starts_with?: String
   nutrition_ends_with?: String
   nutrition_not_ends_with?: String
+  category?: String
+  category_not?: String
+  category_in?: String[] | String
+  category_not_in?: String[] | String
+  category_lt?: String
+  category_lte?: String
+  category_gt?: String
+  category_gte?: String
+  category_contains?: String
+  category_not_contains?: String
+  category_starts_with?: String
+  category_not_starts_with?: String
+  category_ends_with?: String
+  category_not_ends_with?: String
   ingredients_every?: IngredientWhereInput
   ingredients_some?: IngredientWhereInput
   ingredients_none?: IngredientWhereInput
@@ -3115,9 +2886,6 @@ export interface RecipeWhereInput {
   likes_every?: LikeWhereInput
   likes_some?: LikeWhereInput
   likes_none?: LikeWhereInput
-  category_every?: CategoryWhereInput
-  category_some?: CategoryWhereInput
-  category_none?: CategoryWhereInput
   equipments_every?: EquipmentWhereInput
   equipments_some?: EquipmentWhereInput
   equipments_none?: EquipmentWhereInput
@@ -3139,16 +2907,25 @@ export interface RecipeUpdateWithoutCreatorDataInput {
   pictureUrl?: String
   price?: Float
   nutrition?: String
+  category?: String
   ingredients?: IngredientUpdateManyInput
   comments?: CommentUpdateManyWithoutRecipeInput
   likes?: LikeUpdateManyWithoutRecipeInput
-  category?: CategoryUpdateManyInput
   equipments?: EquipmentUpdateManyInput
 }
 
-export interface RecipeUpsertWithoutCommentsInput {
-  update: RecipeUpdateWithoutCommentsDataInput
-  create: RecipeCreateWithoutCommentsInput
+export interface RecipeUpdateWithoutCommentsDataInput {
+  name?: String
+  description?: String
+  process?: String
+  pictureUrl?: String
+  price?: Float
+  nutrition?: String
+  category?: String
+  ingredients?: IngredientUpdateManyInput
+  creator?: UserUpdateOneWithoutRecipesInput
+  likes?: LikeUpdateManyWithoutRecipeInput
+  equipments?: EquipmentUpdateManyInput
 }
 
 export interface IngredientUpdateManyInput {
@@ -3160,13 +2937,12 @@ export interface IngredientUpdateManyInput {
   upsert?: IngredientUpsertWithWhereUniqueNestedInput[] | IngredientUpsertWithWhereUniqueNestedInput
 }
 
-export interface UserUpdateWithoutCommentsDataInput {
-  email?: String
-  username?: String
-  name?: String
-  password?: String
-  recipes?: RecipeUpdateManyWithoutCreatorInput
-  likes?: LikeUpdateManyWithoutAuthorInput
+export interface UserUpdateOneWithoutCommentsInput {
+  create?: UserCreateWithoutCommentsInput
+  connect?: UserWhereUniqueInput
+  delete?: Boolean
+  update?: UserUpdateWithoutCommentsDataInput
+  upsert?: UserUpsertWithoutCommentsInput
 }
 
 export interface IngredientUpdateWithWhereUniqueNestedInput {
@@ -3174,8 +2950,9 @@ export interface IngredientUpdateWithWhereUniqueNestedInput {
   data: IngredientUpdateDataInput
 }
 
-export interface EquipmentUpdateInput {
-  name?: String
+export interface LikeUpdateInput {
+  author?: UserUpdateOneWithoutLikesInput
+  recipe?: RecipeUpdateOneWithoutLikesInput
 }
 
 export interface IngredientUpdateDataInput {
@@ -3183,10 +2960,9 @@ export interface IngredientUpdateDataInput {
   price?: Float
 }
 
-export interface LikeUpsertWithWhereUniqueWithoutAuthorInput {
-  where: LikeWhereUniqueInput
-  update: LikeUpdateWithoutAuthorDataInput
-  create: LikeCreateWithoutAuthorInput
+export interface UserUpsertWithoutRecipesInput {
+  update: UserUpdateWithoutRecipesDataInput
+  create: UserCreateWithoutRecipesInput
 }
 
 export interface IngredientUpsertWithWhereUniqueNestedInput {
@@ -3195,21 +2971,21 @@ export interface IngredientUpsertWithWhereUniqueNestedInput {
   create: IngredientCreateInput
 }
 
-export interface UserUpdateOneWithoutRecipesInput {
-  create?: UserCreateWithoutRecipesInput
-  connect?: UserWhereUniqueInput
+export interface RecipeUpdateOneWithoutLikesInput {
+  create?: RecipeCreateWithoutLikesInput
+  connect?: RecipeWhereUniqueInput
   delete?: Boolean
-  update?: UserUpdateWithoutRecipesDataInput
-  upsert?: UserUpsertWithoutRecipesInput
+  update?: RecipeUpdateWithoutLikesDataInput
+  upsert?: RecipeUpsertWithoutLikesInput
 }
 
 export interface CommentUpdateManyWithoutRecipeInput {
   create?: CommentCreateWithoutRecipeInput[] | CommentCreateWithoutRecipeInput
 }
 
-export interface LikeUpdateWithWhereUniqueWithoutAuthorInput {
-  where: LikeWhereUniqueInput
-  data: LikeUpdateWithoutAuthorDataInput
+export interface RecipeCreateManyWithoutCreatorInput {
+  create?: RecipeCreateWithoutCreatorInput[] | RecipeCreateWithoutCreatorInput
+  connect?: RecipeWhereUniqueInput[] | RecipeWhereUniqueInput
 }
 
 export interface LikeUpdateManyWithoutRecipeInput {
@@ -3221,55 +2997,13 @@ export interface LikeUpdateManyWithoutRecipeInput {
   upsert?: LikeUpsertWithWhereUniqueWithoutRecipeInput[] | LikeUpsertWithWhereUniqueWithoutRecipeInput
 }
 
-export interface RecipeCreateManyWithoutCreatorInput {
-  create?: RecipeCreateWithoutCreatorInput[] | RecipeCreateWithoutCreatorInput
-  connect?: RecipeWhereUniqueInput[] | RecipeWhereUniqueInput
+export interface CommentCreateManyWithoutRecipeInput {
+  create?: CommentCreateWithoutRecipeInput[] | CommentCreateWithoutRecipeInput
 }
 
 export interface LikeUpdateWithWhereUniqueWithoutRecipeInput {
   where: LikeWhereUniqueInput
   data: LikeUpdateWithoutRecipeDataInput
-}
-
-export interface CategoryWhereInput {
-  AND?: CategoryWhereInput[] | CategoryWhereInput
-  OR?: CategoryWhereInput[] | CategoryWhereInput
-  NOT?: CategoryWhereInput[] | CategoryWhereInput
-  id?: ID_Input
-  id_not?: ID_Input
-  id_in?: ID_Input[] | ID_Input
-  id_not_in?: ID_Input[] | ID_Input
-  id_lt?: ID_Input
-  id_lte?: ID_Input
-  id_gt?: ID_Input
-  id_gte?: ID_Input
-  id_contains?: ID_Input
-  id_not_contains?: ID_Input
-  id_starts_with?: ID_Input
-  id_not_starts_with?: ID_Input
-  id_ends_with?: ID_Input
-  id_not_ends_with?: ID_Input
-  name?: String
-  name_not?: String
-  name_in?: String[] | String
-  name_not_in?: String[] | String
-  name_lt?: String
-  name_lte?: String
-  name_gt?: String
-  name_gte?: String
-  name_contains?: String
-  name_not_contains?: String
-  name_starts_with?: String
-  name_not_starts_with?: String
-  name_ends_with?: String
-  name_not_ends_with?: String
-  _MagicalBackRelation_CategoryToRecipe_every?: RecipeWhereInput
-  _MagicalBackRelation_CategoryToRecipe_some?: RecipeWhereInput
-  _MagicalBackRelation_CategoryToRecipe_none?: RecipeWhereInput
-}
-
-export interface LikeUpdateWithoutRecipeDataInput {
-  author?: UserUpdateOneWithoutLikesInput
 }
 
 export interface LikeSubscriptionWhereInput {
@@ -3283,6 +3017,15 @@ export interface LikeSubscriptionWhereInput {
   node?: LikeWhereInput
 }
 
+export interface LikeUpdateWithoutRecipeDataInput {
+  author?: UserUpdateOneWithoutLikesInput
+}
+
+export interface IngredientWhereUniqueInput {
+  id?: ID_Input
+  name?: String
+}
+
 export interface UserUpdateOneWithoutLikesInput {
   create?: UserCreateWithoutLikesInput
   connect?: UserWhereUniqueInput
@@ -3291,9 +3034,9 @@ export interface UserUpdateOneWithoutLikesInput {
   upsert?: UserUpsertWithoutLikesInput
 }
 
-export interface EquipmentWhereUniqueInput {
-  id?: ID_Input
+export interface IngredientUpdateInput {
   name?: String
+  price?: Float
 }
 
 export interface UserUpdateWithoutLikesDataInput {
@@ -3305,19 +3048,21 @@ export interface UserUpdateWithoutLikesDataInput {
   comments?: CommentUpdateManyWithoutAuthorInput
 }
 
-export interface CommentUpdateInput {
-  text?: String
-  author?: UserUpdateOneWithoutCommentsInput
-  recipe?: RecipeUpdateOneWithoutCommentsInput
+export interface UserUpdateOneWithoutRecipesInput {
+  create?: UserCreateWithoutRecipesInput
+  connect?: UserWhereUniqueInput
+  delete?: Boolean
+  update?: UserUpdateWithoutRecipesDataInput
+  upsert?: UserUpsertWithoutRecipesInput
 }
 
 export interface CommentUpdateManyWithoutAuthorInput {
   create?: CommentCreateWithoutAuthorInput[] | CommentCreateWithoutAuthorInput
 }
 
-export interface UserUpsertWithoutRecipesInput {
-  update: UserUpdateWithoutRecipesDataInput
-  create: UserCreateWithoutRecipesInput
+export interface IngredientCreateManyInput {
+  create?: IngredientCreateInput[] | IngredientCreateInput
+  connect?: IngredientWhereUniqueInput[] | IngredientWhereUniqueInput
 }
 
 export interface UserUpsertWithoutLikesInput {
@@ -3325,16 +3070,39 @@ export interface UserUpsertWithoutLikesInput {
   create: UserCreateWithoutLikesInput
 }
 
-export interface RecipeUpsertWithWhereUniqueWithoutCreatorInput {
-  where: RecipeWhereUniqueInput
-  update: RecipeUpdateWithoutCreatorDataInput
-  create: RecipeCreateWithoutCreatorInput
+export interface UserWhereUniqueInput {
+  id?: ID_Input
+  email?: String
+  username?: String
+}
+
+export interface EquipmentUpdateDataInput {
+  name?: String
+}
+
+export interface EquipmentUpdateWithWhereUniqueNestedInput {
+  where: EquipmentWhereUniqueInput
+  data: EquipmentUpdateDataInput
+}
+
+export interface EquipmentUpdateManyInput {
+  create?: EquipmentCreateInput[] | EquipmentCreateInput
+  connect?: EquipmentWhereUniqueInput[] | EquipmentWhereUniqueInput
+  disconnect?: EquipmentWhereUniqueInput[] | EquipmentWhereUniqueInput
+  delete?: EquipmentWhereUniqueInput[] | EquipmentWhereUniqueInput
+  update?: EquipmentUpdateWithWhereUniqueNestedInput[] | EquipmentUpdateWithWhereUniqueNestedInput
+  upsert?: EquipmentUpsertWithWhereUniqueNestedInput[] | EquipmentUpsertWithWhereUniqueNestedInput
 }
 
 export interface LikeUpsertWithWhereUniqueWithoutRecipeInput {
   where: LikeWhereUniqueInput
   update: LikeUpdateWithoutRecipeDataInput
   create: LikeCreateWithoutRecipeInput
+}
+
+export interface UserUpsertWithoutCommentsInput {
+  update: UserUpdateWithoutCommentsDataInput
+  create: UserCreateWithoutCommentsInput
 }
 
 export interface CommentWhereInput {
@@ -3359,69 +3127,15 @@ export interface CommentWhereInput {
   recipe?: RecipeWhereInput
 }
 
-export interface CategoryUpdateManyInput {
-  create?: CategoryCreateInput[] | CategoryCreateInput
-  connect?: CategoryWhereUniqueInput[] | CategoryWhereUniqueInput
-  disconnect?: CategoryWhereUniqueInput[] | CategoryWhereUniqueInput
-  delete?: CategoryWhereUniqueInput[] | CategoryWhereUniqueInput
-  update?: CategoryUpdateWithWhereUniqueNestedInput[] | CategoryUpdateWithWhereUniqueNestedInput
-  upsert?: CategoryUpsertWithWhereUniqueNestedInput[] | CategoryUpsertWithWhereUniqueNestedInput
+export interface LikeUpdateWithWhereUniqueWithoutAuthorInput {
+  where: LikeWhereUniqueInput
+  data: LikeUpdateWithoutAuthorDataInput
 }
 
-export interface RecipeUpdateOneWithoutCommentsInput {
-  create?: RecipeCreateWithoutCommentsInput
-  connect?: RecipeWhereUniqueInput
-  delete?: Boolean
-  update?: RecipeUpdateWithoutCommentsDataInput
-  upsert?: RecipeUpsertWithoutCommentsInput
-}
-
-export interface EquipmentUpdateManyInput {
-  create?: EquipmentCreateInput[] | EquipmentCreateInput
-  connect?: EquipmentWhereUniqueInput[] | EquipmentWhereUniqueInput
-  disconnect?: EquipmentWhereUniqueInput[] | EquipmentWhereUniqueInput
-  delete?: EquipmentWhereUniqueInput[] | EquipmentWhereUniqueInput
-  update?: EquipmentUpdateWithWhereUniqueNestedInput[] | EquipmentUpdateWithWhereUniqueNestedInput
-  upsert?: EquipmentUpsertWithWhereUniqueNestedInput[] | EquipmentUpsertWithWhereUniqueNestedInput
-}
-
-export interface CategoryUpsertWithWhereUniqueNestedInput {
-  where: CategoryWhereUniqueInput
-  update: CategoryUpdateDataInput
-  create: CategoryCreateInput
-}
-
-export interface CategoryUpdateDataInput {
-  name?: String
-}
-
-export interface CategoryUpdateWithWhereUniqueNestedInput {
-  where: CategoryWhereUniqueInput
-  data: CategoryUpdateDataInput
-}
-
-export interface LikeUpdateInput {
-  author?: UserUpdateOneWithoutLikesInput
-  recipe?: RecipeUpdateOneWithoutLikesInput
-}
-
-export interface UserWhereUniqueInput {
-  id?: ID_Input
-  email?: String
-  username?: String
-}
-
-export interface IngredientCreateManyInput {
-  create?: IngredientCreateInput[] | IngredientCreateInput
-  connect?: IngredientWhereUniqueInput[] | IngredientWhereUniqueInput
-}
-
-export interface RecipeUpdateOneWithoutLikesInput {
-  create?: RecipeCreateWithoutLikesInput
-  connect?: RecipeWhereUniqueInput
-  delete?: Boolean
-  update?: RecipeUpdateWithoutLikesDataInput
-  upsert?: RecipeUpsertWithoutLikesInput
+export interface LikeUpsertWithWhereUniqueWithoutAuthorInput {
+  where: LikeWhereUniqueInput
+  update: LikeUpdateWithoutAuthorDataInput
+  create: LikeCreateWithoutAuthorInput
 }
 
 /*
@@ -3480,7 +3194,7 @@ export interface Recipe extends Node {
   pictureUrl?: String
   price: Float
   nutrition: String
-  category?: Category[]
+  category: String
   equipments?: Equipment[]
 }
 
@@ -3537,8 +3251,8 @@ export interface Equipment extends Node {
  * An edge in a connection.
 
  */
-export interface CategoryEdge {
-  node: Category
+export interface CommentEdge {
+  node: Comment
   cursor: String
 }
 
@@ -3547,7 +3261,7 @@ export interface EquipmentPreviousValues {
   name: String
 }
 
-export interface AggregateComment {
+export interface AggregateLike {
   count: Int
 }
 
@@ -3562,10 +3276,10 @@ export interface UserSubscriptionPayload {
  * A connection to a list of items.
 
  */
-export interface CommentConnection {
+export interface LikeConnection {
   pageInfo: PageInfo
-  edges: CommentEdge[]
-  aggregate: AggregateComment
+  edges: LikeEdge[]
+  aggregate: AggregateLike
 }
 
 export interface UserPreviousValues {
@@ -3576,22 +3290,23 @@ export interface UserPreviousValues {
   password: String
 }
 
+export interface BatchPayload {
+  count: Long
+}
+
+export interface Like extends Node {
+  id: ID_Output
+  author: User
+  recipe: Recipe
+}
+
 /*
  * An edge in a connection.
 
  */
-export interface LikeEdge {
-  node: Like
+export interface RecipeEdge {
+  node: Recipe
   cursor: String
-}
-
-export interface Category extends Node {
-  id: ID_Output
-  name: String
-}
-
-export interface AggregateRecipe {
-  count: Int
 }
 
 export interface RecipeSubscriptionPayload {
@@ -3601,11 +3316,8 @@ export interface RecipeSubscriptionPayload {
   previousValues?: RecipePreviousValues
 }
 
-export interface IngredientSubscriptionPayload {
-  mutation: MutationType
-  node?: Ingredient
-  updatedFields?: String[]
-  previousValues?: IngredientPreviousValues
+export interface AggregateIngredient {
+  count: Int
 }
 
 export interface RecipePreviousValues {
@@ -3616,16 +3328,16 @@ export interface RecipePreviousValues {
   pictureUrl?: String
   price: Float
   nutrition: String
+  category: String
 }
 
 /*
- * A connection to a list of items.
+ * An edge in a connection.
 
  */
-export interface RecipeConnection {
-  pageInfo: PageInfo
-  edges: RecipeEdge[]
-  aggregate: AggregateRecipe
+export interface EquipmentEdge {
+  node: Equipment
+  cursor: String
 }
 
 export interface EquipmentSubscriptionPayload {
@@ -3639,10 +3351,10 @@ export interface EquipmentSubscriptionPayload {
  * A connection to a list of items.
 
  */
-export interface IngredientConnection {
+export interface CommentConnection {
   pageInfo: PageInfo
-  edges: IngredientEdge[]
-  aggregate: AggregateIngredient
+  edges: CommentEdge[]
+  aggregate: AggregateComment
 }
 
 export interface LikeSubscriptionPayload {
@@ -3652,37 +3364,22 @@ export interface LikeSubscriptionPayload {
   previousValues?: LikePreviousValues
 }
 
-export interface AggregateCategory {
+export interface AggregateRecipe {
   count: Int
-}
-
-export interface LikePreviousValues {
-  id: ID_Output
-}
-
-/*
- * An edge in a connection.
-
- */
-export interface CommentEdge {
-  node: Comment
-  cursor: String
-}
-
-export interface Like extends Node {
-  id: ID_Output
-  author: User
-  recipe: Recipe
 }
 
 /*
  * A connection to a list of items.
 
  */
-export interface LikeConnection {
+export interface RecipeConnection {
   pageInfo: PageInfo
-  edges: LikeEdge[]
-  aggregate: AggregateLike
+  edges: RecipeEdge[]
+  aggregate: AggregateRecipe
+}
+
+export interface CommentPreviousValues {
+  text: String
 }
 
 export interface CommentSubscriptionPayload {
@@ -3692,65 +3389,43 @@ export interface CommentSubscriptionPayload {
   previousValues?: CommentPreviousValues
 }
 
-/*
- * An edge in a connection.
-
- */
-export interface RecipeEdge {
-  node: Recipe
-  cursor: String
-}
-
-/*
- * An edge in a connection.
-
- */
-export interface EquipmentEdge {
-  node: Equipment
-  cursor: String
-}
-
-export interface CategoryPreviousValues {
-  id: ID_Output
-  name: String
-}
-
-export interface CategorySubscriptionPayload {
-  mutation: MutationType
-  node?: Category
-  updatedFields?: String[]
-  previousValues?: CategoryPreviousValues
-}
-
 export interface Comment {
   text: String
   author: User
   recipe: Recipe
 }
 
-export interface CommentPreviousValues {
-  text: String
+export interface LikePreviousValues {
+  id: ID_Output
 }
 
 /*
  * A connection to a list of items.
 
  */
-export interface CategoryConnection {
+export interface IngredientConnection {
   pageInfo: PageInfo
-  edges: CategoryEdge[]
-  aggregate: AggregateCategory
+  edges: IngredientEdge[]
+  aggregate: AggregateIngredient
 }
 
-export interface AggregateIngredient {
-  count: Int
+export interface IngredientSubscriptionPayload {
+  mutation: MutationType
+  node?: Ingredient
+  updatedFields?: String[]
+  previousValues?: IngredientPreviousValues
 }
 
-export interface BatchPayload {
-  count: Long
+/*
+ * An edge in a connection.
+
+ */
+export interface LikeEdge {
+  node: Like
+  cursor: String
 }
 
-export interface AggregateLike {
+export interface AggregateComment {
   count: Int
 }
 

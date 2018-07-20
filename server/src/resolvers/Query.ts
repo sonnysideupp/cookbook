@@ -19,6 +19,7 @@ export default {
   ingredients: async (parent, args, ctx: Context, info) => {
     return ctx.db.query.ingredients({ ...args }, info)
   },
+
   likes: async (parent, args, ctx: Context, info) => {
     return await ctx.db.query.likes({ ...args }, info)
   },
