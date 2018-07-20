@@ -48,9 +48,10 @@ p {
   font-family: Montserrat;
 }
 
-button {
+.subbutton {
   width: 10%;
   padding: 3px;
+  background: firebrick;
 }
 
 #review {
@@ -58,6 +59,10 @@ button {
   border-top: 1px solid black;
   border-bottom: 1px solid black;
   width: 100%;
+}
+
+.commentarea {
+  width: 70%;
 }
 
 #directions {

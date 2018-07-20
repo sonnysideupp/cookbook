@@ -97,6 +97,7 @@ class Post extends React.Component {
                           <h3 id="review">Reviews</h3>
                         </p>
                         <CommentForm
+                          id="commentbutton"
                           recipename={this.props.match.params.recipename}
                         />
                         <p className="comments">{recipe.comments[0].text}</p>
