@@ -23,7 +23,9 @@ const GET_MYRECIPES = gql`
       recipes {
         name
         description
-        category
+        category {
+          name
+        }
       }
     }
   }
@@ -53,11 +55,10 @@ class MyProfile extends React.Component {
           </h2>
           <div> POSTS GO HERE</div>
         </div>
-
+        <h2 className="myrecipestitle" id="myrecipestitle">
+          MY RECIPES
+        </h2>
         <div className="myrecipes">
-          <h2 className="myrecipestitle" id="myrecipestitle">
-            MY RECIPES
-          </h2>
           <Query query={GET_MYRECIPES}>
             {({ loading, error, data, refetch }) => {
               if (loading) {
