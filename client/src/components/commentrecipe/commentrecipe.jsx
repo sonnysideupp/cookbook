@@ -43,12 +43,15 @@ class CommentForm extends React.Component {
                   }}
                 >
                   <input
+                    className="commentarea"
                     type="textarea"
-                    placeholder="comment"
+                    placeholder="write a review"
                     onChange={e => this.setState({ text: e.target.value })}
                   />
 
-                  <button type="submit">Submit</button>
+                  <button type="submit" className="subbutton">
+                    Submit
+                  </button>
                 </form>
               </div>
             )

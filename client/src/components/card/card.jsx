@@ -66,14 +66,13 @@ const LIKE = gql`
   }
 `
 
-// const UNLIKE = gql`
-//   mutation unlikerecipe($name: String!) {
-//     unlikerecipe(name: $name) {
-//       name
-//     }
-//   }
-
-// `
+const UNLIKE = gql`
+  mutation unlikerecipe($name: String!) {
+    unlikerecipe(name: $name) {
+      name
+    }
+  }
+`
 
 class FoodWindow extends React.Component {
   // const text = this.state.liked ? 'Unlike' : 'Like!';
@@ -184,7 +183,12 @@ class FoodWindow extends React.Component {
 
                             return (
                               <Mutation mutation={LIKE}>
-                                {(likerecipe, { error, loading }) => {
+                                {/* <Mutation mutation={UNLIKE}> */}
+                                {(
+                                  likerecipe,
+                                  // unlikerecipe,
+                                  { error, loading }
+                                ) => {
                                   if (loading) {
                                     return <div>loading...</div>
                                   }
@@ -211,7 +215,17 @@ class FoodWindow extends React.Component {
                                             recipe_likes &&
                                             recipe_likes.length
                                           ) {
-                                            // here
+                                            // here for unlike mutation
+                                            // unlikerecipe({
+                                            //   variables: {
+                                            //     name: recipe.name
+                                            //   }
+                                            // })
+                                            // refetch()
+                                            // refetchAllRecipes()
+                                            // recipe_likes.length--
+                                            // recipe_likes != recipe_likes
+
                                             alert("unlike mutation")
                                           } else {
                                             await likerecipe({
@@ -232,6 +246,7 @@ class FoodWindow extends React.Component {
                                   )
                                 }}
                               </Mutation>
+                              // </Mutation>
                             )
                           }}
                         </Query>

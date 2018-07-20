@@ -145,7 +145,7 @@ class Navigation extends React.Component {
                 </NavLink>
               </NavItem>
               <NavItem className="welcome">
-                <p className="welcomeText">Welcome, </p>
+                <p className="welcomeText">Welcome</p>
                 <div>
                   {token
                     ? (uname = localStorage.getItem("username"))
