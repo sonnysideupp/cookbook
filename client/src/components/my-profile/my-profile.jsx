@@ -31,6 +31,19 @@ const GET_MYRECIPES = gql`
   }
 `
 
+const GET_LIKEDRECIPES = gql`
+  query {
+    me {
+      likes {
+        recipe {
+          name
+          description
+        }
+      }
+    }
+  }
+`
+
 class MyProfile extends React.Component {
   render() {
     return (
@@ -48,16 +61,51 @@ class MyProfile extends React.Component {
             </button>
           </Link>
         </div>
-
-        <div className="likedposts">
-          <h2 className="likedtitle" id="likedtitle">
-            LIKED POSTS
-          </h2>
-          <div> POSTS GO HERE</div>
-        </div>
+        <h2 className="likedtitle" id="likedtitle">
+          LIKED POSTS
+        </h2>
         <h2 className="myrecipestitle" id="myrecipestitle">
           MY RECIPES
         </h2>
+        <div className="likedposts">
+          <Query query={GET_LIKEDRECIPES}>
+            {({ loading, error, data, refetch }) => {
+              if (loading) {
+                return "Loading..."
+              }
+              if (error) {
+                return "Oops, something blew up."
+              }
+              if (!data.me.likes) return "no data..."
+              return data.me.likes.map(like => {
+                return (
+                  <div className="each_card">
+                    <Card>
+                      <CardImg
+                        className="image"
+                        top
+                        width="100%"
+                        src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180"
+                        alt="Card image cap"
+                      />
+                      <CardBody>
+                        <CardTitle>{like.recipe.name}</CardTitle>
+                        <CardText id="cardtext">
+                          {like.recipe.description}
+                        </CardText>
+                        <CardText id="cardtext">
+                          {/* {like.recipe.category.name} */}
+                        </CardText>
+                        <Button>More</Button>
+                      </CardBody>
+                    </Card>
+                  </div>
+                )
+              })
+            }}
+          </Query>
+        </div>
+
         <div className="myrecipes">
           <Query query={GET_MYRECIPES}>
             {({ loading, error, data, refetch }) => {
@@ -82,7 +130,9 @@ class MyProfile extends React.Component {
                       <CardBody>
                         <CardTitle>{recipe.name}</CardTitle>
                         <CardText id="cardtext">{recipe.description}</CardText>
-                        <CardText id="cardtext">{recipe.category}</CardText>
+                        <CardText id="cardtext">
+                          {recipe.category.name}
+                        </CardText>
                         <Button>More</Button>
                       </CardBody>
                     </Card>
