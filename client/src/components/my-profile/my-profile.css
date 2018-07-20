@@ -10,9 +10,10 @@
 .likedtitle {
   font-family: Montserrat;
   color: black;
-  text-align: center;
+  /* text-align: center;
   width: 50%;
-  margin-right: auto;
+  float: left;
+  margin-right: auto; */
 }
 .myrecipes {
   font-family: Montserrat;
@@ -27,10 +28,11 @@
 .myrecipestitle {
   font-family: Montserrat;
   color: black;
-  text-align: center;
+  /* text-align: center;
   border-bottom: 1px solid black;
   width: 50%;
-  margin-left: auto;
+  float: right;
+  margin-left: auto; */
 }
 .newrecipebutton {
   background-color: firebrick;
