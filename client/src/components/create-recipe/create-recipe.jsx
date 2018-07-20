@@ -8,8 +8,8 @@ import Navbar from "../navbar/navbar"
 import { Query } from "react-apollo"
 
 const CREATE_RECIPE = gql`
-  mutation createrecipe($data: RecipeCreateInput!) {
-    createrecipe(data: $data) {
+  mutation createrecipe($data: RecipeCreateInput!, $picture: Upload) {
+    createrecipe(data: $data, picture: $picture) {
       name
       description
       price
@@ -41,6 +41,7 @@ class CreateRecipeForm extends React.Component {
     nutrition: "",
     category: "",
     comments: "",
+    pictureUrl: "",
     ingredients: {
       connect: []
     }
@@ -69,6 +70,7 @@ class CreateRecipeForm extends React.Component {
                             process: this.state.process,
                             nutrition: this.state.nutrition,
                             category: this.state.category,
+
                             creator: {
                               connect: {
                                 username: username
@@ -77,6 +79,7 @@ class CreateRecipeForm extends React.Component {
                           }
                         }
                       })
+                      this.props.history.push("/")
                     } catch (error) {}
                   }}
                 >
@@ -121,7 +124,15 @@ class CreateRecipeForm extends React.Component {
                     />
                   </div>
                   <div className="category">
-                    <Select
+                    <input
+                      id="category"
+                      type="text"
+                      placeholder="category"
+                      onChange={e =>
+                        this.setState({ category: e.target.value })
+                      }
+                    />
+                    {/* <Select
                       id="category"
                       closeMenuOnSelect={false}
                       components={makeAnimated()}
@@ -143,7 +154,7 @@ class CreateRecipeForm extends React.Component {
                       type="text"
                       placeholder="category"
                       onChange={e => this.setState({ category: e.target })}
-                    />
+                    /> */}
                   </div>
                   <div className="steps">
                     <input
@@ -160,6 +171,21 @@ class CreateRecipeForm extends React.Component {
                             </span>
                           )
                         })
+                      }
+                    />
+                  </div>
+                  <div className="picture">
+                    <input
+                      type="file"
+                      required
+                      onChange={({
+                        target: {
+                          validity,
+                          files: [file]
+                        }
+                      }) =>
+                        validity.valid &&
+                        createrecipe({ variables: { picture: file } })
                       }
                     />
                   </div>

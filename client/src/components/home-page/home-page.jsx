@@ -39,6 +39,7 @@ class HomePage extends React.Component {
 
         <div className="cards">
           <FoodWindow
+            history={this.props.history}
             selectedRecipe={this.state.selectedRecipe}
             foodType={this.state.selectedFoodType}
           />

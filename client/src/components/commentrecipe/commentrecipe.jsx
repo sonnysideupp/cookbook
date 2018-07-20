@@ -16,8 +16,7 @@ const COMMENT_RECIPE = gql`
 
 class CommentForm extends React.Component {
   state = {
-    text: "",
-    name: ""
+    text: ""
   }
   render() {
     let input
@@ -37,7 +36,7 @@ class CommentForm extends React.Component {
                       const { data } = await commentRecipe({
                         variables: {
                           text: this.state.text,
-                          name: this.state.name
+                          name: this.props.recipename
                         }
                       })
                     } catch (error) {}
@@ -47,11 +46,6 @@ class CommentForm extends React.Component {
                     type="textarea"
                     placeholder="comment"
                     onChange={e => this.setState({ text: e.target.value })}
-                  />
-                  <input
-                    type="textarea"
-                    placeholder="name"
-                    onChange={e => this.setState({ name: e.target.value })}
                   />
 
                   <button type="submit">Submit</button>

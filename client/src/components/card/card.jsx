@@ -176,6 +176,11 @@ class FoodWindow extends React.Component {
                                       <Button
                                         className="move_link"
                                         color="primary"
+                                        onClick={() =>
+                                          this.props.history.push(
+                                            `/${recipe.name}`
+                                          )
+                                        }
                                       >
                                         {" "}
                                         More{" "}
