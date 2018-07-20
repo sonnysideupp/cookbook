@@ -57,6 +57,15 @@ const LIKE = gql`
   }
 `
 
+// const UNLIKE = gql`
+//   mutation unlikerecipe($name: String!) {
+//     unlikerecipe(name: $name) {
+//       name
+//     }
+//   }
+
+// `
+
 class FoodWindow extends React.Component {
   // const text = this.state.liked ? 'Unlike' : 'Like!';
 
