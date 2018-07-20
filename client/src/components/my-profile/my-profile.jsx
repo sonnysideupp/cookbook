@@ -46,14 +46,18 @@ class MyProfile extends React.Component {
             </button>
           </Link>
         </div>
-        <h2 className="likedtitle" id="likedtitle">
-          LIKED POSTS
-        </h2>
-        <div className="likedposts">POSTS GO HERE</div>
-        <h2 className="myrecipestitle" id="myrecipestitle">
-          MY RECIPES
-        </h2>
+
+        <div className="likedposts">
+          <h2 className="likedtitle" id="likedtitle">
+            LIKED POSTS
+          </h2>
+          <div> POSTS GO HERE</div>
+        </div>
+
         <div className="myrecipes">
+          <h2 className="myrecipestitle" id="myrecipestitle">
+            MY RECIPES
+          </h2>
           <Query query={GET_MYRECIPES}>
             {({ loading, error, data, refetch }) => {
               if (loading) {
