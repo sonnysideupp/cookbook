@@ -1,6 +1,10 @@
 import * as React from "react"
 import Foodtype from "../foodtype/foodtype"
+<<<<<<< HEAD
 // import Foodtype2 from "../foodtype2/foodtype2"
+=======
+import Foodtype2 from "../foodtype2/foodtype2"
+>>>>>>> d26d8f093ca5681c96d514c7ad457e7bbe87944f
 import FoodWindow from "../card/card"
 import FoodSlide from "../carousel/carousel"
 import "./home-page.css"
