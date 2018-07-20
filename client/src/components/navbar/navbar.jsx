@@ -141,7 +141,7 @@ class Navigation extends React.Component {
                   href="/my-profile/"
                   id="my-page"
                 >
-                  My Page
+                  My Cookbook
                 </NavLink>
               </NavItem>
               <NavItem className="welcome">

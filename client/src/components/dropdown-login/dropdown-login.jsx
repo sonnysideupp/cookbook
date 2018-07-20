@@ -37,7 +37,7 @@ class DropdownLogin extends React.Component {
           </DropdownItem>
           <DropdownItem disabled>password:</DropdownItem>
           <DropdownItem disabled>
-            <input id="password" type="password" className="password" />
+            <input type="password" id="password" className="password" />
           </DropdownItem>
           <DropdownItem divider />
           <DropdownItem disabled>
