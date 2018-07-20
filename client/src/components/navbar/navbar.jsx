@@ -74,6 +74,7 @@ class Navigation extends React.Component {
       isDropDownOpen: !this.state.isDropDownOpen
     })
   }
+
   render() {
     const token = localStorage.getItem("token")
     var uname = ""
