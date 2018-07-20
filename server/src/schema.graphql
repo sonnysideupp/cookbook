@@ -8,6 +8,7 @@ type Query {
   allrecipes: [Recipe]!
   ingredients(where: IngredientWhereInput): [Ingredient!]!
   likes(where: LikeWhereInput): [Like!]!
+  recipe(where: RecipeWhereUniqueInput!): Recipe
 }
 
 type Mutation {
@@ -18,7 +19,7 @@ type Mutation {
     username: String!
   ): AuthPayload!
   login(email: String!, password: String!): AuthPayload!
-  createrecipe(data: RecipeCreateInput!): Recipe!
+  createrecipe(data: RecipeCreateInput!, picture: Upload): Recipe!
   commentRecipe(text: String!, name: String!): Recipe!
   likerecipe(name: String!): Recipe!
   unlikerecipe(name: String!): Like!

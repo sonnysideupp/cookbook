@@ -16,7 +16,8 @@
     "graphql-yoga": "1.14.12",
     "jsonwebtoken": "8.3.0",
     "node.js": "0.0.0",
-    "prisma-binding": "^2.1.0"
+    "prisma-binding": "^2.1.0",
+    "shortid": "^2.2.12"
   },
   "prettier": {
     "semi": false

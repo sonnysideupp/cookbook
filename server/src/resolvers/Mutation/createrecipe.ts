@@ -1,9 +1,9 @@
 import { Context, getUserId } from "../../utils"
 import { createWriteStream } from "fs"
+const shortid = require("shortid")
 
 const storeUpload = async ({ stream, filename }): Promise<any> => {
-  // const path = `images/${shortid.generate()}`
-  const path = `images/test`
+  const path = `images/${shortid.generate()}`
 
   return new Promise((resolve, reject) =>
     stream
@@ -22,10 +22,11 @@ const processUpload = async upload => {
 export const recipe = {
   createrecipe: async (parent, args, ctx: Context, info) => {
     const id = getUserId(ctx)
-    //  const pictureUrl = await processUpload(args.picture)
+    const pictureUrl = await processUpload(args.picture)
     return await ctx.db.mutation.createRecipe(
       {
         ...args,
+        pictureUrl: pictureUrl,
         creator: {
           id: id
         }

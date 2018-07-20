@@ -18,7 +18,7 @@ type Recipe {
   process: String!
   comments: [Comment!]!
   likes: [Like!]!
-  # pictureUrl: String!
+  pictureUrl: String
   price: Float!
   nutrition: String!
   category: String!
@@ -41,6 +41,10 @@ type Ingredient {
   name: String! @unique
   price: Float!
 }
+# type Category {
+#   id: ID! @unique
+#   name: String! @unique
+# }
 
 type Equipment {
   id: ID! @unique
